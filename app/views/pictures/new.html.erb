@@ -1,0 +1,8 @@
+<h1>hello</h1>
+<%= form_for(@picture) do |f| %>
+  <%= f.file_field :image %>
+  <%= f.submit "submit" %>
+<% end  %>
+<% @pictures.each do |picture| %>
+  <%= image_tag "#{picture.image}" %>
+<% end %>
