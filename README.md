@@ -110,7 +110,7 @@ default： trueがdefault出品元。
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
+|following_user_id|integer|null: false, foreign_key: true|
 |followed_user_id|integer|null: false, foreign_key: true|
 |block|boolean|null: false, default: false|
 
