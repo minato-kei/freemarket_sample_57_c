@@ -29,6 +29,7 @@
 
 ### Association
 - belongs_to :m_category
+- has_many :brands_s_categories
 - has_many :brands through: :brands_s_categories
 
 ## brans_s_categoriesテーブル
