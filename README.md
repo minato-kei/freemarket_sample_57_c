@@ -17,7 +17,7 @@
 |b_categories_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :b_categories
+- belongs_to :b_category
 - has_many   :s_categories
 
 ## s_categoriesテーブル
@@ -28,7 +28,7 @@
 |m_categories_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :m_categories
+- belongs_to :m_category
 - has_many :brands through: :brands_s_categories
 
 ## brans_s_categoriesテーブル
@@ -39,7 +39,7 @@
 |brand_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :s_categories
+- belongs_to :s_category
 - belongs_to :brand
 
 ## brandsテーブル
@@ -50,7 +50,7 @@
 |s_categories_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :s_categories
+- belongs_to :s_category
 - has_many :categories through: :brands_s_categories
 
 
@@ -127,7 +127,7 @@ default： trueがdefault出品元。
 
 ### Association
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 
 ## searchesテーブル
 
