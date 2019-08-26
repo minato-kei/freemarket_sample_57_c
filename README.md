@@ -1,46 +1,24 @@
 # README
 
-## big_categoriesテーブル
+## categoriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index: true|
+|ancestry|string|     |
 
 ### Association
-- has_many   :middle_categories
+- has_many   :brands ,through :brands_categories
 
-## middle_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|big_categories_id|integer|null: false,foreign_key: true|
-
-### Association
-- belongs_to :big_category
-- has_many   :small_categories
-
-## small_categoriesテーブル
+## brans_categoriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|middle_categories_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :middle_category
-- has_many :brands_small_categories
-- has_many :brands through: :brands_small_categories
-
-## brans_small_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|small_categories_id|integer|null: false, foreign_key: true|
+|category_id|integer|null: false, foreign_key: true|
 |brand_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :small_category
+- belongs_to :category
 - belongs_to :brand
 
 ## brandsテーブル
@@ -48,11 +26,11 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|small_categories_id|integer|null: false, foreign_key: true|
+|brands_categories_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :brands_small_categories
-- has_many :small_categories through: :brands_small_categories
+- has_many :brands_categories
+- has_many :categories through: :brands_categories
 
 
 ## creditsテーブル
@@ -147,9 +125,7 @@ default： trueがdefault出品元。
 |name                 |string   |index: true,null:false               |商品名
 |price                |integer  |null:false                           |価格
 |user_id              |integer  |null:false,foreign_key: true         |ユーザーid
-|big_category_id      |integer  |null:false,foreign_key: true         |大カテゴリ
-|middle_category_id   |integer  |null:false,foreign_key: true         |中カテゴリ
-|small_category_id    |integer  |null:false,foreign_key: true         |小カテゴリ
+|category_id          |integer  |null:false,foreign_key: true         |
 |size                 |string   |                                     |サイズ→必須だけど、服以外では必要ないカラム
 |condition            |string   |null:false                           |
 |cost_burden          |string   |null:false, default:current_user.id  |送料負担はデフォで出品者負担を選択
@@ -162,9 +138,7 @@ default： trueがdefault出品元。
 - has_many    :pictures
 - belongs_to  :shipping
 - belongs_to  :user
-- belongs_to  :big_category
-- belongs_to  :middle_category
-- belongs_to  :small_category
+- belongs_to  :category
 - has_many    :orders
 - has_many    :likes
 
