@@ -135,12 +135,12 @@ default： trueがdefault出品元。
 |rating               |string   |null:false                           |出品者評価
 |status               |string   |null:false                           |販売状況
 ### Association
-- has_many    :pictures
+- has_many    :pictures, dependent: destroy
 - belongs_to  :shipping
 - belongs_to  :user
 - belongs_to  :category
-- has_many    :orders
-- has_many    :likes
+- has_many    :orders, dependent: destroy
+- has_many    :likes, dependent: destroy
 
 ## picturesテーブル
 |Column               |Type     |Options                              |
@@ -165,12 +165,13 @@ default： trueがdefault出品元。
 |balance              |integer  |null:false, default: 0               |ポイント残高、デフォは0
 |sex                  |string   |                                     |性別は後から選択
 ### Association
-- has_many :shippings
+- has_many :shippings, dependent: destroy
 - has_many :orders
-- has_many :items
-- has_many :credits
-- has_many :likes
-- has_many :searches
+- has_many :items, dependent: destroy
+- has_many :credits, dependent: destroy
+- has_many :likes, dependent: destroy
+- has_many :searches, dependent: destroy
+- has_many :follows, dependent: destroy
 
 ## ordersテーブル
 |Column               |Type     |Options                              |
