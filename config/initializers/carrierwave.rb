@@ -1,4 +1,4 @@
-if Rails.env.production?
+# if Rails.env.production?
   require 'carrierwave/storage/abstract'
   require 'carrierwave/storage/file'
   require 'carrierwave/storage/fog'
@@ -16,4 +16,4 @@ if Rails.env.production?
     config.fog_directory  = 'mercari-fake-57c'
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/mercari-fake-57c'
   end
-end
+# end
