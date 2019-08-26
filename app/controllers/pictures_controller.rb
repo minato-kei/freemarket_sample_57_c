@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   end
   
   def create
-    # binding.pry
+    binding.pry
     @picture = Picture.new(picture_params)
     if @picture.save
       redirect_to root_path
