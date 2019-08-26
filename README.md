@@ -51,8 +51,8 @@
 |s_categories_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :s_category
-- has_many :categories through: :brands_s_categories
+- has_many :brands_s_categories
+- has_many :s_categories through: :brands_s_categories
 
 
 ## creditsテーブル
@@ -74,8 +74,8 @@
 |------|----|-------|
 |comment|text|null: false|
 |status|integer|null: false, foreign_key: true|
-|offer|integer|null: false|
-|offer_flag|boolean|null: false|
+|offer|integer|         |
+|acception|boolean|              |
 |item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
@@ -165,6 +165,9 @@ default： trueがdefault出品元。
 - belongs_to  :b_category
 - belongs_to  :m_category
 - belongs_to  :s_category
+- has_many    :orders
+- has_many    :likes
+
 ## picturesテーブル
 |Column               |Type     |Options                              |
 |---------------------|---------|-------------------------------------|
@@ -192,6 +195,9 @@ default： trueがdefault出品元。
 - has_many :orders
 - has_many :items
 - has_many :credits
+- has_many :likes
+- has_many :searches
+
 ## ordersテーブル
 |Column               |Type     |Options                              |
 |---------------------|---------|-------------------------------------|
