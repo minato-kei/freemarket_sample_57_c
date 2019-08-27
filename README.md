@@ -71,7 +71,6 @@
 |address|string|null: false|
 |building|string|null: true|
 |phone|integer|null: true|
-|item_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 |default|boolean|null: false, default: false|
 
@@ -128,12 +127,12 @@ default： trueがdefault出品元。
 |category_id          |integer  |null:false,foreign_key: true         |
 |size                 |string   |                                     |サイズ→必須だけど、服以外では必要ないカラム
 |condition            |string   |null:false                           |
-|cost_burden          |string   |null:false, default:current_user.id  |送料負担はデフォで出品者負担を選択
+|cost_burden          |integer  |null:false                           |送料負担はデフォで出品者負担を選択
 |shipping_from        |string   |null:false,                          |
 |shipping_day         |string   |null:false                           |発送するまでの日数
 |shipping_id          |integer  |null:false,foreign_key: true         |発送元カラムのid
-|rating               |string   |null:false                           |出品者評価
-|status               |string   |null:false                           |販売状況
+|rating               |integer  |                                     |出品者評価
+|status               |string   |null:false, default: "出品中"         |販売状況
 ### Association
 - has_many    :pictures, dependent: destroy
 - belongs_to  :shipping
