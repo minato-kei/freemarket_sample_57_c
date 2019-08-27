@@ -1,0 +1,143 @@
+.container
+  .header
+    .header__inner
+      .header__inner__top
+        .header__inner__top__mark
+          %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
+        .header__inner__top__form
+          %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
+          
+          .header__inner__top__form__icon
+            %i.fa.fa-search
+      .header__inner__nav
+        .left-box
+          
+          .left-box__category
+            %i.fa.fa-list-ul
+            .left-box__category__menu
+              カテゴリーから探す
+          .left-box__bland
+            %i.fa.fa-tag
+            .left-box__bland__menu
+              ブランドから探す
+          
+        .right-box
+          .notification-list
+            %i.fa.fa-bell-o
+            お知らせ
+          .todo-list
+            %i.fa.fa-check
+            やることリスト
+          .mypage-box
+            %i.fa.fa-file-image-o
+            マイページ
+  .main
+    
+    .main__owl 
+      -# 非同期にてスライドするところ
+      .main__owl__content
+        %h2 
+          スマホでかんたん
+          %br 
+          フリマアプリ
+        %p
+          メルカリはスマホカメラからすぐに出品できる
+          %br
+          購入時も安心な独自システムのアプリです
+        .main__owl__content__icon
+          %ul
+            %li
+              %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005"}/
+            %li
+              %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005"}/
+      .main__owl__image
+        %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?4248847005"}/
+  .main-content
+    .pickup
+      .pickup__header
+        %h2 ピックアップカテゴリー
+        .pickup__header__type
+          %h3 レディース新着アイテム
+        .pickup__header__item-box
+          %ul
+            %li item
+            %li item
+            %li item
+            %li item
+        .pickup__header__all
+          すべての商品を見る
+      .pickup__header
+        %h2 ピックアップブランド
+        .pickup__header__type
+          %h3 シャネル新着アイテム
+        .pickup__header__item-box
+          %ul
+            %li item
+            %li item
+            %li item
+            %li item
+        .pickup__header__all
+          すべての商品を見る
+          
+  .bunner
+    .bunner__full
+      .bunner__full__inner
+        %h2 スマホでかんたんフリマアプリ
+        %p 今すぐ無料ダウンロード！
+        .bunner__full__inner__icon
+          %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?4248847005", :width => "68"}/
+          %ul
+            %li  
+              %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005", :width => "133"}/
+            %li 
+              %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005", :width => "133"}/
+      .bunner__full__image
+        %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?4248847005"}/
+  .footer 
+    .footer__cell
+      .footer__cell__left
+        %h2 メルカリについて
+        %ul
+          %li< 会社概要（運営会社）
+          %li< 採用情報
+          %li< プレスリリース
+          %li< 公式ブログ
+          %li< メルカリロゴ利用ガイドライン
+          .footer__cell__left__social
+            %i.fa.fa-twitter
+            %i.fa.fa-facebook-official
+      .footer__cell__right
+        %h2 ヘルプ＆ガイド
+        %ul
+          %li< メルカリガイド
+          %li< らくらくメルカリ便
+          %li< ゆうゆうメルカリ便
+          %li< 大型メルカリ便
+          %li< 車体取引ガイド
+          %li< メルカリあんしん•あんぜん宣言！
+          %li< 似ブランド品撲滅への取り組み
+          %li< メルカリボックス
+      .footer__cell__width
+        %h2 プライバシーと利用規約
+        .inner-left
+          %ul
+            %li< プライバシーポリシー
+            %li< メルカリ利用規約
+            %li< あんしんスマホサポート制度に関する利用規約
+            %li< コンプライアンスポリシー
+        .inner-right
+          %ul
+            %li< 個人データの安全管理に係る基本方針
+            %li< 特定商取引に関する表記
+            %li< 資金決済法に基づく表示
+            %li< 法令遵守と犯罪防止のために
+      .footer__cell__lung
+        %h2 国
+        %ul
+          %li< 日本
+          %li< United States
+    .footer__bottom
+      .footer-logo
+        %img{:alt => "mercari", :height => "33", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?575670517", :width => "124"}/
+      .footer-copylight
+        ©︎2019 Mercari
