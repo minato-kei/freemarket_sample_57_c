@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   resources :pictures, only: [:new, :create]
   resources :items, only: [:index, :show]
+  post 'session' => "users#create_session"
+
 end
