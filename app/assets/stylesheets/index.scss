@@ -32,6 +32,7 @@
               height: 40px;
               width: 40px;
               right: 0px;
+              
             }
           }
           
@@ -63,7 +64,7 @@
         .right-box {
           display: flex;
           float: right;
-          font-size: 15px;
+          font-size: 14px;
           i {
             font-size: 20px;
             color: #ccc;
@@ -160,7 +161,7 @@
   .bunner {
     width: 100%;
     height: 260px;
-    background-image : url(/jp/assets/img/common/jp/top/download_bg_pc.jpg?71240750);
+    background-image: url("./images/bg-pc.png");
     &__full {
       display: flex;
       width: 760px;
@@ -192,7 +193,7 @@
       }
     }
   }
-  .footer {
+  .bottom {
     width: 100%;
     height: 390px;
     background-color: #212121;
@@ -216,8 +217,11 @@
         margin-top: 18px;
         padding: 0 20px 0 0;
         &__social {
-          font-size: 33px;
-          margin-top:16px;
+          color: #fff;
+          i {
+            font-size: 30px;
+            margin-top:20px;
+          }
         }
       }
       &__right {
@@ -241,19 +245,19 @@
         }
       }
       &__lung {
-        width: auto;
+        width: 100px;
         height: 90px;
         margin-top: 18px;
       }
     
     }
-    &__bottom {
+    &__end {
       display: flex;
       margin: 30px auto 20px;
       height: 33px;
       width: 993px;
       line-height: 33px;
-      .footer-copylight {
+      .bottom-copylight {
         width: 745px;
         text-align: center;
         font-size: 12px;

@@ -3,9 +3,11 @@
     .header__inner
       .header__inner__top
         .header__inner__top__mark
-          %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
+          = link_to "#" do
+            %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
         .header__inner__top__form
-          %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
+          .header__inner__top__form__input
+            %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
           
           .header__inner__top__form__icon
             %i.fa.fa-search
@@ -13,24 +15,28 @@
         .left-box
           
           .left-box__category
-            %i.fa.fa-list-ul
-            .left-box__category__menu
+            = link_to "#" do
+              %i.fa.fa-list-ul
               カテゴリーから探す
           .left-box__bland
-            %i.fa.fa-tag
-            .left-box__bland__menu
+            = link_to "#" do
+              %i.fa.fa-tag
               ブランドから探す
           
         .right-box
           .notification-list
-            %i.fa.fa-bell-o
-            お知らせ
+            = link_to "#" do
+              %i.far.fa-bell
+              お知らせ
           .todo-list
-            %i.fa.fa-check
-            やることリスト
+            = link_to "#" do
+              %i.fa.fa-check
+              やることリスト
           .mypage-box
-            %i.fa.fa-file-image-o
-            マイページ
+            = link_to "#" do
+              %i.far.fa-file-image
+              マイページ
+
   .main
     
     .main__owl 
@@ -47,9 +53,11 @@
         .main__owl__content__icon
           %ul
             %li
-              %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005"}/
+              = link_to "https://apps.apple.com/jp/app/id667861049?l=ja" do
+                %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005"}/
             %li
-              %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005"}/
+              = link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
+                %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005"}/
       .main__owl__image
         %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/jp/top/main_content_pc.png?4248847005"}/
   .main-content
@@ -57,29 +65,38 @@
       .pickup__header
         %h2 ピックアップカテゴリー
         .pickup__header__type
-          %h3 レディース新着アイテム
-        .pickup__header__item-box
+          = link_to "#" do
+            %h3 レディース新着アイテム
+        .pickup__header__item
           %ul
-            %li item
-            %li item
-            %li item
-            %li item
+            = render partial: 'item-box', collection: @ladies_items
+
+
+
         .pickup__header__all
-          すべての商品を見る
+          = link_to "#" do
+            すべての商品を見る
       .pickup__header
         %h2 ピックアップブランド
         .pickup__header__type
-          %h3 シャネル新着アイテム
-        .pickup__header__item-box
+          = link_to "#" do
+            %h3 シャネル新着アイテム
+        .pickup__header__item
           %ul
-            %li item
+            -# この部分は、renderで繰り返し、アイテム部分
+            -# = render partial: 'item-box', collection: @ladies_items 
+            %li 
+              
+
             %li item
             %li item
             %li item
         .pickup__header__all
-          すべての商品を見る
+          = link_to "#" do
+            すべての商品を見る
           
   .bunner
+    
     .bunner__full
       .bunner__full__inner
         %h2 スマホでかんたんフリマアプリ
@@ -87,57 +104,110 @@
         .bunner__full__inner__icon
           %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/mercari_icon.png?4248847005", :width => "68"}/
           %ul
-            %li  
-              %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005", :width => "133"}/
             %li 
-              %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005", :width => "133"}/
+              = link_to "https://apps.apple.com/jp/app/id667861049?l=ja" do
+                %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/app-store.svg?4248847005", :width => "133"}/
+            %li
+              = link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&hl=ja" do
+                %img{:alt => "", :height => "40", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/google-play.svg?4248847005", :width => "133"}/
       .bunner__full__image
         %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/jp/download_content_pc.png?4248847005"}/
-  .footer 
-    .footer__cell
-      .footer__cell__left
+  .bottom 
+    .bottom__cell
+      .bottom__cell__left
         %h2 メルカリについて
         %ul
-          %li< 会社概要（運営会社）
-          %li< 採用情報
-          %li< プレスリリース
-          %li< 公式ブログ
-          %li< メルカリロゴ利用ガイドライン
-          .footer__cell__left__social
-            %i.fa.fa-twitter
-            %i.fa.fa-facebook-official
-      .footer__cell__right
+          %li< 
+            = link_to "#" do
+              会社概要（運営会社）
+          %li< 
+            = link_to "#" do
+              採用情報
+          %li< 
+            = link_to "#" do
+              プレスリリース
+          %li< 
+            = link_to "#" do
+              公式ブログ
+          %li< 
+            = link_to "#" do
+              メルカリロゴ利用ガイドライン
+          .bottom__cell__left__social
+            = link_to "https://twitter.com" do
+              %i.fab.fa-twitter
+            = link_to "https://www.facebook.com" do
+              %i.fab.fa-facebook-square
+
+
+      .bottom__cell__right
         %h2 ヘルプ＆ガイド
         %ul
-          %li< メルカリガイド
-          %li< らくらくメルカリ便
-          %li< ゆうゆうメルカリ便
-          %li< 大型メルカリ便
-          %li< 車体取引ガイド
-          %li< メルカリあんしん•あんぜん宣言！
-          %li< 似ブランド品撲滅への取り組み
-          %li< メルカリボックス
-      .footer__cell__width
+          %li< 
+            = link_to "#" do
+              メルカリガイド
+          %li< 
+            = link_to "#" do
+              らくらくメルカリ便
+          %li< 
+            = link_to "#" do
+              ゆうゆうメルカリ便
+          %li< 
+            = link_to "#" do
+              大型メルカリ便
+          %li< 
+            = link_to "#" do
+              車体取引ガイド
+          %li< 
+            = link_to "#" do
+              メルカリあんしん•あんぜん宣言！
+          %li< 
+            = link_to "#" do
+              似ブランド品撲滅への取り組み
+          %li< 
+            = link_to "#" do
+              メルカリボックス
+      .bottom__cell__width
         %h2 プライバシーと利用規約
         .inner-left
           %ul
-            %li< プライバシーポリシー
-            %li< メルカリ利用規約
-            %li< あんしんスマホサポート制度に関する利用規約
-            %li< コンプライアンスポリシー
+            %li<
+              = link_to "#" do
+                プライバシーポリシー
+            %li<
+              = link_to "#" do
+                メルカリ利用規約
+            %li<
+              = link_to "#" do
+                あんしんスマホサポート制度に関する利用規約
+            %li<
+              = link_to "#" do
+                コンプライアンスポリシー
         .inner-right
           %ul
-            %li< 個人データの安全管理に係る基本方針
-            %li< 特定商取引に関する表記
-            %li< 資金決済法に基づく表示
-            %li< 法令遵守と犯罪防止のために
-      .footer__cell__lung
+            %li<
+              = link_to "#" do
+                個人データの安全管理に係る基本方針
+            %li<
+              = link_to "#" do
+                特定商取引に関する表記
+            %li<
+              = link_to "#" do
+                資金決済法に基づく表示
+            %li<
+              = link_to "#" do
+                法令遵守と犯罪防止のために
+      .bottom__cell__lung
         %h2 国
         %ul
-          %li< 日本
-          %li< United States
-    .footer__bottom
-      .footer-logo
-        %img{:alt => "mercari", :height => "33", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?575670517", :width => "124"}/
-      .footer-copylight
+          %li<
+            = link_to "#" do
+              日本
+          %li<
+            = link_to "#" do
+              United States
+    .bottom__end
+      .bottom-logo
+        = link_to "#" do
+          %img{:alt => "mercari", :height => "33", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?575670517", :width => "124"}/
+      .bottom-copylight
         ©︎2019 Mercari
