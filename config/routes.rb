@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users 
+  resource :credits, only: [:create]
+  devise_for :users
   devise_scope :user do
     get '/users/sign_up/sns_confirmation', to: 'devise/registrations#sns_confirmation'
     get '/users/sign_up/phone_confirmation', to: 'devise/registrations#phone_confirmation'
