@@ -1,0 +1,37 @@
+.header
+  .header__inner
+    .header__inner__top
+      .header__inner__top__mark
+        = link_to "#" do
+          %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
+      .header__inner__top__form
+        .header__inner__top__form__input
+          %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
+        
+        .header__inner__top__form__icon
+          %i.fa.fa-search
+    .header__inner__nav
+      .left-box
+        
+        .left-box__category
+          = link_to "#" do
+            %i.fa.fa-list-ul
+            カテゴリーから探す
+        .left-box__bland
+          = link_to "#" do
+            %i.fa.fa-tag
+            ブランドから探す
+        
+      .right-box
+        .notification-list
+          = link_to "#" do
+            %i.far.fa-bell
+            お知らせ
+        .todo-list
+          = link_to "#" do
+            %i.fa.fa-check
+            やることリスト
+        .mypage-box
+          = link_to "#" do
+            %i.far.fa-file-image
+            マイページ
