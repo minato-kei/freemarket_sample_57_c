@@ -8,6 +8,7 @@
 |ancestry|string|     |
 
 ### Association
+- has_many   :items
 - has_many   :brands ,through :brands_categories
 
 ## brans_categoriesテーブル
