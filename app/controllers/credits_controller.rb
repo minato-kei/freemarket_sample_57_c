@@ -13,18 +13,17 @@ class CreditsController < ApplicationController
     end
   end
 
-  # 支払いメソッド
-  # def pay
-  #   user = User.find(1)
-  #   card = Credit.where(user_id: user.id)　ユーザーidからカードを選択、defaultになっているものを選択
-  #   Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
-  #   Payjp::Charge.create(
-  #     :amount => 500,　支払い料金
-  #     :customer => card.token,　カードのtokenを顧客IDとして使用する
-  #     :currency => 'jpy'
-  #   )
-  #   redirect_to users_sign_up_payment_confirmation_path
-  # end
+  
+  def pay
+    card = Credit.where(user_id: 1).last
+    Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
+    Payjp::Charge.create(
+      :amount => 500,
+      :customer => card.token,
+      :currency => 'jpy'
+    )
+    redirect_to users_sign_up_payment_confirmation_path
+  end
 
   private
   

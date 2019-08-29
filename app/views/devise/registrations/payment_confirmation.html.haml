@@ -31,6 +31,7 @@
         = f.text_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", class: "credit_card_cvc_form", maxlength: "3"
         = link_to "カード裏面の番号とは？", "#"
       %button{type:"submit", class:"btn"} 送信
+      = link_to "500円募金",pay_credits_path, method: 'POST', class: 'btn'
       %br
 
 %nav.footer
