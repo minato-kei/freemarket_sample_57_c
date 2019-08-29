@@ -1,9 +1,39 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def user_information_confirmation
+    @user = User.new
+  end
+
+  def create_session
+    session = user_information_params.to_h
+    redirect_to users_sign_up_phone_confirmation_path
+  end
+
+  def sns_confirmation
+  end
+
+  def phone_confirmation
+    @category = Category.find(1)
+    binding.pry
+    params = session
+    @user = User.new
+    binding.pry
+  end
+
+  def shipping_confirmation
+  end
+
+  def payment_confirmation
+  end
+
+  private
+  def user_information_params
+    birthday = Date.new(params.require(:user)[:"birthday(1i)"].to_i, params.require(:user)[:"birthday(2i)"].to_i, params.require(:user)[:"birthday(3i)"].to_i)
+    
+    params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana).merge(birthday: birthday)
+  end
   # GET /resource/sign_up
   # def new
   #   super

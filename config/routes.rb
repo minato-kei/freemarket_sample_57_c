@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     get '/users/logout', to: 'devise/registrations#user_logout'
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'items#index'
   
