@@ -324,6 +324,6 @@ user = User.create(nickname: "チカキン",
                    first_name_kana: "モトチカ", 
                    last_name_kana: "チョウソカベ", 
                    birthday: 20000501, 
-                   phone_number: 09012345678, 
+                   phone_number: 19012345678, 
                    balance: 0, 
                    sex: "male")
