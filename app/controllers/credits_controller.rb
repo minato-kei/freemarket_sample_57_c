@@ -4,7 +4,6 @@ class CreditsController < ApplicationController
 
   def create
     Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
-    binding.pry
     customer = Payjp::Customer.create(card: params[:payjp_token])
     #ユーザー新規登録が完了したら、user_idをcurrent_user.idに変える
     if credit = Credit.create(token: customer.id, user_id: 1)
