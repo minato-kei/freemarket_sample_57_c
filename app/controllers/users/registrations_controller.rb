@@ -38,6 +38,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def user_information_confirmation
+  end
+
+  def sns_confirmation
+  end
+
+  def phone_confirmation
+  end
+
+  def shipping_confirmation
+  end
+
+  def payment_confirmation
+  end
+
+  def complete
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
