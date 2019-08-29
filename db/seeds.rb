@@ -314,3 +314,16 @@ child = category.children.create(name: "その他")
 
 
 category = Category.create(name: "カテゴリー一覧")
+
+user = User.create(nickname: "チカキン",
+                   email: "gabriel.pacocha@hartmann.io",
+                   password: "00000000", 
+                   password_confirmation: "00000000",
+                   first_name_kanji: "元親", 
+                   last_name_kanji: "長宗我部", 
+                   first_name_kana: "モトチカ", 
+                   last_name_kana: "チョウソカベ", 
+                   birthday: "20000501", 
+                   phone_number: "09012345678", 
+                   balance: 0, 
+                   sex: "male")
