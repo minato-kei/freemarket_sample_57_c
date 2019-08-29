@@ -14,18 +14,20 @@
 .register_user_register3
   .register_user_register3_contents
     %h1 電話番号認証
-    = form_with(model: @posts, url:"#", class: "register_user_register3_contents_form") do |f|
+    = form_with(model: @user, url: user_registration_path, class: "register_user_register3_contents_form") do |f|
       .field
         = f.label :"認証番号"
         = f.text_field :phone_confirmation, placeholder: "SMSで届いた認証番号を入力してください"
         %p SMSで届いた認証番号を入力してください
-        = link_to "認証して完了", "#", class: "btn"
+        = f.submit "認証して完了", class: "btn"
+
     %hr
     .register_user_register3_contents_recall
       .field
         %h2 30秒たっても認証番号が届かない方へ
         %span 電話で認証番号を聞くこともできます
         = link_to "電話で認証番号を聞く（通話無料）", "#", class: "btn"
+        
     %hr
     .register_user_register3_contents_resend
       .field

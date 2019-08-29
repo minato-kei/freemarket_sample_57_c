@@ -14,7 +14,7 @@
 .register_user_register2
   .register_user_register2_contents
     %h1 会員情報
-    = form_with(model: @user, url: "/session", class: "register_user_register2_contents_form") do |f|
+    = form_with(model: @user, url: "/users/session", class: "register_user_register2_contents_form") do |f|
       .field
         = f.label :"ニックネーム"
         = f.text_field :nickname, placeholder: "nickname"
