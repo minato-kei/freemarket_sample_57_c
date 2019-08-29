@@ -1,4 +1,4 @@
-$(function() {
+$(document).on(`turbolinks:load`, function() {
   console.log("hello");
   Payjp.setPublicKey('pk_test_bf6034aeeb6c0f02de3ad211');
 
