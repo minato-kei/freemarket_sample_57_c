@@ -314,4 +314,3 @@ child = category.children.create(name: "その他")
 
 
 category = Category.create(name: "カテゴリー一覧")
-
