@@ -1,23 +1,23 @@
 .detail-container
   = render partial: 'header'
 
-  .item-box
-    .item-box__name
+  .item-big-box
+    .item-big-box__name
       %h1 ビラボン サーフパンツ 水着 海パン
-    .item-box__wording
+    .item-big-box__wording
       %p 「ビラボン サーフパンツ 水着 海パン」は、＃＃回の取引実績をもつ
       %a name
       さんから出品されました。カテゴリー
       %a category
       の商品で、東京都から発送されます。
-    .item-box__main
-      .item-box__main__photo
-        .item-box__main__photo__big
+    .item-big-box__main
+      .item-big-box__main__photo
+        .item-big-box__main__photo__big
           %img.owl-lazy{:alt => "Billabong サーフパンツ 水着 海パン", "data-src" => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :src => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :style => "opacity: 1;"}/
         
-        .item-box__main__photo__dot
+        .item-big-box__main__photo__dot
       
-      .item-box__main__table
+      .item-big-box__main__table
         %table
           %tr 
             %th 出品者 
@@ -79,27 +79,27 @@
             %td 
               %a 4-7日で発送
               -# = @item.shipping_date
-    .item-box__price
-      %span.item-box__price__bold
+    .item-big-box__price
+      %span.item-big-box__price__bold
         ¥ 2,400
-      %span.item-box__price__tax
+      %span.item-big-box__price__tax
         (税込)
-      %span.item-box__price__shipping-fee
+      %span.item-big-box__price__shipping-fee
         送料込み
-    .item-box__baloon
-      %div.item-box__baloon__message
+    .item-big-box__baloon
+      %div.item-big-box__baloon__message
         売上金 ¥700 と P508を
         %br
         お持ちです
 
-        %div.item-box__baloon__message::after
+        %div.item-big-box__baloon__message::after
 
-    %a.item-box__buy-btn
+    %a.item-big-box__buy-btn
       購入画面に進む
-    .item-box__app-buy
+    .item-big-box__app-buy
       = link_to "#" do
         アプリで購入
-    .item-box__description
+    .item-big-box__description
       %p
       サイズ 32
       %br
@@ -109,16 +109,16 @@
       %br
       自宅保存、中古品である事をご理解頂ける方のみお願い致します
       -# = simple_format(@item.description)
-    .item-box__button
-      .item-box__button__left
-        .item-box__button__left__like
+    .item-big-box__button
+      .item-big-box__button__left
+        .item-big-box__button__left__like
           %i.far.fa-heart
           %span いいね！
           %span ７
-        .item-box__button__left__report
+        .item-big-box__button__left__report
           %i.fas.fa-flag-usa
           %span 不適切な商品の報告
-      .item-box__button__right
+      .item-big-box__button__right
         = link_to "https://www.mercari.com/jp/safe/description/" do
           %i.fas.fa-lock
           %span あんしん•あんぜんへの取り組み
@@ -154,8 +154,40 @@
 
   .item-social
     .item-social__box
-      
+      .item-social__box__fb
+        %i.fab.fa-facebook-square
+      .item-social__box__twitter
+        %i.fab.fa-twitter
+      .item-social__box__pinterest
+        %i.fab.fa-pinterest
 
+  .item-exhibitor
+    = link_to "#" do
+      出品者さんのその他の出品
+
+  .item-other
+    %ul
+      = render partial: 'item-box'
+      %li
+      -# 出品者の商品一覧、部分テンプレートは下のコメントアウトの部分
+      -# = render partial: "item-box", collection: @seller_items
+      
+  .item-bland
+    = link_to "#" do
+      ブランド名カテゴリ のその他の水着
+
+  .item-bland-other
+    %ul
+      = render partial: 'item-box'
+
+  .bland-crumb
+    %ul
+      %li
+        %a メルカリ
+        %i.fas.fa-chevron-right
+
+      %li
+        %span 現在の商品の名前
 
 
   = render partial: 'bottom'

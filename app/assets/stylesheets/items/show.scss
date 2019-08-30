@@ -110,7 +110,7 @@
 
   
 
-  .item-box {
+  .item-big-box {
     width: 700px;
     margin: 40px auto 0;
     background-color: #fff;
@@ -365,18 +365,199 @@
   .item-link {
     margin: 24px auto 0;
     width: 700px;
+    height: 14px;
+    position: relative;
+    font-size: 14px;
     &__prev {
       width: 45%;
       float: left;
-      position: relative;
     }
     &__next {
       width: 45%;
       float: right;
-      position: relative;
+      text-align: right;
+    }
+  }
+  .item-social {
+    background-color: #fff;
+    width: 700px;
+    margin: 24px auto;
+    padding: 48px 0 32px;
+    display: block;
+    &__box {
+      display: flex;
+      width: 140px;
+      margin: 0 auto;
+      i {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+      }
+      &__fb {
+        background-color: #385185;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 30px;
+        text-align: center;
+      }
+      &__twitter {
+        background-color: #5d9dc9;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 8px;
+      }
+      &__pinterest {
+        background-color: #aa262a;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 18px;
+        text-align: center;
+      }
     }
   }
 
+  .item-exhibitor {
+    font-size: 22px;
+    margin: 24px auto 8px;
+    width: 700px;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #0099e8;
+    }
+  }
+
+  .item-other {
+    width: auto;
+    box-sizing: border-box;
+    width: 700px;
+    margin: 0 auto;
+    height: 350px;
+    .item-box {
+      background-color: #fff;
+      height: 330px;
+      width: 220px;
+      margin: 0 20px 20px 0;
+      float: left;
+      &__photo {
+        width: 220px;
+        height: 220px;
+        overflow: hidden;
+      }
+      &__body {
+        padding: 16px;
+        height: 110px;
+        &__name {
+          font-size: 16px;
+        }
+        &__num {
+          margin-top: 8px;
+          &__price {
+            font-size: 14px;
+            font-weight: 600;
+            float: left;
+          }
+          &__good-btn {
+            font-size: 16px;
+            color: #ccc;
+            float: right;
+            span {
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .item-bland-other {
+    width: auto;
+    box-sizing: border-box;
+    width: 700px;
+    margin: 0 auto;
+    height: 350px;
+    .item-box {
+      background-color: #fff;
+      height: 330px;
+      width: 220px;
+      margin: 0 20px 20px 0;
+      float: left;
+      &__photo {
+        width: 220px;
+        height: 220px;
+        overflow: hidden;
+      }
+      &__body {
+        padding: 16px;
+        height: 110px;
+        &__name {
+          font-size: 16px;
+        }
+        &__num {
+          margin-top: 8px;
+          &__price {
+            font-size: 14px;
+            font-weight: 600;
+            float: left;
+          }
+          &__good-btn {
+            font-size: 16px;
+            color: #ccc;
+            float: right;
+            span {
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .item-bland {
+    font-size: 22px;
+    margin: 24px auto 8px;
+    width: 700px;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #0099e8;
+    }
+  }
+
+  .item-bland-other {
+    margin-bottom: 40px;
+  }
+
+  .bland-crumb {
+    background-color: #f5f5f5;
+    position: relative;
+    border: 1px solid #eee;
+    ul {
+      width: 1020px;
+      min-width: 768px;
+      overflow: visible;
+      margin: 0 auto;
+      padding: 16px 0;
+    }
+    li {
+      font-size: 14px;
+      display: inline-block;
+      line-height: 1.2;
+    }
+    a {
+      color: #333;
+    }
+    i {
+      margin: 0 8px;
+      font-size: 9px;
+      color: #888;
+    }
+    span {
+      font-weight: 600;
+    }
+  }
 
   .bunner {
     width: 100%;
