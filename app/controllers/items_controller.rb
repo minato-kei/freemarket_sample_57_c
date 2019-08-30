@@ -7,5 +7,8 @@ class ItemsController < ApplicationController
     @makeup_items = Category.where(name: "コスメ・香水・美容")[0].items.last(4)
     #pickupブランドを4ブランド x4 itemsで作成
   end
+
+  def show
+  end
   
 end

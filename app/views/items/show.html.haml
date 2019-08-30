@@ -1,0 +1,161 @@
+.detail-container
+  = render partial: 'header'
+
+  .item-box
+    .item-box__name
+      %h1 ビラボン サーフパンツ 水着 海パン
+    .item-box__wording
+      %p 「ビラボン サーフパンツ 水着 海パン」は、＃＃回の取引実績をもつ
+      %a name
+      さんから出品されました。カテゴリー
+      %a category
+      の商品で、東京都から発送されます。
+    .item-box__main
+      .item-box__main__photo
+        .item-box__main__photo__big
+          %img.owl-lazy{:alt => "Billabong サーフパンツ 水着 海パン", "data-src" => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :src => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :style => "opacity: 1;"}/
+        
+        .item-box__main__photo__dot
+      
+      .item-box__main__table
+        %table
+          %tr 
+            %th 出品者 
+            %td 
+              %a 手塚治虫
+              %div 
+                %i.icon-good
+                  %i.fas.fa-grin 
+                %span 33
+                %i.icon-meh
+                  %i.fas.fa-meh
+                %span 0
+                %i.icon-frown
+                  %i.fas.fa-frown
+                %span 0
+
+          -# ここから下のコメントアウトは、リンク設定用
+
+          %tr 
+            %th カテゴリー
+            %td 
+              .td-category
+                %a 大カテゴリー
+              .td-category
+                %a >中カテゴリー
+              .td-category
+                %a >小カテゴリー
+          %tr 
+            %th ブランド
+            %td 
+              %a ブランド名  
+              -# = link_to @brand.name if @item.brand_id 
+          %tr 
+            %th 商品のサイズ
+            %td 
+              %a サイズ
+          %tr 
+            %th 商品の状態
+            %td
+              %a とてもきれい
+              -# = @item.condition
+          %tr 
+            %th 配送料の負担
+            %td
+              %a 送料込み（出品者負担）
+              -# = @item.shipping_fee
+          %tr 
+            %th 配送の方法
+            %td 
+              %a 未定
+              -# = @item.shipping_method
+          %tr 
+            %th 配送元地域
+            %td 
+              %a 東京都
+              -# = link_to @item.prefecture_name, "#"
+          %tr 
+            %th 発送日の目安
+            %td 
+              %a 4-7日で発送
+              -# = @item.shipping_date
+    .item-box__price
+      %span.item-box__price__bold
+        ¥ 2,400
+      %span.item-box__price__tax
+        (税込)
+      %span.item-box__price__shipping-fee
+        送料込み
+    .item-box__baloon
+      %div.item-box__baloon__message
+        売上金 ¥700 と P508を
+        %br
+        お持ちです
+
+        %div.item-box__baloon__message::after
+
+    %a.item-box__buy-btn
+      購入画面に進む
+    .item-box__app-buy
+      = link_to "#" do
+        アプリで購入
+    .item-box__description
+      %p
+      サイズ 32
+      %br
+      マジックテープの内側ら辺に黒ずみがあります。画像5枚目
+      %br
+      素人検品の為見落としがあったらごめんなさい。
+      %br
+      自宅保存、中古品である事をご理解頂ける方のみお願い致します
+      -# = simple_format(@item.description)
+    .item-box__button
+      .item-box__button__left
+        .item-box__button__left__like
+          %i.far.fa-heart
+          %span いいね！
+          %span ７
+        .item-box__button__left__report
+          %i.fas.fa-flag-usa
+          %span 不適切な商品の報告
+      .item-box__button__right
+        = link_to "https://www.mercari.com/jp/safe/description/" do
+          %i.fas.fa-lock
+          %span あんしん•あんぜんへの取り組み
+
+  .item-message
+    .item-message__box
+      .item-message__box__chat
+        %ul.coments-all
+          %li.coments
+            .message-user
+              .message-user__icon
+                %img{:alt => "", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2531475304"}/
+              .message-user__name 
+                コメントしたユーザー名
+            .message-body
+              コメントします、コメントします、コメントします
+      .item-message__box__form
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        .item-message__box__form__input
+          %textarea.textarea-default{name: "body", type: "text", value: ""}
+        .item-message__box__form__btn
+          %input{:type => "submit", :value => "コメントする"}/
+
+  .item-link
+    .item-link__prev
+      %a
+      %i.fas.fa-chevron-left
+      五右衛門風呂
+    .item-link__next
+      %a
+      私の子供あげます
+      %i.fas.fa-chevron-right
+
+  .item-social
+    .item-social__box
+      
+
+
+
+  = render partial: 'bottom'
