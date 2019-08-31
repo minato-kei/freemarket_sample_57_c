@@ -1,6 +1,22 @@
 .container
   = render partial: 'items/header'
 
+  .bread
+    %ul.bread-crumbs
+      %li.bread-crumbs__list
+        = link_to "#" do
+          メルカリ
+        %i.fas.fa-chevron-right
+
+      %li.bread-crumbs__list
+        = link_to "#" do
+          マイページ
+        %i.fas.fa-chevron-right
+
+      %li.bread-crumbs__current
+        = link_to "#" do
+          ログアウト
+
   .main-box
     .side-bar
       .mypage-nav
