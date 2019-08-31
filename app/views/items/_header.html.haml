@@ -12,16 +12,31 @@
           %i.fa.fa-search
     .header__inner__nav
       .left-box
-        
         .left-box__category
           = link_to "#" do
-            %i.fa.fa-list-ul
-            カテゴリーから探す
-        .left-box__bland
+            %i.fa.fa-list-ul カテゴリーから探す
+          .left-box__category-dropdown
+            %ul.left-box__category-dropdown-big-category.display_none
+              - @big_categories.each do |big_category|
+                = link_to big_category.name, "#",class: "left-box__category-dropdown-big-category-btn dropdown-btn"
+                %ul.left-box__category-dropdown-middle-category
+                  - big_category.children.each do |middle_category|
+                    = link_to middle_category.name, "#",class: "left-box__category-dropdown-middle-category-btn dropdown-btn"
+                    %ul.left-box__category-dropdown-small-category.display_none#small_category
+                      - middle_category.children.each do |small_category|
+                        = link_to small_category.name, "#",class: "left-box__category-dropdown-small-category-btn dropdown-btn"
+        .left-box__brand
           = link_to "#" do
             %i.fa.fa-tag
             ブランドから探す
-        
+            .left-box__brand-dropdown.display_none
+              %ul.left-box__brand-dropdown-list
+                = link_to "シャネル", "#",class: "left-box__brand-dropdown-list-btn"
+                = link_to "ナイキ", "#",class: "left-box__brand-dropdown-list-btn"
+                = link_to "ルイヴィトン", "#",class: "left-box__brand-dropdown-list-btn"
+                = link_to "シュプリーム", "#",class: "left-box__brand-dropdown-list-btn"
+                = link_to "アディダス", "#",class: "left-box__brand-dropdown-list-btn"
+                = link_to "ブランド一覧", "#",class: "left-box__brand-dropdown-list-btn"        
       .right-box
         .notification-list
           = link_to "#" do
