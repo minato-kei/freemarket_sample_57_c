@@ -55,7 +55,7 @@ describe Item do
       expect(user.errors[:category_id]).to include("can't be blank")
     end
 
-    it "cshipping_idがなければ無効" do
+    it "shipping_idがなければ無効" do
       item = build(:item, shipping_id: "")
       item.valid?
       expect(user.errors[:shipping_id]).to include("can't be blank")
