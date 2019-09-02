@@ -328,6 +328,7 @@ user = User.create(nickname: "チカキン",
                    balance: 0, 
                    sex: "male")
 
+
 shipping = Shipping.create(zipcode: 1234567,
                            pref: 1,
                            city: "高知県",
@@ -349,3 +350,4 @@ item = Item.create(name: "ビラボン サーフパンツ 水着 海パン",
                    user_id: 1,
                    category_id: 318,
                    shipping_id: 1)
+
