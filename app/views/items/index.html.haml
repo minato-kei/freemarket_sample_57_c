@@ -33,7 +33,7 @@
             %h3 レディース新着アイテム
         .pickup__header__item
           %ul
-            = render partial: 'item-box', collection: @ladies_items
+            = render 'item-box', items: @items
 
 
 
@@ -47,14 +47,7 @@
             %h3 シャネル新着アイテム
         .pickup__header__item
           %ul
-            -# この部分は、renderで繰り返し、アイテム部分
-            -# = render partial: 'item-box', collection: @ladies_items 
-            %li 
-              
-
-            %li item
-            %li item
-            %li item
+            = render 'item-box', items: @items
         .pickup__header__all
           = link_to "#" do
             すべての商品を見る
