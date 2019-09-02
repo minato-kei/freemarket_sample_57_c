@@ -29,28 +29,19 @@
       .pickup__header
         %h2 ピックアップカテゴリー
         .pickup__header__type
-          = link_to "#" do
-            %h3 レディース新着アイテム
+          レディース新着アイテム
+          = link_to "もっと見る＞", "#"
         .pickup__header__item
           %ul
             = render 'item-box', items: @items
-
-
-
-        .pickup__header__all
-          = link_to "#" do
-            すべての商品を見る
       .pickup__header
         %h2 ピックアップブランド
         .pickup__header__type
-          = link_to "#" do
-            %h3 シャネル新着アイテム
+          シャネル新着アイテム
+          = link_to "もっと見る＞", "#"
         .pickup__header__item
           %ul
             = render 'item-box', items: @items
-        .pickup__header__all
-          = link_to "#" do
-            すべての商品を見る
   
   = render partial: 'bottom'
 

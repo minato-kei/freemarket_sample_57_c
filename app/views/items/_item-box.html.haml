@@ -1,9 +1,10 @@
 - items.each do |item|
-  %li
+  %li.list_item
     .item-box
+      .item-box__sold
+        sold
       .item-box__price
         = "¥" + item.price.to_s(:delimited)
-      .item-box__photo
-        %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => @picture.image, :src => @picture.image.url}/
-      .item-box__body
+      %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => @picture.image, :src => @picture.image.url}/
+      %h2 
         = item.name
