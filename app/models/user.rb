@@ -11,4 +11,6 @@ class User < ApplicationRecord
   # has_many :likes, dependent: :destroy
   # has_many :searches, dependent: :destroy
   # has_many :follows, dependent: :destroy
+
+  # validates_with UserValidator
 end
