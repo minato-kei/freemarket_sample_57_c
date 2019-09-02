@@ -5,6 +5,6 @@
         sold
       .item-box__price
         = "¥" + item.price.to_s(:delimited)
-      %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => @picture.image, :src => @picture.image.url}/
+      %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => item.name, :src => '/mercari_logo.png'}
       %h2 
         = item.name
