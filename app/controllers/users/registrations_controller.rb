@@ -59,6 +59,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def logout
   end
 
+  def mypage
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
