@@ -4,12 +4,18 @@ user_path
 %p= link_to "new_user_session", new_user_session_path
 
 %p= link_to "users_sign_up_sns_confirmation", users_sign_up_sns_confirmation_path
-%p= link_to "users_sign_up_user_information_confirmation", users_sign_up_user_information_confirmation_path
-%p= link_to "users_sign_up_phone_confirmation", users_sign_up_phone_confirmation_path
-%p= link_to "users_sign_up_shipping_confirmation", users_sign_up_shipping_confirmation_path
 %p= link_to "users_sign_up_payment_confirmation", users_sign_up_payment_confirmation_path
+
 %p= link_to "users_logout", users_logout_path
 %p= link_to "", "_path"
+
+%p= link_to "sign_up_user_info_path", sign_up_user_info_users_path
+%p= link_to "sign_up_phone_users_path", sign_up_phone_users_path
+%p= link_to "sign_up_sms_users_path", sign_up_sms_users_path
+%p= link_to "sign_up_shipping_users_path", sign_up_shipping_users_path
+-# %p= link_to "sign_up_credit_users_path", sign_up_credit_users_path
+-# %p= link_to "", "_path"
+
 
 picture
 %p= link_to "new_picture", new_picture_path
@@ -18,4 +24,3 @@ item
 %p= link_to "items#index", items_path
 %p= link_to "items#show", item_path(id: 1)
 -# %p= link_to "", _path
-
