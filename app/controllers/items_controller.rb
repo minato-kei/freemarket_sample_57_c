@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
     @items = Item.all.last(10)
     @picture = Picture.first
     #上はアソシエーション組んでいないので、仮おき
+    @big_categories = Category.where(ancestry: nil)
     @ladies_items = Category.where(name: "レディース")[0].items.last(4)
     @mens_items = Category.where(name: "メンズ")[0].items.last(4)
     @babies_items = Category.where(name: "ベビー・キッズ")[0].items.last(4)
