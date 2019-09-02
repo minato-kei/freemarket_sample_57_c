@@ -13,21 +13,27 @@ class UsersController < ApplicationController
   end
 
   def sign_up_sms
+    @user = User.new
     session[:phone_number] = params.require(:user).permit(:phone_number)[:phone_number]
     # SMS認証番号を生成。
+    session[:r] = rand(100..999)
     # SMS認証番号を送信。  
+    flash[:notice] = "#{session[:r]}"
   end
 
   def sign_up_shipping
     # SMS認証番号を照会
-    # if sms_number == params.require(:user).permit(:sign_up_sms)[:sign_up_sms]
-    @user = User.new({nickname: session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], first_name_kanji: session[:first_name_kanji], last_name_kanji: session[:last_name_kanji], first_name_kana: session[:first_name_kana], last_name_kana: session[:last_name_kana], phone_number: session[:phone_number], birthday: session[:birthday]})
-    if @user.save
-      reset_session
-      session[:id] = @user.id
-      sign_in @user unless user_signed_in?
+    if session[:r] == params.require(:user).permit(:sign_up_sms)[:sign_up_sms].to_i
+      @user = User.new({nickname: session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], first_name_kanji: session[:first_name_kanji], last_name_kanji: session[:last_name_kanji], first_name_kana: session[:first_name_kana], last_name_kana: session[:last_name_kana], phone_number: session[:phone_number], birthday: session[:birthday]})
+      if @user.save
+        reset_session
+        session[:id] = @user.id
+        sign_in @user unless user_signed_in?
+      else
+        render "sign_up_user_info"
+      end
     else
-      render "sign_up_phone"
+      render "sign_up_sms"
     end
     @shipping = Shipping.new  
   end

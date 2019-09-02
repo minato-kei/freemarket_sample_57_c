@@ -51,3 +51,11 @@
   = image_tag '/mercari_logo2.png'
   -# 写真は本番のときに改めて差し替える
   %p ©︎2019 Mercari
+
+-# テスト用
+.container
+  .sell-btn
+    = link_to "/items/hidden" do
+      - flash.each do |key, value|
+        = content_tag :div, value, class: key
+      %i.fas.fa-camera
