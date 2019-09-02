@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @big_categories = Category.where(ancestry: nil)
   end
   
 end
