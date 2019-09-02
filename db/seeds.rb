@@ -340,3 +340,12 @@ item = Item.create(name: "ビラボン サーフパンツ 水着 海パン",
                    user_id: "1",
                    category_id: "318",
                    shipping_id: "1")
+
+shipping = Shipping.create(zipcode: "1234567",
+                           pref: "1",
+                           city: "高知県",
+                           address: "港区",
+                           building: "フィボナッチビルディング1123",
+                           phone: "1",
+                           default: "1",
+                           user_id: "1")
