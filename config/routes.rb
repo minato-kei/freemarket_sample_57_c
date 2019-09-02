@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show] do
     collection do
+      get  :sign_up_sns
       get  :sign_up_user_info
       post :sign_up_phone
       post :sign_up_sms
