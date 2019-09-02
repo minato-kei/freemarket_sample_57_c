@@ -4,6 +4,7 @@
   .header {
     display: block;
     height: 84px;
+    background-color: rgb(255, 255, 255);
     .header__inner {
       margin: 0 auto;
       padding: 8px 0 0;
@@ -83,15 +84,19 @@
             font-size: 20px;
             color: #ccc;
           }
-          
+          .liked-items {
+            width: 130px;
+          }
           .notificationlist {
             width: 120px;
           }
           .todo-list {
-            width: 150px;
+            width: 130px;
+            margin-left: 15px;
           }
           .mypage-box {
-            width: 130px;
+            width: 90px;
+            margin-left: 15px;
           }
         }
       }
@@ -172,7 +177,6 @@
             height: 220px;
             overflow: hidden;
             position: relative;
-            // padding: 0 0 100%;
           }
           &__body {
             padding: 16px;
@@ -181,15 +185,19 @@
               font-size: 16px;
             }
             &__num {
-              display: flex;
               margin-top: 8px;
               &__price {
                 font-size: 14px;
                 font-weight: 600;
+                float: left;
               }
               &__good-btn {
                 font-size: 16px;
                 color: #ccc;
+                float: right;
+                span {
+                  color: #333;
+                }
               }
             }
             
