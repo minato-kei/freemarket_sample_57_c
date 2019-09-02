@@ -32,22 +32,22 @@ class UsersController < ApplicationController
     @shipping = Shipping.new  
   end
 
-  def sign_up_credit
-    if Shipping.create(shipping_params).valid?
-      @credit = Credit.new
-    else
-      render "sign_up_shipping"
-    end  
-  end
+  # def sign_up_credit
+  #   if Shipping.create(shipping_params).valid?
+  #     @credit = Credit.new
+  #   else
+  #     render "sign_up_shipping"
+  #   end  
+  # end
 
-  def sign_up_credit_create
-    binding.pry
-    if Credit.create(credit_params).valid?
-      redirect_to root_path
-    else
-      render "sign_up_credit"
-    end  
-  end
+  # def sign_up_credit_create
+  #   binding.pry
+  #   if Credit.create(credit_params).valid?
+  #     redirect_to root_path
+  #   else
+  #     render "sign_up_credit"
+  #   end  
+  # end
 
   private
   def user_information_params
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
   end
 
-  def credit_params
-    params.require(:credit).permit(:number, :cvc).merge(exp_year: params[:credit][:"exp_year(1i)"], exp_month: params[:credit][:"exp_month(2i)"])
-  end
+  # def credit_params
+  #   params.require(:credit).permit(:number, :cvc).merge(exp_year: params[:credit][:"exp_year(1i)"], exp_month: params[:credit][:"exp_month(2i)"])
+  # end
 end
