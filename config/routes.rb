@@ -14,12 +14,13 @@ Rails.application.routes.draw do
     get '/users/sign_up/complete', to: 'devise/registrations#complete'
 
     get '/users/logout', to: 'devise/registrations#user_logout'
-    get '/users/mypage', to: 'devise/registrations#user_mypage'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'items#index'
   
   get "items/hidden" => "items#hidden"
+  
+  resources :users, only: [:show]
 
   resources :pictures, only: [:new, :create]
   resources :items, only: [:index, :show]
