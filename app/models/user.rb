@@ -13,4 +13,10 @@ class User < ApplicationRecord
   # has_many :follows, dependent: :destroy
 
   validates_with UserValidator
+  validates :email, email: true
+  validates :zipcode, zipcode: true
+  
+  
+  
+  
 end
