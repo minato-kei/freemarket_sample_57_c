@@ -9,8 +9,9 @@ FactoryBot.define do
     shipping_day            {"1~2日以内に発送"}
     rating                  {}
     status                  {"出品中"}
-    user_id                 {1}
-    category_id             {771}
-    shipping_id             {1}    
+
+    user                    {FactoryBot.build :user}
+    shipping                {FactoryBot.build :shipping}
+    category                {FactoryBot.build :category}
   end
 end
