@@ -4,22 +4,24 @@ Rails.application.routes.draw do
       post '/pay', to: 'credits#pay'
     end
   end
-  devise_for :users
-  devise_scope :user do
-    get '/users/sign_up/sns_confirmation', to: 'devise/registrations#sns_confirmation'
-    get '/users/sign_up/phone_confirmation', to: 'devise/registrations#phone_confirmation'
-    get '/users/sign_up/user_information_confirmation', to: 'devise/registrations#user_information_confirmation'
-    get '/users/sign_up/shipping_confirmation', to: 'devise/registrations#shipping_confirmation'
-    get '/users/sign_up/payment_confirmation', to: 'devise/registrations#payment_confirmation'
-    get '/users/sign_up/complete', to: 'devise/registrations#complete'
 
-    get '/users/logout', to: 'devise/registrations#user_logout'
+  devise_for :users
+  resources :users, only: [:create, :show] do
+    collection do
+      get  :sign_up_sns
+      get  :sign_up_user_info
+      post :sign_up_phone
+      post :sign_up_sms
+      post :sign_up_shipping
+      post :sign_up_credit
+      get  :sign_up_complete
+    end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root 'items#index'
-  
   get "items/hidden" => "items#hidden"
 
   resources :pictures, only: [:new, :create]
   resources :items, only: [:index, :show]
+
 end

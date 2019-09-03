@@ -14,27 +14,33 @@
 .register_user_register2
   .register_user_register2_contents
     %h1 会員情報
-    = form_with(model: @posts, url:"#", class: "register_user_register2_contents_form") do |f|
+    = form_with(model: @user, url: sign_up_phone_users_path, class: "register_user_register2_contents_form", local: true) do |f|
       .field
-        = f.label :"ニックネーム　"
-        = f.text_field :nickname, placeholder: "nickname"
+        = f.label :"ニックネーム"
+        = f.text_field :nickname, placeholder: "nickname", value: "キカキン"
       .field
-        = f.label :"メールアドレス　"
-        = f.text_field :email, placeholder: "email"
+        = f.label :"メールアドレス"
+        = f.text_field :email, placeholder: "email", value: "example@example.com"
+      .field
+        = f.label :"パスワード"
+        = f.password_field :password, placeholder: "7文字以上", value: "11111111"
+      .field
+        = f.label :"パスワード（確認）"
+        = f.password_field :password_confirmation, placeholder: "7文字以上", value: "11111111"
       %h2 本人確認
       %p 安心・安全にご利用いただくために、お客様の本人情報の登録にご協力ください。他のお客様に公開されることはありません。
       .field.field_name_kanji
         = f.label :"お名前（全角）"
         .field.field_name_kanji_form
-          = f.text_field :first_name_kanji, placeholder: "例)長宗我部"
-          = f.text_field :last_name_kanji, placeholder: "例)元親"
+          = f.text_field :first_name_kanji, placeholder: "例)長宗我部", value: "長宗我部"
+          = f.text_field :last_name_kanji, placeholder: "例)元親", value: "元親"
       .field
         = f.label :"お名前カナ（全角）"
         .field.field_name_kana_form
-          = f.text_field :first_name_kana, placeholder: "例)チョウソカベ"
-          = f.text_field :last_name_kana, placeholder: "例)モトチカ"
+          = f.text_field :first_name_kana, placeholder: "例)チョウソカベ", value: "チョウソカベ"
+          = f.text_field :last_name_kana, placeholder: "例)モトチカ", value: "モトチカ"
       .field
-        = f.label :"生年月日　"
+        = f.label :"生年月日"
         .field_birthday_form
           = f.date_select :birthday, start_year: 1900, end_year: Time.current.year, use_month_numbers: true, placeholder: "例)チョウソカベ", default: { year: 1990, month: 1, day: 1 }
       %h3<> ＊本人情報は正しく入力してください。会員登録後、修正するにはお時間をいただく場合があります。
@@ -42,7 +48,7 @@
         「次へ進む」のボタンを押すことにより、
         = link_to "利用規約", "#"
         に同意したものとみなします
-      = link_to "次へ進む", "#", class: "btn"
+      = f.submit "次へ進む", class: "btn"
       %br
       = link_to "本人情報の登録について＞", "#", style: "text-align: right;"
 

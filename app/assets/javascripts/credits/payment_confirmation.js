@@ -1,17 +1,12 @@
 $(document).on(`turbolinks:load`, function() {
-  console.log("hello");
   Payjp.setPublicKey('pk_test_bf6034aeeb6c0f02de3ad211');
-
   var form = $('.register_user_register4_contents_form');
-  
   var number = form.find('input[name="number"]');
   var cvc = form.find('input[name="cvc"]');
   var exp_year = form.find('#_exp_year_1i');
   var exp_month = form.find('#_exp_month_2i');
-  
   $(document).on('click','button',function(e){
     e.preventDefault();
-    console.log("processing");
     form.find("input[type='submit']").prop("disabled", true);
     var card = {
       number: number.val(),
@@ -19,11 +14,8 @@ $(document).on(`turbolinks:load`, function() {
       exp_month: exp_month.val(),
       exp_year: exp_year.val()
     };
-    console.log(card);
     Payjp.createToken(card, function(s, response){
       if (response.error){
-        console.log("failure");
-        console.log(response);
         form.find('.payment-errors').text(response.error.message);
         form.find('button').prop('disabled', false);
       }

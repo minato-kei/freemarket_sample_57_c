@@ -1,14 +1,10 @@
-%li 
-  .item-box
-    .item-box__photo
-      %img.lazyloaded.is-higher-width{:alt => "お値下げ！ジェラピケ★冬用ルームウェア", "data-src" => "https://static.mercdn.net/thumb/photos/m75636776014_1.jpg?1566891605", :src => "https://static.mercdn.net/thumb/photos/m75636776014_1.jpg?1566891605"}/
-
-    .item-box__body
-      .item-box__body__name
-        チェックのシャツ可愛い
-      .item-box__body__num
-        .item-box__body__num__price
-          ¥ 2,800
-        .item-box__body__num__good-btn
-          %i.far.fa-heart
-          %span 1
+- items.each do |item|
+  %li.list_item
+    .item-box
+      .item-box__sold
+        sold
+      .item-box__price
+        = "¥" + item.price.to_s(:delimited)
+      %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => item.name, :src => '/mercari_logo.png'}
+      %h2 
+        = item.name

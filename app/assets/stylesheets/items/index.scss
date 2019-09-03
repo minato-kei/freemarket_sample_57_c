@@ -1,203 +1,6 @@
 .container {
   box-sizing: border-box;
   width: 100%;
-  .header {
-    display: block;
-    height: 84px;
-    background-color: rgb(255, 255, 255);
-    .header__inner {
-      margin: 0 auto;
-      padding: 8px 0 0;
-      height: 100px;
-      width: 70%;
-      &__top {
-        display: flex;
-        height: 40px;
-        &__mark {
-          height: 40px;
-        }
-        &__form {
-          display: flex;
-          margin-left: 45px;
-          height: 40px;
-          width: 100%;
-          position: relative;
-          
-          &__input {
-            width: 100%;
-            .input-default {
-            padding: 0 42px 0 10px;
-            height: 40px;
-            width: 100%;
-            border-radius: 4px;
-            border-width: 1px;
-            border: 1px solid #ccc;
-            background-color: #f5f5f5;
-            }
-          }
-          &__icon {
-            i {
-            height: 40px;
-            width: 40px;
-            right: 0px;
-            font-size: 14px;
-            line-height: 40px;
-            color: #333333;
-            position: absolute;
-            }
-          }
-          
-        }
-      }
-      &__nav {
-        height: 44px;
-        margin: 8px 0 0;
-        line-height: 32px;
-        a {
-          text-decoration: none;
-          color: #333333;
-        }
-        .left-box {
-          display: flex;
-          float: left;
-          font-size: 14px;
-          i {
-            line-height: 32px;
-            color:black;
-          }
-          i:hover {
-            color: #0099E8;
-          }
-          i:before{
-            color: red;
-          }
-          .display_none{
-            display: none;
-          }
-          .display_flex{
-            display: flex;
-          }
-          &__category{
-            display: flex;
-            flex-direction: column;
-            width: 150px;
-            position: relative;
-            &-dropdown{
-              width:200px;
-              height: 100%;
-              position: absolute;
-              top: 100%;
-              &-big-category{
-                background-color: white;
-                position: absolute;
-                z-index: 10;
-                width: 100%;
-                height: 600px;
-                display: flex;
-                flex-direction: column;
-                &-btn{
-                  width: 200px;
-                  height: 40px;
-                  box-sizing: border-box;
-                  line-height: 40px;
-                  padding-left: 5px;
-                }
-                .dropdown-btn:hover{
-                  background-color:red;
-                  color: white;
-                }
-                .left-box__category-dropdown-middle-category{
-                  position: absolute;
-                  flex-direction: column;
-                  left: 100%;
-                  top:0;
-                  width:200px;
-                  height: 600px;
-                  background-color:white;
-                  &-btn{
-                    color: black;
-                    width: 200px;
-                    height: 35px;
-                    box-sizing: border-box;
-                    line-height: 40px;
-                    padding-left: 5px;
-                  }
-                  .left-box__category-dropdown-small-category{
-                    position: absolute;
-                    flex-direction: column;
-                    left: 100%;
-                    width:200px;
-                    height: 600px;
-                    color: black;
-                    background-color:white;
-                    &-btn{
-                      font-size: 12px;
-                      color: black;
-                      width: 200px;
-                      height: 35px;
-                      box-sizing: border-box;
-                      line-height: 40px;
-                      padding-left: 5px;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          &__brand{
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            &-dropdown{
-              position: absolute;
-              top: 99%;
-              width: 200px;
-              background-color: white;
-              &-list{
-                width: 100%;
-                display: flex;
-                flex-direction: column; 
-                &-btn{
-                  height: 40px;
-                  width: 100%;
-                  line-height: 40px;
-                  color: black;
-                } 
-                &-btn:hover{
-                  background-color: red;
-                  color: white;
-                }
-              }
-            }
-          }
-        }
-        .right-box {
-          display: flex;
-          float: right;
-          font-size: 14px;
-          i {
-            font-size: 20px;
-            color: #ccc;
-          }
-          .liked-items {
-            width: 130px;
-          }
-          .notificationlist {
-            width: 120px;
-          }
-          .todo-list {
-            width: 130px;
-            margin-left: 15px;
-          }
-          .mypage-box {
-            width: 90px;
-            margin-left: 15px;
-          }
-        }
-      }
-      
-    }
-  }
   .main {
     width: 100%;
     background-image: url("https://www.mercari.com/jp/assets/img/common/jp/top/main_bg_pc.jpg");
@@ -206,7 +9,6 @@
       width: 860px;
       display: flex;
       margin: 0 auto;
-      
       &__content {
         width: 480px;
         h2 {
@@ -239,7 +41,6 @@
     background-color: #f5f5f5;
     a {
       text-decoration: none;
-      color: #0099E8;
     }
     &__header {
       text-align: center;
@@ -250,200 +51,24 @@
       &__type {
         margin: 26px 11px;
         font-size: 22px;
+        text-align: left;
+        color: black;
+        position: relative;
+        a{
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 12px;
+        }
       }
-      &__item {
-        width: 940px;
+      &__item, &__type {
+        width: 80%;
         margin: 0 auto;
-        ul {
-          display: flex;
-          
-        }
-        ul li {
-          width: 213px;
-          height: 330px;
-          margin-left: 20px;
-          background-color: #fff;
-        }
-        .item-box {
-          background-color: #fff;
-          height: 330px;
-          &__photo {
-            width: 213px;
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-          }
-          &__body {
-            padding: 16px;
-            height: 110px;
-            &__name {
-              font-size: 16px;
-            }
-            &__num {
-              margin-top: 8px;
-              &__price {
-                font-size: 14px;
-                font-weight: 600;
-                float: left;
-              }
-              &__good-btn {
-                font-size: 16px;
-                color: #ccc;
-                float: right;
-                span {
-                  color: #333;
-                }
-              }
-            }
-            
-          }
-        }
-      }
-      &__all {
-        width: 940px;
-        margin: 0 auto;
-        padding: 20px 0 30px;
-        text-align: right;
-        font-size: 14px;
-      }
-    }
-  }
- 
-  
-  .bunner {
-    width: 100%;
-    height: 260px;
-    background-image: url("https://www.mercari.com/jp/assets/img/common/jp/top/download_bg_pc.jpg?94284397");
-    &__full {
-      display: flex;
-      width: 760px;
-      margin: 0 auto;
-      &__inner {
-        h2 {
-          font-size: 24px;
-        }
-        p {
-          font-size: 35px;
-        }
-        &__icon {
-          margin: 20px 0 0;
-          display: flex;
-          ul {
-            display: flex;
-            margin: 12px 0 0 24px;
-          }
-          ul li {
-            margin: 0 5px;
-          }
-        }
-      }
-      &__image {
-        img {
-          width: 300px;
-          height: 260px;
-        }
-      }
-    }
-  }
-  .bottom {
-    width: 100%;
-    height: 390px;
-    background-color: #212121;
-    color: #fff;
-    padding: 0 20px 10px 20px;
-    box-sizing: border-box;
-    
-    &__cell {
-      margin: 0 auto;
-      display: flex;
-      width: 993px;
-      font-size: 16px;
-      a {
-        text-decoration: none;
-        color: #ccc;
-      }
-      ul li {
-        font-size: 12px;
-        margin: 16px 0 0;
         
       }
       
-      &__left {
-        width: 20%;
-        height: 240px;
-        margin-top: 18px;
-        padding: 0 20px 0 0;
-        &__social {
-          color: #fff;
-          
-          i {
-            font-size: 30px;
-            margin-top:20px;
-          }
-        }
-      }
-      &__right {
-        width: 23%;
-        height: 280px;
-        margin-top: 18px;
-        padding: 0 40px 0 0;
-      }
-      &__width {
-        width: 42%;
-        height: 170px;
-        margin-top: 18px;
-        padding: 0 40px 0 0;
-        .inner-left {
-          float: left;
-          width: 50%;
-        }
-        .inner-right {
-          float: right;
-          width: 50%;
-        }
-      }
-      &__lung {
-        width: 100px;
-        height: 90px;
-        margin-top: 18px;
-      }
-    
-    }
-    &__end {
-      display: flex;
-      margin: 30px auto 20px;
-      height: 33px;
-      width: 993px;
-      line-height: 33px;
-      .bottom-copylight {
-        width: 745px;
-        text-align: center;
-        font-size: 12px;
-        margin: 8px 0 0;
-      }
     }
   }
-  .sell-btn {
-    bottom: 32px;
-    right: 32px;
-    width: 160px;
-    height: 160px;
-    font-size: 22px;
-    background: #ea352d;
-    border-radius: 50%;
-    text-align: center;
-    position: fixed;
-    a {
-      text-decoration: none;
-    }
-    div {
-      margin: 32px 0 0;
-      color: #fff;
-      
-    }
-    i {
-      font-size: 60px;
-      color: #fff;
-    }
-  }
+  
 }
