@@ -14,9 +14,8 @@ describe Picture do
     end
 
     it "item_idが無ければ無効" do
-      picture = build(:picture, item_id: "")
-      picture.valid?
-      expect(picture.errors[:item_id]).to include("can't be blank")
+      picture = build(:picture, item: nil)
+      expect(picture.valid?).to be false
     end
 
   end
