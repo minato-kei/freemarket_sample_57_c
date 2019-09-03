@@ -14,7 +14,7 @@
 .register_user_register4
   .register_user_register4_contents
     %h1 発送元・お届け先住所入力
-    = form_with(model: @shipping, url: users_sign_up_payment_confirmation_path, class: "register_user_register4_contents_form", local: true) do |f|
+    = form_with(model: @shipping, url: sign_up_credit_users_path, class: "register_user_register4_contents_form", local: true) do |f|
 
       .field
         = f.label :"お名前（全角）"

@@ -1,0 +1,33 @@
+-# ここからpまでが新規登録画面5　住所画面
+.register_header
+  .register_header_logo
+    = image_tag '/mercari_logo.png'
+    -# 写真は本番のときに改めて差し替える
+  .register_header_status_bar
+    %span{class: "register_header_status_bar_information"} 会員情報
+    %span{class: "register_header_status_bar_phone"} 電話番号認証
+    %span{class: "register_header_status_bar_adress"} お届け先住所入力
+    %span{class: "register_header_status_bar_payment"} 支払い方法
+    %span{style: "color: red;",class: "register_header_status_bar_accomplish"} 完了
+    %hr
+    %hr.red_line5
+.register_user_register5
+  .register_user_register5_contents
+    %h1 会員登録完了
+    %p ありがとうございます。
+    %p 会員登録が完了しました。
+    = link_to "メルカリをはじめる", root_path, class: "btn"
+    %br
+-#       = link_to "本人情報の登録について＞", "#", style: "text-align: right;"
+
+%nav.footer
+  %ul
+    %li
+      = link_to "プライバシーポリシー", "#"
+    %li
+      = link_to "メルカリ利用規約", "#"
+    %li
+      = link_to "特定商取引に関する表記", "#"
+  = image_tag '/mercari_logo2.png'
+  -# 写真は本番のときに改めて差し替える
+  %p ©︎2019 Mercari

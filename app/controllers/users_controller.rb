@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   def sign_up_sms
     @user = User.new
-    session[:phone_number] = params.require(:user).permit(:phone_number)[:phone_number].delete!("-")
-    # SMS認証番号を生成。
+    session[:phone_number] = params.require(:user).permit(:phone_number)[:phone_number].delete("-")
+      # SMS認証番号を生成。
     session[:r] = rand(100..999)
     # SMS認証番号を送信。  
     flash[:notice] = "#{session[:r]}"
@@ -38,13 +38,12 @@ class UsersController < ApplicationController
     @shipping = Shipping.new  
   end
 
-  # def sign_up_credit
-  #   if Shipping.create(shipping_params).valid?
-  #     @credit = Credit.new
-  #   else
-  #     render "sign_up_shipping"
-  #   end  
-  # end
+  def sign_up_credit
+      render "sign_up_shipping" unless Shipping.create(shipping_params).valid?
+  end
+
+  def sing_up_complete
+  end
 
   # def sign_up_credit_create
   #   binding.pry
@@ -65,11 +64,7 @@ class UsersController < ApplicationController
   def shipping_params
     #テーブル不足分
     # params.require(:shipping).permit(:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :zipcode, :pref, :city, :adress, :building, :phone)
-    params.require(:shipping).permit(:zipcode)[:zipcode].delete!("-")
+    # params.require(:shipping).permit(:zipcode)[:zipcode].delete!("-")
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
   end
-
-  # def credit_params
-  #   params.require(:credit).permit(:number, :cvc).merge(exp_year: params[:credit][:"exp_year(1i)"], exp_month: params[:credit][:"exp_month(2i)"])
-  # end
 end

@@ -7,9 +7,9 @@ class CreditsController < ApplicationController
     customer = Payjp::Customer.create(card: params[:payjp_token])
     #ユーザー新規登録が完了したら、user_idをcurrent_user.idに変える
     if credit = Credit.create(token: customer.id, user_id: 1)
-      redirect_to users_sign_up_complete_path
+      redirect_to sign_up_complete_users_path
     else
-      redirect_to users_sign_up_payment_confirmatio_path
+      redirect_to sign_up_credit_users_path
     end
   end
 
