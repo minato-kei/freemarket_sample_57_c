@@ -35,6 +35,7 @@ describe Order do
       order = build(:order, cancel: "")
       order.valid?
       expect(order).to be_valid
+    end
 
     it "item_statusがなくても有効" do
       order = build(:order, item_status: "")
