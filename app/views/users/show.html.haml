@@ -1,38 +1,52 @@
-hello
+.container
+  = render partial: 'items/header'
 
--# .container
--#   = render partial: 'items/header'
+  = render partial: 'devise/registrations/bread-crumbs'
 
--#   = render partial: 'registration/bread-crumbs'
-
--#   .main-box
+  .main-box
     
--#     = render partial: 'registration/side-bar'
+    = render partial: 'devise/registrations/side-bar'
 
--#     .mypage-main
--#       .mypage-main__icon
--#         .user-bunner
--#           .user-bunner__fig
+    .mypage-main
+      .mypage-main__icon
+        .user-bunner
+          = link_to "#" do
+            .user-bunner__fig
+              %img{alt: "", height: "60", src: "//static.mercdn.net/thumb/members/435645566.jpg?1518914519", width: "60"}/
+            .user-bunner__name
+              長宗我部 元親
+        .user-number
+          .user-number__rating
+            評価
+            %span
+              46
+          .user-number__exhibits
+            出品数
+            %span
+              49
+      .mypage-main__tab
+        %ul.mypage-tab
+          %li.action
+            = link_to "#" do
+              お知らせ
+          %li.todo
+            = link_to "#" do
+              やることリスト
+        .mypage-tab-content
+          お知らせの商品がありません
 
--#           .user-bunner__name
+      .mypage-main__transaction
+        %h2 購入した商品
+        %ul.mypage-tab
+          %li.transaction
+            = link_to "#" do
+              取引中
+          %li.old-transaction
+            = link_to "#" do
+              過去の取引
+        .mypage-tab-content
+          取引中の商品がありません
 
--#         .user-number
+  = render partial: 'items/bottom'
 
--#       .mypage-main__tab
--#         %ul.mypage-tab
--#           %li.action
--#           %li.todo
--#         .mypage-tab-content
-
--#       .mypage-main__transaction
--#         %ul.mypage-tab
--#           %li.old-transaction
--#           .mypage-tab-content
-
-
-
-
-
--#   = render partial: 'items/bottom'
-
--#   = render partial: 'items/sell-btn'
+  = render partial: 'items/sell-btn'

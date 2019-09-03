@@ -1,0 +1,140 @@
+.mypage-main {
+  width: 700px;
+  display: block;
+  &__icon {
+    height: 200px;
+    background-image: url("https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?87780290");
+    padding: 40px 20px 20px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    .user-bunner {
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+      &__fig {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        img {
+          border-radius: 50%;
+        }
+      }
+      &__name {
+        margin: 8px 0 0;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+    }
+    .user-bunner :hover {
+      opacity: 0.6;
+      text-decoration: underline;
+    }
+    .user-number {
+      margin: 8px auto;
+      display: inline-block;
+      font-size: 14px;
+      &__rating {
+        float: left;
+      }
+      &__exhibits {
+        float: right;
+      }
+      span {
+        margin: 0 8px 0 16px;
+        font-weight: bold;
+      }
+    }
+  }
+  &__tab {
+    background-color: #fff;
+    box-sizing: border-box;
+    .mypage-tab {
+      background-color: #eee;
+      display: flex;
+      text-align: center;
+      a {
+        line-height: 72px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+      }
+      .action {
+        width: 50%;
+        background-color: #fff;
+        border-top: 2px solid #ea352d;
+      }
+      .todo {
+        width: 50%;
+      }
+      .action :hover {
+        opacity: 0.6;
+      }
+      .todo :hover {
+        opacity: 0.6;
+      }
+    }
+    .mypage-tab-content {
+      display: block;
+      background-image: url("https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?91791975);");
+      padding: 160px 0 60px;
+      background-repeat: no-repeat;
+      background-position: center 40px;
+      background-size: 78px 85px;
+      text-align: center;
+      color: #ccc;
+      font-weight: 600;
+    }
+  }
+  &__transaction {
+    margin: 40px 0 0;
+    background-color: #fff;
+    h2 {
+      padding: 0 16px;
+      background-color: #fafafa;
+      line-height: 72px;
+      display: block;
+      font-weight: bold;
+    }
+    .mypage-tab {
+      background-color: #eee;
+      display: flex;
+      text-align: center;
+      .transaction {
+        width: 50%;
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+        border-top: 2px solid #ea352d;
+        background-color: #fff;
+      }
+      .transaction :hover {
+        opacity: 0.6;
+      }
+      .old-transaction {
+        width: 50%;
+      }
+      .old-transaction :hover {
+        opacity: 0.6;
+      }
+      a {
+        line-height: 72px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+      }
+    }
+    .mypage-tab-content {
+      display: block;
+      background-image: url("https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?91791975);");
+      padding: 160px 0 60px;
+      background-repeat: no-repeat;
+      background-position: center 40px;
+      background-size: 78px 85px;
+      text-align: center;
+      color: #ccc;
+      font-weight: 600;
+    }
+  }
+}
