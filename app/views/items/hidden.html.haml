@@ -19,6 +19,8 @@ user_path
 picture
 %p= link_to "new_picture", new_picture_path
 
+users
+%p= link_to "users#show", user_path(id: 1)
 item
 %p= link_to "items#index", items_path
 %p= link_to "items#show", item_path(id: 1)

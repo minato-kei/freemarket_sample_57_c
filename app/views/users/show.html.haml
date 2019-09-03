@@ -1,0 +1,55 @@
+.container
+  = render partial: 'items/header'
+
+  = render partial: 'devise/registrations/bread-crumbs'
+
+  .main-box
+    
+    = render partial: 'devise/registrations/side-bar'
+
+    .mypage-main
+      .mypage-main__icon
+        .user-bunner
+          = link_to "#" do
+            .user-bunner__fig
+              = image_tag '//static.mercdn.net/thumb/members/435645566.jpg?1518914519'
+              -# 以下のコメントアウトはリンク当て込み時に使用予定、classとかは暫定指定
+              -# = image_tag current_user.icon_image.to_s, width: "60px", height: "60px", class: "user_icon"
+
+            .user-bunner__name
+              長宗我部 元親
+        .user-number
+          .user-number__rating
+            評価
+            %span
+              46
+          .user-number__exhibits
+            出品数
+            %span
+              49
+      .mypage-main__tab
+        %ul.mypage-tab
+          %li.action
+            = link_to "#" do
+              お知らせ
+          %li.todo
+            = link_to "#" do
+              やることリスト
+        .mypage-tab-content
+          お知らせの商品がありません
+
+      .mypage-main__transaction
+        %h2 購入した商品
+        %ul.mypage-tab
+          %li.transaction
+            = link_to "#" do
+              取引中
+          %li.old-transaction
+            = link_to "#" do
+              過去の取引
+        .mypage-tab-content
+          取引中の商品がありません
+
+  = render partial: 'items/bottom'
+
+  = render partial: 'items/sell-btn'
