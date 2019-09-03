@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   root 'items#index'
   get "items/hidden" => "items#hidden"
+  
+  resources :users, only: [:show]
 
   resources :pictures, only: [:new, :create]
   resources :items, only: [:index, :show]

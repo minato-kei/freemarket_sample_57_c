@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def show
+    
+  end  
+
   def sign_up_user_info
     reset_session
     @user = User.new  
