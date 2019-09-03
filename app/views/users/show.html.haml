@@ -1,5 +1,5 @@
 .container
-  = render partial: 'items/header'
+  -# = render partial: 'items/header'
 
   = render partial: 'devise/registrations/bread-crumbs'
 
@@ -12,7 +12,10 @@
         .user-bunner
           = link_to "#" do
             .user-bunner__fig
-              %img{alt: "", height: "60", src: "//static.mercdn.net/thumb/members/435645566.jpg?1518914519", width: "60"}/
+              = image_tag '//static.mercdn.net/thumb/members/435645566.jpg?1518914519'
+              -# 以下のコメントアウトはリンク当て込み時に使用予定、classとかは暫定指定
+              -# = image_tag current_user.icon_image.to_s, width: "60px", height: "60px", class: "user_icon"
+
             .user-bunner__name
               長宗我部 元親
         .user-number
