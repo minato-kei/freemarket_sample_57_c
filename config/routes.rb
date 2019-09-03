@@ -6,12 +6,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  devise_scope :user do
-    post '/users/sign_up/payment_confirmation', to: 'users/registrations#payment_confirmation'
-    get '/users/sign_up/complete', to: 'devise/registrations#complete'
-    get '/users/logout', to: 'devise/registrations#user_logout'
-  end
-
   resources :users, only: [:create, :show] do
     collection do
       get  :sign_up_sns
@@ -19,8 +13,8 @@ Rails.application.routes.draw do
       post :sign_up_phone
       post :sign_up_sms
       post :sign_up_shipping
-      # post :sign_up_credit
-      # post :sign_up_credit_create
+      post :sign_up_credit
+      get  :sign_up_complete
     end
   end
 

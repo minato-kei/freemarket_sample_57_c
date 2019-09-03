@@ -38,13 +38,12 @@ class UsersController < ApplicationController
     @shipping = Shipping.new  
   end
 
-  # def sign_up_credit
-  #   if Shipping.create(shipping_params).valid?
-  #     @credit = Credit.new
-  #   else
-  #     render "sign_up_shipping"
-  #   end  
-  # end
+  def sign_up_credit
+      render "sign_up_shipping" unless Shipping.create(shipping_params).valid?
+  end
+
+  def sing_up_complete
+  end
 
   # def sign_up_credit_create
   #   binding.pry
@@ -68,8 +67,4 @@ class UsersController < ApplicationController
     # params.require(:shipping).permit(:zipcode)[:zipcode].delete!("-")
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
   end
-
-  # def credit_params
-  #   params.require(:credit).permit(:number, :cvc).merge(exp_year: params[:credit][:"exp_year(1i)"], exp_month: params[:credit][:"exp_month(2i)"])
-  # end
 end
