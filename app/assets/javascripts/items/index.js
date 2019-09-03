@@ -1,6 +1,8 @@
 $(function(){
   $(document).ready(function(){
     $(".list_item").each(function(){
+      var window_size = $(window).innerHeight();
+      var scroll_bottom = $(this).scrollTop() + window_size;
       var item = $(this).offset().top;
       if (scroll_bottom > item) {
         $(this).animate({opacity: 1}, 1000);

@@ -32,7 +32,7 @@
           レディース新着アイテム
           = link_to "もっと見る＞", "#"
         .pickup__header__item
-          %ul
+          %ul.pickup__header__item-list
             = render 'item-box', items: @items
       .pickup__header
         %h2 ピックアップブランド
@@ -40,7 +40,7 @@
           シャネル新着アイテム
           = link_to "もっと見る＞", "#"
         .pickup__header__item
-          %ul
+          %ul.pickup__header__item-list
             = render 'item-box', items: @items
   
   = render partial: 'bottom'

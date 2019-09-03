@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.all.last(10)
     @item = Item.find(params[:id])
     @big_categories = Category.where(ancestry: nil)
   end
