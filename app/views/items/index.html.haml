@@ -29,35 +29,19 @@
       .pickup__header
         %h2 ピックアップカテゴリー
         .pickup__header__type
-          = link_to "#" do
-            %h3 レディース新着アイテム
+          レディース新着アイテム
+          = link_to "もっと見る＞", "#"
         .pickup__header__item
-          %ul
-            = render partial: 'item-box', collection: @ladies_items
-
-
-
-        .pickup__header__all
-          = link_to "#" do
-            すべての商品を見る
+          %ul.pickup__header__item-list
+            = render 'item-box', items: @items
       .pickup__header
         %h2 ピックアップブランド
         .pickup__header__type
-          = link_to "#" do
-            %h3 シャネル新着アイテム
+          シャネル新着アイテム
+          = link_to "もっと見る＞", "#"
         .pickup__header__item
-          %ul
-            -# この部分は、renderで繰り返し、アイテム部分
-            -# = render partial: 'item-box', collection: @ladies_items 
-            %li 
-              
-
-            %li item
-            %li item
-            %li item
-        .pickup__header__all
-          = link_to "#" do
-            すべての商品を見る
+          %ul.pickup__header__item-list
+            = render 'item-box', items: @items
   
   = render partial: 'bottom'
 

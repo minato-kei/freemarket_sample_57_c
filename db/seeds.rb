@@ -323,8 +323,8 @@ user = User.create(nickname: "チカキン",
                    last_name_kanji: "長宗我部", 
                    first_name_kana: "モトチカ", 
                    last_name_kana: "チョウソカベ", 
-                   birthday: 2, 
-                   phone_number: 1, 
+                   birthday: Date.today, 
+                   phone_number: "09012345678", 
                    balance: 0, 
                    sex: "male")
 
@@ -337,17 +337,17 @@ shipping = Shipping.create(zipcode: 1234567,
                            phone: 1,
                            default: 1,
                            user_id: 1)
-
-item = Item.create(name: "ビラボン サーフパンツ 水着 海パン",
-                   price: 2400,
-                   size: "L",
-                   condition: "とてもきれい",
-                   cost_burden: "送料込み（出品者負担）",
-                   shipping_from: "東京都",
-                   shipping_day: "4~7日で発送",
-                   rating: 1,
-                   status: "出品中",
-                   user_id: 1,
-                   category_id: 318,
-                   shipping_id: 1)
-
+10.times do |i|
+  item = Item.create(name: "ビラボン サーフパンツ 水着 海パン#{i}",
+                    price: 2400,
+                    size: "L",
+                    condition: "とてもきれい",
+                    cost_burden: "送料込み（出品者負担）",
+                    shipping_from: "東京都",
+                    shipping_day: "4~7日で発送",
+                    rating: 1,
+                    status: "出品中",
+                    user_id: 1,
+                    category_id: 318,
+                    shipping_id: 1)
+end
