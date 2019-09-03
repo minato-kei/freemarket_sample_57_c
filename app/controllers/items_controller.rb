@@ -17,4 +17,6 @@ class ItemsController < ApplicationController
     @big_categories = Category.where(ancestry: nil)
   end
   
+  def new
+  end
 end
