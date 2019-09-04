@@ -89,7 +89,6 @@ class ItemsController < ApplicationController
           @item.pictures[i].destroy
         end
       end
-  
       respond_to do |format|
         format.html
       end
@@ -98,7 +97,7 @@ class ItemsController < ApplicationController
       redirect_to new_item_path
     end
   end
-
+  
   def destroy
     if @item.user.id == current_user.id
       @item.destroy
@@ -107,7 +106,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   def purchase_confirmation
     @category = @item.category
     @user = current_user
@@ -116,7 +115,7 @@ class ItemsController < ApplicationController
     @shipping_pref = Prefecture.find_by(id: @shipping.pref)
     @customer = Payjp::Customer.retrieve(@credit.token)
   end
-
+  
   def purchase
     @category = @item.category
     #購入ユーザーを仮で作成
@@ -131,14 +130,19 @@ class ItemsController < ApplicationController
     else
       redirect_to purchase_confirmation_item_path
     end
-
+    
   end
 
   def purchase_complete
   end
 
+  def search
+    @items = Item.all.last(10)
+    @keyword = params[:keyword]
+  end
+  
   private
-
+  
   def create_token(user)
     Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
     @credit = user.credits.first
