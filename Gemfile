@@ -29,6 +29,7 @@ gem 'devise'
 gem 'payjp'
 gem 'ancestry'
 gem 'jquery-rails'
+gem 'active_hash'
 
 
 group :development, :test do

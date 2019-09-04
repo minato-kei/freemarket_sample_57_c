@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :pictures, only: [:new, :create]
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show, :new]
 
 end
