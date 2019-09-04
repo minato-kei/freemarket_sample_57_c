@@ -6,7 +6,6 @@ class PicturesController < ApplicationController
   end
   
   def create
-    binding.pry
     d = params[:delete].split(",").map{|i| i.to_i}
     d.sort!{|a,b| b<=>a}
     d.each do |i|
@@ -15,7 +14,6 @@ class PicturesController < ApplicationController
     
     picture_params[:image].each do |image|
       @picture = Picture.new(image: image, item_id: picture_params[:item_id])
-      binding.pry
       unless @picture.save
         respond_to do |format|
           format.json
