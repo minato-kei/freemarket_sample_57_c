@@ -1,6 +1,6 @@
 %h1 hello
 = form_for(@picture) do |f|
   = f.file_field :image
-  = f.submit "submit"
+  -# = f.submit "submit"
 - @pictures.each do |picture|
   = image_tag "#{picture.image}"
