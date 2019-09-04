@@ -172,39 +172,32 @@
                   %option{value: "1"} 1~2日で発送
                   %option{value: "2"} 2~3日で発送
                   %option{value: "3"} 4~7日で発送
- 
 
         .sell-content
           %h3.sell-content__head
             販売価格(300~9,999,999)
           .sell-content__select-box
-            %li.select-decide
-              .select-decide__price
-                価格
-                %span 必須
-              
-              .select-decide__input
-                ¥
-                %input.input-default{placeholder: "例）300", value: ""}/
-
-            .fee-box
-              .fee-box__left
-                販売手数料(10%)
-              .fee-box__right
-                ¥50
-
-            .profit-box
-              .profit-box__left
-                販売利益
-              .profit-box__right
-                ¥450
-
             %form{oninput: "vop2.value = Number(a.value) - Number(a.value) / 10, vop1.value = Number(a.value) / 10;"}
-              %input.input-default{name: "a", type: "number", placeholder: "例）300", value: ""}/
-              ー
-              %output{name: "vop1"} 0
-              ＝
-              %output{name: "vop2"} 0
+              %li.select-decide
+                .select-decide__price
+                  価格
+                  %span 必須
+                
+                .select-decide__input
+                  ¥
+                  %input.input-default{name: "a", type: "number", placeholder: "例）300", value: ""}/
+
+              .fee-box
+                .fee-box__left
+                  販売手数料(10%)
+                .fee-box__right
+                  %output{name: "vop1"} -
+
+              .profit-box
+                .profit-box__left
+                  販売利益
+                .profit-box__right
+                  %output{name: "vop2"} -
 
 
         .sell-btn-box
