@@ -1,6 +1,7 @@
-%h1 hello
 = form_for(@picture) do |f|
-  = f.file_field :image
-  -# = f.submit "submit"
+  .drop_field
+  = f.file_field :image, multiple: true,class: "image_field",accept: "image/*"
+  .file_box
+  = f.submit "submit", id: "button"
 - @pictures.each do |picture|
   = image_tag "#{picture.image}"
