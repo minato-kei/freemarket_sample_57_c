@@ -1,3 +1,126 @@
-.hello {
-  background-color: red;
+.buy-main {
+  box-sizing: border-box;
+  background-color: rgb(233, 233, 233);
+
+  &__box {
+    width: 700px;
+    background-color: #fff;
+    margin: 0 auto;
+    .buy-content {
+      display: block;
+
+      &__header {
+        padding: 16px;
+        font-size: 22px;
+        text-align: center;
+        font-weight: bold;
+      }
+      &__item {
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        text-align: center;
+
+        &__inner {
+          max-width: 320px;
+          margin: 0 auto;
+
+          .buy-item-main {
+            display: flex;
+            .buy-item-name {
+              margin-left: 16px;
+              text-align: left;
+              font-weight: 600;
+            }
+          }
+          .buy-form {
+            width: 100%;
+
+            .buy-price {
+              margin: 8px 0 0;
+              font-size: 18px;
+              font-weight: 600;
+
+              span {
+                font-size: 14px;
+                font-weight: 400;
+                margin: 0 0 0 8px;
+              }
+            }
+            .buy-have-point {
+              background-color: #ccc;
+              margin: 16px 0 0;
+              color: #333;
+              padding: 14px;
+              border: 1px solid #ccc;
+              font-size: 14px;
+            }
+            .buy-price-table {
+              display: flex;
+              width: 100%;
+              font-size: 18px;
+              font-weight: bold;
+              &__left {
+                padding: 16px 0;
+                width: 50%;
+                text-align: left;
+              }
+              &__right {
+                padding: 16px 0;
+                width: 50%;
+                text-align: right;
+              }
+            }
+            .btn-default {
+              margin: 8px 0 0;
+              background-color: #ea352d;
+              color: #fff;
+              border: 1px solid #ea352d;
+              width: 100%;
+              font-size: 14px;
+              line-height: 48px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      &__user-info {
+        margin: 40px 0 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        
+        &__inner {
+          max-width: 320px;
+          margin: 0 auto;
+
+          h3 {
+            font-size: 14px;
+          }
+          .user-info-text {
+            margin: 8px 0 0;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+          .user-info-fix {
+            text-align: right;
+            a {
+              color: #0099e8;
+              font-size: 14px;
+              text-decoration: none;
+              i {
+                font-size: 10px;
+                margin-left: 8px;
+              }
+            }
+            a:hover {
+              text-decoration: underline;
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+      &__user-info:last-of-type {
+        padding: 24px 12.5% 40px;
+      }
+    }
+  }
 }
