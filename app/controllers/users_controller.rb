@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def profile
+    @user = User.find(params[:id])
+  end
+
   def sign_up_user_info
     reset_session
     @user = User.new  
