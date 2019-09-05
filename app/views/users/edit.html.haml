@@ -12,6 +12,90 @@
         %h2.main-confimation__head
           本人情報の登録
 
+        .main-confimation__form
+          .form-description
+            お客様の本人情報をご登録ください。
+            %br
+            登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+
+          .text-right
+            = link_to "#" do
+              本人確認書類のアップロードについて
+              %span
+              %i.fas.fa-chevron-right
+                
+          .form-group
+            %label.label
+              お名前
+            %p 
+              長宗我部 元親
+              -# 以下、サーバーサイド実装でコメントアウト外す %inputと%buttonは入れ替えする予定
+              -# = current_user.lastname
+              -# = current_user.firstname
+          .form-group
+            %label.label
+              お名前カナ
+            %p
+              チョウソカベ モトチカ
+              -# = current_user.lastname_kana
+              -# = current_user.firstname_kana
+          .form-group
+            %label.label
+              生年月日
+            %p
+              1599/07/11
+              -# = user.birthday.strftime('%Y/%m/%d')
+
+          .form-group
+            %label.label
+              郵便番号
+              %span.arbitrary
+                任意
+            %input.input-default{name: "zip_code", placeholder: "例）1234567", type: "text", value: ""}/
+            -# = f.text_field :zip_code, class: "input-default", placeholder: "例）1234567"
+
+          .form-group
+            %label.label
+              都道府県
+              %span.arbitrary
+                任意
+            %select.select-default
+              %option{value: ""} --
+            -# = f.collection_select :id, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id"
+
+          .form-group
+            %label.label
+              市区町村
+              %span.arbitrary
+                任意
+            %input.input-default{name: "city", placeholder: "例) 横浜市緑区", type: "text", value: ""}/
+            -# = f.text_field :city, class: "input-default", placeholder: "例）横浜市緑区"
+
+          .form-group
+            %label.label
+              番地
+              %span.arbitrary
+                任意
+            %input.input-default{name: "address1", placeholder: "例) 青山1−1−1", type: "text", value: ""}/
+            -# = f.text_field :address1, class: "input-default", placeholder: "例）青山1-1-1"
+
+          .form-group
+            %label.label
+              建物名
+              %span.arbitrary
+                任意
+            %input.input-default{name: "address2", placeholder: "例) 柳ビル103", type: "text", value: ""}/
+            -# = f.text_field :address2, class: "input-default", placeholder: "例）柳ビル103"
+
+          %button.btn-default{type: "submit"} 登録する
+          -# = f.submit '登録する', class: 'btn-default'
+
+
+          .form-group.text-right
+            = link_to "#" do
+              本人情報の登録について
+              %span
+              %i.fas.fa-chevron-right
 
 
 
