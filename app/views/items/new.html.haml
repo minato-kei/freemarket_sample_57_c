@@ -17,13 +17,16 @@
               %span 必須
             %p 最大10枚までアップロードできます
             .sell-upload-box__drop
-              %label
+              .sell-upload-box__drop_wrap
                 .drop-box-input
-                  ドラックアンドドロップ
-                  %br
-                  またはクリックしてファイルをアップロード
-                %input.image{multiple: "", name: "image1", display: "none",type: "file"}/
-
+                  = f.file_field :image, multiple: true,class: "image_field",accept: "image/*"
+                  %p 
+                    ドラックアンドドロップ
+                    %br
+                      またはクリックしてファイルをアップロード
+                  
+                
+                
                 
               
 
@@ -32,12 +35,12 @@
               商品名
               %span 必須
               .sell-item__name__input
-                %input.input-default{placeholder: "商品名（必須 40文字まで)", value: ""}/
+                = f.text_area :name, placeholder: "商品名（必須 40文字まで)", value: "サンプル"
             .sell-item__discription
               商品の説明
               %span 必須
               .sell-item__discription__text
-                %textarea.textarea-default{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"}
+                = f.text_area :text, class:"textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5",value: "サンプル"
 
           .sell-content
             %h3.sell-content__head
@@ -49,23 +52,7 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} レディース
-                    %option{value: "2"} メンズ
-                    %option{value: "259"} ベビー・キッズ
-                    %option{value: "387"} インテリア・住まい・小物
-                    %option{value: "517"} 本・音楽・ゲーム
-                    %option{value: "576"} おもちゃ・ホビー・グッズ
-                    %option{value: "683"} コスメ・香水・美容
-                    %option{value: "781"} 家電・スマホ・カメラ
-                    %option{value: "867"} スポーツ・レジャー
-                    %option{value: "976"} ハンドメイド
-                    %option{value: "1026"} チケット
-                    %option{value: "1085"} 自動車・オートバイ
-                    %option{value: "138"} その他
-
+                  = f.collection_select :category_id, @categories, :id, :name ,class:"select-default"
             .sell-content__select-add-box
               .select-pulldown
                 商品の状態
@@ -73,16 +60,9 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 新品、未使用
-                    %option{value: "2"} 未使用に近い
-                    %option{value: "3"} 目立った傷や汚れなし
-                    %option{value: "4"} やや傷や汚れあり
-                    %option{value: "5"} 傷や汚れあり
-                    %option{value: "1328"} 全体的に状態が悪い
-
+                  = f.select :condition, class:"select-default" do
+                    - [['新品、未使用', 1], ['未使用に近い', 2],['目立った傷や汚れなし', 3],['やや傷や汚れあり', 4],['傷や汚れあり', 5],['全体的に状態が悪い', 1328]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
           .sell-content
             %h3.sell-content__head
               配送について
@@ -93,11 +73,9 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 送料込み(出品者負担)
-                    %option{value: "2"} 着払い(購入者負担)
+                  = f.select :cost_burden, class:"select-default" do
+                    - [['送料込み(出品者負担)',1], ['着払い(購入者負担)', 2]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
 
 
             .sell-content__select-add-box
@@ -107,7 +85,7 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-                  = f.collection_select :id, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id"
+                  = f.collection_select :shipping_from, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id"
 
 
             .sell-content__select-add-box
@@ -117,13 +95,9 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 1~2日で発送
-                    %option{value: "2"} 2~3日で発送
-                    %option{value: "3"} 4~7日で発送
-
+                  = f.select :shipping_day, class:"select-default" do
+                    - [['1~2日で発送',1], ['2~3日で発送', 2], ['4~7日で発送', 3]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
           .sell-content
             %h3.sell-content__head
               販売価格(300~9,999,999)
@@ -136,8 +110,7 @@
                   
                   .select-decide__input
                     ¥
-                    %input.input-default{name: "a", type: "number", placeholder: "例）300", value: ""}/
-
+                    = f.text_field :price, type: "number", placeholder: "例）300", value: "3000"
                 .fee-box
                   .fee-box__left
                     販売手数料(10%)
