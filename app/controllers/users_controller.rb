@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
   def show
-    
   end  
+
+  def edit
+    @user = User.find(params[:id])
+  end
 
   def sign_up_user_info
     reset_session

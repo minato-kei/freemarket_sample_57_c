@@ -8,8 +8,8 @@ FactoryBot.define do
     last_name_kanji         {"長宗我部"}
     first_name_kana         {"モトチカ"}
     last_name_kana          {"チョウソカベ"}
-    birthday                {2}
-    phone_number            {1} 
+    birthday                {Date.today}
+    phone_number            {"09012345678"} 
     balance                 {0}
     sex                     {"male"}
   end
