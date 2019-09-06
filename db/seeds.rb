@@ -324,7 +324,7 @@ user = User.create(nickname: "チカキン",
                    first_name_kana: "モトチカ", 
                    last_name_kana: "チョウソカベ", 
                    birthday: Date.today, 
-                   phone_number: "09012345678", 
+                   phone_number: 1, 
                    balance: 0, 
                    sex: "male")
 
@@ -334,7 +334,7 @@ shipping = Shipping.create(zipcode: 1234567,
                            city: "高知県",
                            address: "港区",
                            building: "フィボナッチビルディング1123",
-                           phone: 1,
+                           phone: "09012345678",
                            default: 1,
                            user_id: 1)
 10.times do |i|
