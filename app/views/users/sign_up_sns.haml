@@ -9,9 +9,11 @@
       %li.btn.btn_email
         = link_to "メールアドレスで登録する", "sign_up_user_info"
       %li.btn.btn_facebook
-        = link_to "Facebookで登録する", "auth/facebook"
+        = link_to "Facebookで登録する", "auth/facebook", method: :post
+
       %li.btn.btn_google
-        = link_to "Googleで登録する", "auth/google_oauth2"
+        = link_to "Googleで登録する", "auth/google_oauth2", method: :post
+
 
 
 %nav.footer
