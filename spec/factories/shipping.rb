@@ -7,6 +7,7 @@ FactoryBot.define do
     building           {"浦戸城501"}
     phone              {12345678901}
     default            {true}
-    user_id            {1}
+
+    user               {FactoryBot.create :user}
   end
 end

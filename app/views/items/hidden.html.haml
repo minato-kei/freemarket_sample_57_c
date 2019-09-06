@@ -21,7 +21,13 @@ picture
 
 users
 %p= link_to "users#show", user_path(id: 1)
+%p= link_to "users#edit", edit_user_path(id:1)
+%p= link_to "users#profile", profile_user_path(id:1)
 item
 %p= link_to "items#index", items_path
 %p= link_to "items#show", item_path(id: 1)
+%p= link_to "items#new", new_item_path
 -# %p= link_to "", _path
+
+purchases
+%p= link_to "purchases#new", new_purchase_path

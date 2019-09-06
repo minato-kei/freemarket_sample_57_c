@@ -1,0 +1,363 @@
+.sell-main {
+  box-sizing: border-box;
+  background-color: rgb(233, 233, 233);
+
+  &__box {
+    width: 700px;
+    background-color: #fff;
+    margin: 0 auto;
+    .sell-content {
+      display: block;
+
+      &__header {
+        padding: 32px 16px;
+        font-size: 22px;
+        text-align: center;
+        font-weight: bold;
+      }
+      &__form {
+        border-top: 1px solid #eee;
+        .sell-upload-box {
+          width: 620px;
+          padding: 40px;
+          display: block;
+
+          &__head {
+            font-weight: bold;
+            span {
+              background-color: #ea352d;
+              font-size: 12px;
+              color: #fff;
+              margin-left: 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              vertical-align: top;
+              font-weight: bold;
+            }
+          }
+          p {
+            margin: 8px 0 0;
+            line-height: 1.5;
+            font-size: 14px;
+          }
+          &__drop {
+            display: block;
+            width: 620px;
+            margin: 16px auto 0;
+
+            .drop-box-input {
+              position: relative;
+              font-size: 14px;
+              min-height: 70px;
+              width: 87%;
+              background-color: #f5f5f5;
+              border: 1px dashed #ccc;
+              text-align: center;
+              cursor: pointer;
+              padding: 40px;
+            }
+            input {
+              display: none;
+            }
+          }
+        }
+        .sell-item {
+          padding: 40px;
+          border: 1px solid #eee;
+          box-sizing: border-box;
+
+          &__name {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+
+            span {
+              background-color: #ea352d;
+              font-size: 12px;
+              color: #fff;
+              margin-left: 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              vertical-align: top;
+              font-weight: bold;
+            }
+            &__input {
+              display: block;
+
+              .input-default {
+                width: 95%;
+                margin: 8px 0 0;
+                padding: 10px 16px 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #fff;
+                font-size: 16px;
+                font-weight: normal;
+              }
+            }
+          }
+          &__discription {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 40px;
+
+            span {
+              background-color: #ea352d;
+              font-size: 12px;
+              color: #fff;
+              margin-left: 8px;
+              padding: 2px 4px;
+              border-radius: 2px;
+              vertical-align: top;
+              font-weight: bold;
+            }
+            &__text {
+              display: block;
+
+              .textarea-default {
+                width: 95%;
+                margin: 8px 0 0;
+                padding: 10px 16px 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #fff;
+                font-size: 16px;
+                font-weight: normal;
+              }
+            }
+          }
+        }
+        .sell-content {
+          padding: 40px;
+          border: 1px solid #eee;
+          box-sizing: border-box;
+          overflow: hidden;
+
+          &__head {
+            float: left;
+            color: #888;
+            font-size: 14px;
+          }
+          &__select-box {
+            float: right;
+            width: 400px;
+            .select-pulldown {
+              font-weight: 600;
+              font-size: 14px;
+              box-sizing: border-box;
+
+              span {
+                background-color: #ea352d;
+                font-size: 12px;
+                color: #fff;
+                margin-left: 8px;
+                padding: 2px 4px;
+                border-radius: 2px;
+                vertical-align: top;
+                font-weight: bold;
+              }
+
+              .select-wrap {
+                margin: 8px 0 0;
+                position: relative;
+                background-color: #fff;
+                i {
+                  position: absolute;
+                  z-index: 2;
+                  right: 16px;
+                  top: 40%;
+                  color: #888;
+                }
+                .select-default {
+                  border: 1px solid #ccc;
+                  padding: 0 16px;
+                  font-size: 16px;
+                  height: 48px;
+                  position: relative;
+                  border-radius: 4px;
+                  width: 100%;
+                  -webkit-appearance: none;
+                }
+              }
+            }
+          }
+          &__select-add-box {
+            float: right;
+            width: 400px;
+            margin-top: 40px;
+            .select-pulldown {
+              font-weight: 600;
+              font-size: 14px;
+              box-sizing: border-box;
+
+              span {
+                background-color: #ea352d;
+                font-size: 12px;
+                color: #fff;
+                margin-left: 8px;
+                padding: 2px 4px;
+                border-radius: 2px;
+                vertical-align: top;
+                font-weight: bold;
+              }
+
+              .select-wrap {
+                margin: 8px 0 0;
+                position: relative;
+                background-color: #fff;
+                i {
+                  position: absolute;
+                  z-index: 2;
+                  right: 16px;
+                  top: 40%;
+                  color: #888;
+                }
+                .select-default {
+                  border: 1px solid #ccc;
+                  padding: 0 16px;
+                  font-size: 16px;
+                  height: 48px;
+                  position: relative;
+                  border-radius: 4px;
+                  width: 100%;
+                  -webkit-appearance: none;
+                }
+                .prefecture_id {
+                  border: 1px solid #ccc;
+                  padding: 0 16px;
+                  font-size: 16px;
+                  height: 48px;
+                  position: relative;
+                  border-radius: 4px;
+                  width: 100%;
+                  -webkit-appearance: none;
+                }
+              }
+            }
+          }
+        }
+
+        .sell-content {
+          padding: 40px;
+          border: 1px solid #eee;
+          box-sizing: border-box;
+          overflow: hidden;
+
+          &__head {
+            float: left;
+            color: #888;
+            font-size: 14px;
+          }
+          &__select-box {
+            float: right;
+            width: 400px;
+
+            .select-decide {
+              font-weight: 600;
+              font-size: 14px;
+              box-sizing: border-box;
+              display: flex;
+              line-height: 48px;
+              width: 100%;
+
+              &__price {
+                padding: 0 0 24px;
+                span {
+                  background-color: #ea352d;
+                  font-size: 12px;
+                  color: #fff;
+                  margin-left: 8px;
+                  padding: 2px 4px;
+                  border-radius: 2px;
+                  vertical-align: top;
+                  font-weight: bold;
+                }
+              }
+              &__input {
+                margin: 0 0 0 auto;
+                .input-default {
+                  border: 1px solid #ccc;
+                  text-align: right;
+                  border-radius: 4px;
+                  padding: 10px 16px 8px;
+                  height: 30px;
+                }
+              }
+            }
+            .fee-box {
+              padding: 24px 0;
+              border-top: 1px solid #ccc;
+              display: flex;
+
+              &__left {
+                font-size: 14px;
+                color: #333;
+              }
+              &__right {
+                margin: 0 0 0 auto;
+                font-size: 14px;
+              }
+            }
+            .profit-box {
+              padding: 24px 0;
+              border-top: 1px solid #ccc;
+              display: flex;
+
+              &__left {
+                font-weight: bold;
+                color: #333;
+              }
+              &__right {
+                margin: 0 0 0 auto;
+                font-size: 34px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .sell-btn-box {
+          padding: 40px;
+          border-top: 1px solid #eee;
+          
+          &__note {
+            font-size: 14px;
+          }
+          &__push {
+            margin: 40px 0 0;
+
+            .btn-default {
+              background-color: #ea352d;
+              border: 1px solid #ea352d;
+              color: #fff;
+              width: 100%;
+              font-size: 14px;
+              line-height: 48px;
+              cursor: pointer;
+            }
+          }
+          &__back {
+            margin: 24px auto;
+            a {
+              text-decoration: none;
+              text-align: center;
+            }
+            .btn-default {
+              width: 45%;
+              background-color: #aaa;
+              border: 1px solid #aaa;
+              color: #fff;
+              font-size: 14px;
+              line-height: 48px;
+              margin: 0 auto;
+            }
+            .btn-default:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+  }
+}

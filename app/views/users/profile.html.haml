@@ -1,0 +1,37 @@
+.container
+  = render partial: 'items/header'
+
+  = render partial: 'devise/registrations/bread-crumbs'
+
+  .main-box
+    
+    = render partial: 'devise/registrations/side-bar'
+
+    .main-view
+      -# コメントアウトは機能実装用に暫定で用意、名前とか注意してください
+      -# = form_for @user do |f|
+      .main-profile
+        .main-profile__head
+          プロフィール
+        .main-profile__form
+          .profile-icon
+            .profile-icon__user
+              .profile-icon__user__image
+                = image_tag 'https:////static.mercdn.net/images/member_photo_noimage_thumb.png', height: "60px" , width: "60px"
+                -# = image_tag @user.icon_image.to_s, class: "icon_image", width: "60px", height: "60px"
+
+              .profile-icon__user__name
+                %input.profile-icon-name{placeholder: ""}
+                -# = f.text_field :nickname, value: @user.nickname, placeholder: ""
+
+          .profile-content
+            .profile-content__text-area
+              =  text_area :profile, :profile, class: "profile-box",placeholder: "例) 私の名前は長宗我部 元親、あだ名はモッチン、出品は主に戦に使用したものがメインになるでござりまする。最近はVRに興味があるでござるよ。"
+              -# = f.text_area :profile, :profile, class: "profile-box",placeholder: "例) 私の名前は長宗我部 元親、あだ名はモッチン、出品は主に戦に使用したものがメインになるでござりまする。最近はVRに興味があるでござるよ。"
+
+            %button.profile-box-submit{type: "submit"} 変更する
+            -# = f.submit '変更する', class: 'profile-box-submit'
+
+  = render partial: 'items/bottom'
+
+  = render partial: 'items/sell-btn'
