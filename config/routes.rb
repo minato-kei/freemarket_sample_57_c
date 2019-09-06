@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   root 'items#index'
   get "items/hidden" => "items#hidden"
   
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit] do
+    member do
+      get  :profile
+    end
+  end
 
   resources :pictures, only: [:new, :create]
   resources :items, only: [:index, :show, :new]
