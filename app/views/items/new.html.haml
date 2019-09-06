@@ -1,5 +1,4 @@
-
-= form_for @item do |f|
+= form_with model: @item, id: "new_item" do |f|
   .register_header
     .register_header_logo
       = image_tag '/mercari_logo.png'
@@ -24,12 +23,6 @@
                     ドラックアンドドロップ
                     %br
                       またはクリックしてファイルをアップロード
-                  
-                
-                
-                
-              
-
           .sell-item
             .sell-item__name
               商品名
@@ -52,7 +45,15 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-                  = f.collection_select :category_id, @categories, :id, :name ,class:"select-default"
+                  = f.collection_select(:big_category_id, @big_categories, :id, :name, {prompt: "--------"} ,class:"big_category_select")
+                  - @big_categories.each do |big_category|
+                    = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "middle--------"} ,class:"middle_category_select middle-#{big_category.id}")
+                    - big_category.children.each do |middle_category|
+                      = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "small--------"} ,class:"small_category_select small-#{middle_category.id}")
+                  = f.hidden_field :category_id
+                  = f.select :size, class:"select-default", prompt: "--------" do
+                    - [['150cm以下', 1], ['150~160cm', 2],['目立った傷や汚れなし', 3],['やや傷や汚れあり', 4],['傷や汚れあり', 5],['全体的に状態が悪い', 1328]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
             .sell-content__select-add-box
               .select-pulldown
                 商品の状態

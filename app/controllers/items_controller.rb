@@ -18,15 +18,20 @@ class ItemsController < ApplicationController
   end
   
   def new
-    @categories = Category.where(ancestry: nil)
+    @big_categories = Category.where(ancestry: nil).where.not(name: "カテゴリ一覧" )
+    @middle_categories = Category.where(ancestry: params[:big_category]) if params[:big_category]
+    @small_categories = Category.where(ancestry: params[:middle_category]) if params[:middle_category]
     @item = Item.new
+    respond_to do |format|
+      format.json
+      format.html
+    end
   end
 
   def create
-    @item = Item.new(item_params)
     binding.pry
+    @item = Item.new(item_params)
     if @item.save
-      
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}
         d.sort!{|a,b| b<=>a}

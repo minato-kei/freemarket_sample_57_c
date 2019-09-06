@@ -65,6 +65,24 @@ $(function(){
         .fail(function(){
         });
       });
+    var big_category = 0;
+    var middle_category = 0;
+    var small_category = 0;
+    $(".big_category_select").on("change", function(){
+      big_category = $(this).val();
+      $(".middle_category_select").css("display", "none");
+      $(".small_category_select").css("display", "none");
+      $(`.middle-${big_category}`).css("display", "block");
+    });
+    $(".middle_category_select").on("change", function(){
+      middle_category = $(this).val();
+      $(".small_category_select").css("display", "none");
+      $(`.small-${middle_category}`).css("display", "block");
+    });
+    $(".small_category_select").on("change", function(){
+      small_category = $(this).val();
+      $(`#item_category_id`).val(small_category);
+    });
   }
 });
 });
