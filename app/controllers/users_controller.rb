@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_current_user
+  before_action :set_user, only: [:edit, :profile]
 
   def show
   end  
-
-  def edit
+  
+  def set_user
     @user = User.find(params[:id])
-  end
-
-  def profile
-    @current_user = User.find(params[:id])
   end
 
   def sign_up_user_info
