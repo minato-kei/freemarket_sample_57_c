@@ -24,7 +24,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
+      
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}
         d.sort!{|a,b| b<=>a}
@@ -35,8 +37,9 @@ class ItemsController < ApplicationController
       params[:item][:image].take(10).each do |image|
         @picture = Picture.new(image: image, item_id: @item.id)
         unless @picture.save
-          redirect_to new_item_path
+          render action: :new
         end
+        binding.pry
       end
       respond_to do |format|
         format.html
@@ -51,7 +54,7 @@ class ItemsController < ApplicationController
   def item_params
     current_user = User.find(1)
     shipping = Shipping.find_by(user_id: current_user.id)
-    params.require(:item).permit(:name,:price, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(user_id: current_user.id, shipping_id: shipping.id)
+    params.require(:item).permit(:name, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end
 
 end

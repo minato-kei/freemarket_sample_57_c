@@ -75,6 +75,15 @@
                   overflow: hidden;
                   box-sizing: border-box;
                 }
+                span{
+                  color: #0099e8;
+                  display: inline-flex;
+                  justify-content: center;
+                  width: 47%;
+                  box-sizing: border-box;
+                  flex-direction: row;
+                  
+                }
               }
               p{
                 position: absolute;
@@ -204,7 +213,7 @@
                   top: 40%;
                   color: #888;
                 }
-                .select-default {
+                #item_category_id, #item_cost_burden {
                   border: 1px solid #ccc;
                   padding: 0 16px;
                   font-size: 16px;
@@ -248,17 +257,7 @@
                   top: 40%;
                   color: #888;
                 }
-                .select-default {
-                  border: 1px solid #ccc;
-                  padding: 0 16px;
-                  font-size: 16px;
-                  height: 48px;
-                  position: relative;
-                  border-radius: 4px;
-                  width: 100%;
-                  -webkit-appearance: none;
-                }
-                .prefecture_id {
+                #item_condition, .prefecture_id, #item_shipping_day {
                   border: 1px solid #ccc;
                   padding: 0 16px;
                   font-size: 16px;
@@ -311,7 +310,7 @@
               }
               &__input {
                 margin: 0 0 0 auto;
-                .input-default {
+                #item_price {
                   border: 1px solid #ccc;
                   text-align: right;
                   border-radius: 4px;

@@ -30,11 +30,11 @@ $(function(){
         
       });
   
-      $(".drop-box-input").on("drop", function(e){
+      $(".image_field").on("drop change", function(e){
         e.preventDefault();
+        console.log(document.getElementById("item_image").files[0]);
         document.getElementById("item_image").files = e.originalEvent.dataTransfer.files;
         handleFileSelect(event);
-        var input_number = $(".sell-upload-box__drop").length;
         
       });
       
@@ -43,7 +43,8 @@ $(function(){
         var uploaded_file_box = $(this).attr("class");
         var this_index = $(this).attr("class").split(" ")[3];
         delete_number.push(this_index);
-        $(`div.${this_index}`).css("display", "none");        
+        $(`div.${this_index}`).css("display", "none");
+        console.log(delete_number);
       });
       $(document).on('click', '.btn-default',function(e){
         e.preventDefault();

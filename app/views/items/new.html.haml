@@ -35,7 +35,7 @@
               商品名
               %span 必須
               .sell-item__name__input
-                = f.text_area :name, placeholder: "商品名（必須 40文字まで)", value: "サンプル"
+                = f.text_area :name, placeholder: "商品名（必須 40文字まで)", value: "サンプル",class: "input-default"
             .sell-item__discription
               商品の説明
               %span 必須
@@ -102,28 +102,24 @@
             %h3.sell-content__head
               販売価格(300~9,999,999)
             .sell-content__select-box
-              %form{oninput: "vop2.value = Number(a.value) - Number(a.value) / 10, vop1.value = Number(a.value) / 10;"}
-                %li.select-decide
-                  .select-decide__price
-                    価格
-                    %span 必須
-                  
-                  .select-decide__input
-                    ¥
-                    = f.text_field :price, type: "number", placeholder: "例）300", value: "3000"
-                .fee-box
-                  .fee-box__left
-                    販売手数料(10%)
-                  .fee-box__right
-                    %output{name: "vop1"} -
+              %li.select-decide
+                .select-decide__price
+                  価格
+                  %span 必須
+                .select-decide__input
+                  ¥
+                  = f.text_field :price, type: "number", placeholder: "例）300", value: "3000", name: "price",oninput: "vop2.value = Number(price.value) - Number(price.value) / 10, vop1.value = Number(price.value) / 10;"
+              .fee-box
+                .fee-box__left
+                  販売手数料(10%)
+                .fee-box__right
+                  %output{name: "vop1"} -
 
-                .profit-box
-                  .profit-box__left
-                    販売利益
-                  .profit-box__right
-                    %output{name: "vop2"} -
-
-
+              .profit-box
+                .profit-box__left
+                  販売利益
+                .profit-box__right
+                  %output{name: "vop2"} -
           .sell-btn-box
             .sell-btn-box__note
               禁止されている出品、行為を必ずご確認ください。
@@ -134,7 +130,7 @@
             .sell-btn-box__push
               %button.btn-default{type: "submit"} 出品する
             .sell-btn-box__back
-              = link_to "#" do
+              = link_to root_path do
                 .btn-default
                   もどる
 
