@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_current_user
 
   def show
   end  
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id])
+    @current_user = User.find(params[:id])
   end
 
   def sign_up_user_info
