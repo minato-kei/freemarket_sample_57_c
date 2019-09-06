@@ -8,7 +8,6 @@ $(function(){
         for (var i = 0; i<files.length; i++){
           f = files[i]
           var reader = new FileReader();
-          
           reader.onload = (function(theFile){
             return function(e){
               var $html = `<div class="drop-box-input_upload ${p}">
@@ -32,10 +31,8 @@ $(function(){
   
       $(".image_field").on("drop change", function(e){
         e.preventDefault();
-        console.log(document.getElementById("item_image").files[0]);
         document.getElementById("item_image").files = e.originalEvent.dataTransfer.files;
         handleFileSelect(event);
-        
       });
       
       $(document).on('change','#item_image', handleFileSelect);
@@ -44,7 +41,6 @@ $(function(){
         var this_index = $(this).attr("class").split(" ")[3];
         delete_number.push(this_index);
         $(`div.${this_index}`).css("display", "none");
-        console.log(delete_number);
       });
       $(document).on('click', '.btn-default',function(e){
         e.preventDefault();

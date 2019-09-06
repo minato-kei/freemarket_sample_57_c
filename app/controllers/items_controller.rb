@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.new(item_params)
     if @item.save
       unless params[:delete].blank?
@@ -44,7 +43,6 @@ class ItemsController < ApplicationController
         unless @picture.save
           render action: :new
         end
-        binding.pry
       end
       respond_to do |format|
         format.html
