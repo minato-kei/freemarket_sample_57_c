@@ -11,5 +11,60 @@
       line-height: 1.4;
       font-weight: 600;
     }
+    &__form {
+      box-sizing: border-box;
+      .profile-icon {
+        padding: 72px 16px 24px;
+        background-image: url("https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?45085161");
+        &__user {
+          display: flex;
+          width: 300px;
+          margin: 0 auto;
+          &__image {
+            overflow: hidden;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: block;
+            // margin-left: 200px;
+          }
+          &__name {
+            line-height: 60px;
+            display: block;
+            .profile-icon-name {
+              width: 200px;
+              font-size: 16px;
+              margin: 0 0 0 8px;
+              height: 25px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+            }
+          }
+        }
+      }
+      .profile-content {
+        padding: 40px 16px;
+        .profile-box {
+          min-height: 216px;
+          display: block;
+          width: 97%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          overflow: auto;
+        }
+        .profile-box-submit {
+          margin-top: 40px;
+          background-color: #ea352d;
+          border: 1px solid #ea352d;
+          color: #fff;
+          display: block;
+          width: 100%;
+          font-size: 14px;
+          line-height: 48px;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
