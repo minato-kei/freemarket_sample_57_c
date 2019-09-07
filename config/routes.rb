@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+ 
   resources :users, only: [:create, :show] do
     collection do
       get  :sign_up_sns
@@ -21,10 +22,16 @@ Rails.application.routes.draw do
   root 'items#index'
   get "items/hidden" => "items#hidden"
   
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit] do
+    member do
+      get  :profile
+    end
+  end
 
   resources :pictures, only: [:new, :create]
+
   resources :items, only: [:index, :show, :new, :create]
+
   resources :purchases, only: [:new]
 
 end

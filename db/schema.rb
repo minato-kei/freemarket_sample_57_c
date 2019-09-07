@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2019_09_04_091240) do
+ActiveRecord::Schema.define(version: 2019_09_06_031519) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "prefecture_id"
@@ -19,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_09_04_091240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -96,17 +94,19 @@ ActiveRecord::Schema.define(version: 2019_09_04_091240) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string "last_name_kanji", null: false
-    t.string "first_name_kanji", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.date "birthday", null: false
-    t.string "phone_number", null: false
+    t.string "last_name_kanji"
+    t.string "first_name_kanji"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.integer "birthday"
+    t.integer "phone_number"
     t.integer "balance", default: 0, null: false
     t.string "sex"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nickname"], name: "index_users_on_nickname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

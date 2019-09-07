@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:profile]
 
   def show
-    
   end  
+
+  def edit
+    @user = User.find(params[:id])
+  end
 
   def sign_up_user_info
     reset_session
@@ -70,5 +74,9 @@ class UsersController < ApplicationController
     # params.require(:shipping).permit(:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :zipcode, :pref, :city, :adress, :building, :phone)
     # params.require(:shipping).permit(:zipcode)[:zipcode].delete!("-")
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
