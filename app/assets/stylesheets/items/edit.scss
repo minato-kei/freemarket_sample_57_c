@@ -236,7 +236,9 @@
                   font-size: 12px;
                   color: #888;
                 }
-                
+                .middle_category_select, .small_category_select{
+                  display: none;
+                }
               }
             }
           }

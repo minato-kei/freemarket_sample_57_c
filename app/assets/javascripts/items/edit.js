@@ -1,6 +1,6 @@
 $(function(){
   $(document).on('turbolinks:load', function() {
-  if (document.URL.match("/items/new")){
+  if (document.URL.match("/.+/edit")){
       var delete_number = [];
       var p = 0;
       function handleFileSelect(event){
@@ -44,7 +44,7 @@ $(function(){
       });
       $(document).on('click', '.btn-default',function(e){
         e.preventDefault();
-        var form = $("#new_item");
+        var form = $("#edit_item");
         var formData = new FormData(form.get(0));
         formData.append("delete", delete_number);
         $.ajax({
@@ -64,8 +64,10 @@ $(function(){
     var big_category = 0;
     var middle_category = 0;
     var small_category = 0;
-    $(".big_category_select").on("change", function(){
+
+    $("#item_big_category_id").on("change", function(){
       big_category = $(this).val();
+      console.log(big_category);
       $(".middle_category_select").css("display", "none");
       $(".small_category_select").css("display", "none");
       $(`.middle-${big_category}`).css("display", "block");

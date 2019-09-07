@@ -1,4 +1,4 @@
-= form_with model: @item, id: "new_item" do |f|
+= form_with model: @item, id: "edit_item" do |f|
   .register_header
     .register_header_logo
       = image_tag 'mercari_logo.png'
@@ -23,6 +23,12 @@
                     ドラックアンドドロップ
                     %br
                       またはクリックしてファイルをアップロード
+                  - @pictures.each_with_index do |picture, index|
+                    .drop-box-input_upload{:class => "#{index}"}>
+                      %img.photo{:class => "image_#{index} #{index}", :src => picture.image.url}/
+                      .drop-box-input_upload_edit
+                        %span.drop-box-input_upload_edit_btn.drop-box-input_upload_btn{:class => "image_edit_${p} ${p}"} 編集
+                        %span.drop-box-input_upload_delete_btn.drop-box-input_upload_btn{:class => "image_delete_${p} ${p}"} 削除
           .edit-item
             .edit-item__name
               商品名
@@ -48,13 +54,15 @@
                   = f.collection_select(:big_category_id, @big_categories, :id, :name ,class:"big_category_select", selected: @item_category.root.id)
                   - @big_categories.each do |big_category|
                     - if big_category.children.ids.include?(@item_category.parent.id)
-                      = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "#{big_category.name} middle--------"} ,class:"middle_category_select middle-#{big_category.id}", selected: @item_category.parent.id)
-                      %h1 いた！
+                      = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "#{big_category.name} middle--------", selected: @item_category.parent.id} ,class:"middle_category_select middle-#{big_category.id}", style: "display: block")
                     -else
                       = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "#{big_category.name} middle--------"} ,class:"middle_category_select middle-#{big_category.id}")
                     - big_category.children.each do |middle_category|
-                      = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "small--------"} ,class:"small_category_select small-#{middle_category.id}", selected: @item_category.id)
-                  = f.hidden_field :category_id
+                      - if middle_category.children.ids.include?(@item_category.id)
+                        = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "small--------", selected: @item_category.id} ,class:"small_category_select small-#{middle_category.id}", style: "display: block")
+                      -else
+                        = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "small--------"} ,class:"small_category_select small-#{middle_category.id}")
+                  = f.hidden_field :category_id, value: @item_category.id
                   = f.select :size, class:"select-default", prompt: "--------" do
                     - [['150cm以下', 1], ['150~160cm', 2],['160~170cm', 3],['170~180cm', 4],['180cm以上', 5],['その他', 6]].each do |c|
                       - if @item.size.to_i == c.last
@@ -149,7 +157,7 @@
               %br
               また、出品をもちまして加盟店規約に相違したことになります。
             .edit-btn-box__push
-              %button.btn-default{type: "submit"} 出品する
+              %button.btn-default{type: "submit"} 変更する
             .edit-btn-box__back
               = link_to root_path do
                 .btn-default
