@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   end
 
   resources :pictures, only: [:new, :create]
-  resources :items, only: [:index, :show, :new]
+
+  resources :items, only: [:index, :show, :new, :create]
+
   resources :purchases, only: [:new]
 
 end
