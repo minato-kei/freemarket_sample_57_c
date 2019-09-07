@@ -94,8 +94,8 @@
 
         %div.item-big-box__baloon__message::after
 
-    %a.item-big-box__buy-btn
-      購入画面に進む
+    =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
+      
     .item-big-box__app-buy
       = link_to "#" do
         アプリで購入

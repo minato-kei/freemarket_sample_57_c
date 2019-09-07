@@ -30,8 +30,14 @@ Rails.application.routes.draw do
 
   resources :pictures, only: [:new, :create]
 
-  resources :items, only: [:index, :show, :new, :create]
-
+  resources :items, only: [:index, :show, :new, :create] do
+    member do
+      get  :purchase_confirmation
+      post :purchase
+      get  :purchase_complete
+    end
+  end
+  
   resources :purchases, only: [:new]
 
 end

@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :still_selling?, only: [:purchase_confirmation, :purchase]
 
   def index
     @items = Item.all.last(10)
@@ -8,7 +9,6 @@ class ItemsController < ApplicationController
     @mens_items = Category.where(name: "メンズ")[0].items.last(4)
     @babies_items = Category.where(name: "ベビー・キッズ")[0].items.last(4)
     @makeup_items = Category.where(name: "コスメ・香水・美容")[0].items.last(4) 
-    #pickupブランドを4ブランド x4 itemsで作成
   end
 
   def show
@@ -27,8 +27,8 @@ class ItemsController < ApplicationController
       format.html
     end
   end
-
-  def create
+  
+   def create
     @item = Item.new(item_params)
     if @item.save
       unless params[:delete].blank?
@@ -53,7 +53,51 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase_confirmation
+    @item = Item.find(params[:id])
+    @category = @item.category
+    @user = User.find(10)
+    create_token(@user)
+    @shipping = @user.shippings.first
+    @shipping_pref = Prefecture.find_by(id: @shipping.pref)
+    @customer = Payjp::Customer.retrieve(@credit.token)
+  end
+
+  def purchase
+    @item = Item.find(params[:id])
+    @category = @item.category
+    #購入ユーザーを仮で作成
+    @user = User.find(10)
+    create_token(@user)
+    if Payjp::Charge.create(amount: @item.price,customer: @credit.token,currency: 'jpy')
+      @user.balance -= @item.price
+      @user.update(balance: @user.balance)
+      @item.update(status: "取引中")
+      @order = Order.create(item_id: @item.id, purchase_user_id: @user.id, item_status: @item.status)
+      redirect_to purchase_complete_item_path
+    else
+      redirect_to purchase_confirmation_item_path
+    end
+
+  end
+
+  def purchase_complete
+  end
+
   private
+
+  def create_token(user)
+    Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
+    @credit = user.credits.first
+  end
+
+  def still_selling?
+    @item = Item.find(params[:id])
+    if @item.status != "出品中"
+      redirect_to root_path
+    end
+  end
+
   def item_params
     current_user = User.find(1)
     shipping = Shipping.find_by(user_id: current_user.id)
