@@ -10,10 +10,9 @@
         .buy-content__item__inner
           .buy-item-main
             .buy-item-image
-            = image_tag 'https://static.mercdn.net/thumb/photos/m13673271321_1.jpg?1567603463', height: "64px" , width: "64px"
-            -# = image_tag @item.pictures.image, height: "64px" , width: "64px"
+              = image_tag @item.pictures.first.image.url, height: "64px" , width: "64px"
             .buy-item-name
-              これであなたも現代風、憧れの髪型に！アフロセット！
+              = @item.name
           %form.buy-form
             %p.buy-price
               ¥
@@ -27,10 +26,12 @@
               .buy-price-table__right
                 ¥
                 = @item.price.to_s(:delimited)
-            - if @user.balance >= @item.price
+            - if @user.balance >= @item.price && @item.status == "出品中"
               = link_to "購入する", purchase_item_path(@item), method: "POST" ,class:"btn-default"
-            - else 
+            - elsif @user.balance < @item.price
               = link_to "残高不足のため購入できません", root_path, method: "GET" ,class:"btn-default",style: "background-color: lightgray"
+            - else 
+              = link_to "取引が終了したアイテムです", root_path, method: "GET" ,class:"btn-default",style: "background-color: lightgray"
       .buy-content__user-info
         .buy-content__user-info__inner
           %h3 配送先

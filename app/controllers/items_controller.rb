@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :still_selling?, only: [:purchase_confirmation, :purchase]
 
   def index
     @items = Item.all.last(10)
@@ -8,7 +9,6 @@ class ItemsController < ApplicationController
     @mens_items = Category.where(name: "メンズ")[0].items.last(4)
     @babies_items = Category.where(name: "ベビー・キッズ")[0].items.last(4)
     @makeup_items = Category.where(name: "コスメ・香水・美容")[0].items.last(4) 
-    #pickupブランドを4ブランド x4 itemsで作成
   end
 
   def show
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   def purchase_confirmation
     @item = Item.find(params[:id])
     @category = @item.category
-    @user = User.find(1)
+    @user = User.find(10)
     create_token(@user)
     @shipping = @user.shippings.first
     @shipping_pref = Prefecture.find_by(id: @shipping.pref)
@@ -34,9 +34,10 @@ class ItemsController < ApplicationController
   def purchase
     @item = Item.find(params[:id])
     @category = @item.category
-    @user = User.find(1)
+    #購入ユーザーを仮で作成
+    @user = User.find(10)
     create_token(@user)
-    if Payjp::Charge.create(:amount => @item.price,:customer => @credit.token,:currency => 'jpy')
+    if Payjp::Charge.create(amount: @item.price,customer: @credit.token,currency: 'jpy')
       @user.balance -= @item.price
       @user.update(balance: @user.balance)
       @item.update(status: "取引中")
@@ -56,5 +57,12 @@ class ItemsController < ApplicationController
   def create_token(user)
     Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
     @credit = user.credits.first
+  end
+
+  def still_selling?
+    @item = Item.find(params[:id])
+    if @item.status != "出品中"
+      redirect_to root_path
+    end
   end
 end

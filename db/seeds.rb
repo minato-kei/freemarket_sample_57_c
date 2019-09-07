@@ -339,6 +339,20 @@ category = Category.create(name: "カテゴリー一覧")
   credit = Credit.create(token: "cus_1aaec93e42b0cae8307f4a8e71af",
     user_id: user.id)
   item = Item.create(name: "ビラボン サーフパンツ 水着 海パン#{i}",
+    text: "セシルマクビー☆パール＆ジュエル付き 秋　ワンピース♪ベージュ系
+  　 
+    セシルマクビーの　秋　ベージュ系ワンピース♪ 　 
+    胸元パール＆ジュエルが可愛さのポイント☆ 　 
+    袖シフォン×ゴールドラメMixニット切替なのでオシャレに着こなせますよ(*^^) 
+    　 
+    【　サイズ　】 　 
+    Ｍ☆ 　 
+     【　実寸　】 　 
+    丈80cm位 　 
+    【　状態　】 　 
+    5回位着用
+    
+    #セシルマクビー",
     price: 2400,
     size: "L",
     condition: "とてもきれい",

@@ -2,8 +2,9 @@
   %li.list_item
     = link_to item_path(item) do
       .item-box-show
-        .item-box-show__sold
-          sold
+        - if item.status != "出品中"
+          .item-box-show__sold
+            sold
         %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => item.name, :src => '/mercari_logo.png'}
         %h2.item-box-show_item_name
           = item.name
