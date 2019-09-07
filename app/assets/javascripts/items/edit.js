@@ -1,6 +1,8 @@
 $(function(){
   $(document).on('turbolinks:load', function() {
   if (document.URL.match("/.+/edit")){
+      var params_id = document.URL.split("/")[4];
+      console.log(params_id);
       var delete_number = [];
       var p = 0;
       function handleFileSelect(event){
@@ -31,14 +33,17 @@ $(function(){
   
       $(".image_field").on("drop change", function(e){
         e.preventDefault();
+        $(this).empty();
         document.getElementById("item_image").files = e.originalEvent.dataTransfer.files;
         handleFileSelect(event);
       });
       
       $(document).on('change','#item_image', handleFileSelect);
-      $(".sell-upload-box__drop").on('click', '.drop-box-input_upload_delete_btn' ,function(e){
+      $(".edit-upload-box__drop").on('click', '.drop-box-input_upload_delete_btn' ,function(e){
         var uploaded_file_box = $(this).attr("class");
-        var this_index = $(this).attr("class").split(" ")[3];
+        
+        var this_index = $(this).attr("class").split(" ")[1];
+        console.log(this_index);
         delete_number.push(this_index);
         $(`div.${this_index}`).css("display", "none");
       });
@@ -48,8 +53,8 @@ $(function(){
         var formData = new FormData(form.get(0));
         formData.append("delete", delete_number);
         $.ajax({
-          type: 'POST',
-          url: '/items',
+          type: 'PATCH',
+          url: `/items/${params_id}`,
           data: formData,
           dataType: 'html',
           processData: false,

@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
     end
   end
   
-   def create
+  def create
     @item = Item.new(item_params)
     if @item.save
       unless params[:delete].blank?
@@ -61,6 +61,39 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       redirect_to new_item_path
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    unless params[:delete].blank?
+      d = params[:delete].split(",").map{|i| i.to_i}
+      d.sort!{|a,b| b<=>a}
+      d.each do |i|
+        @item.pictures[i].destroy
+      end
+    end
+    binding.pry
+    if @item.update(item_params)
+      respond_to do |format|
+        format.html
+      end
+      redirect_to root_path
+    else
+      redirect_to new_item_path
+    end
+  end
+
+  def delete
+    @item = @user.items.find_by(id: params[:id])
+    if @item.user.id == current_user.id
+      if @item.destroy
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
     end
   end
 
@@ -110,7 +143,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    current_user = User.find(1)
+    current_user = User.find(10)
     shipping = Shipping.find_by(user_id: current_user.id)
     params.require(:item).permit(:name, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end
