@@ -21,10 +21,11 @@ class ItemsController < ApplicationController
     @user = User.find(10)
     #ユーザー仮置き
     #@user = current_user
-    @item = @user.items.find(params[:id])
+    @item = @user.items.find_by(id: params[:id])
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
     @item_category = @item.category
+    
   end
   
   def new
