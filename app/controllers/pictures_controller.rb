@@ -25,8 +25,6 @@ class PicturesController < ApplicationController
 
   private
 
-  def picture_params
-    params[:picture][:item_id] = 1
-    params.require(:picture).permit({image:[]}, :item_id)
-  end
+  
+  
 end

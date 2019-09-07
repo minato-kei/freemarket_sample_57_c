@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :pictures, only: [:new, :create]
-  resources :items, only: [:index, :show, :new] do
+
+  resources :items, only: [:index, :show, :new, :create] do
     member do
       get  :purchase_confirmation
       post :purchase
@@ -37,5 +38,6 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :purchases, only: [:new]
 
 end
