@@ -1,0 +1,87 @@
+.side-bar
+  .search-nav
+    %ul.search-nav__list
+      %li
+        = link_to "#" do
+          並び替え
+          %i.fas.fa-chevron-down
+    .search-nav__dropdown
+      %h3 詳細検索
+      = form_with(url: search_items_path, method: :get, class: "search-nav__dropdown__form", local: true) do |f|
+
+        = f.label :keyword, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-plus
+          %span キーワードを追加する
+        = f.search_field :keyword, placeholder: "例）値下げ", class: "search-nav__dropdown__form__search", value: @keyword
+
+        = f.label :category, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-list-ul
+          %span カテゴリーを選択する
+        .search-root
+          すべて
+          %i.fas.fa-chevron-down
+
+        -# =select_tag :category_id, options_for_select(@categories.map{|i| [i.name, i.id, id: "category_#{i.id}"]}), { prompt: 'すべて', class: 'search-root' }
+        -# = render partial: "category_box", collection: @categories, as: :category
+
+        .parent
+          rrr
+          =select_tag :category_id, options_for_select(@categories.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root' , id: "search-category-root"}
+        .child
+          - @categories.each do |c|
+            = select_tag :category_id, options_for_select(c.children.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root search-category-child hide', id: "category_#{c.id}" }
+            - c.children.each do |cc|
+              .check-boxes.hide{id: "category_#{cc.id}"}
+                = f.collection_check_boxes :grandchild, cc.children.limit(3), :id, :name do |b|
+                  .check-boxes__content
+                    = b.check_box(class:"search-checkbox")
+                    = b.label(class:"search-checkbox__label"){b.text}
+
+
+        = f.label :brand, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-tag
+          %span ブランド名から探す
+        = f.search_field :brand, placeholder: "例）シャネル", class: "search-nav__dropdown__form__search"
+
+        = f.label :size, class: "search-nav__dropdown__form__list" do 
+          %i.fab.fa-jenkins
+          %span サイズを指定する
+        = f.collection_select( :size_id, @categories, :id, :name,{prompt: "すべて"}, {class: "search-root"})
+
+        = f.label :price, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-coins
+          %span 価格
+        = f.collection_select( :price_id, @categories, :id, :name,{prompt: "選択してください"}, {class: "search-root"})
+        = f.number_field :min, placeholder: "¥ Min", class: "price-child"
+        %span ~
+        = f.number_field :max, placeholder: "¥ Max", class: "price-child"        
+        
+        = f.label :condition, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-star
+          %span 商品状態
+        .check-boxes
+          = f.collection_check_boxes :condition_ids, @categories, :id, :name do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+
+        = f.label :cost_burden, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-truck.fa-flip-horizontal
+          %span 配送料の負担
+        .check-boxes
+          = f.collection_check_boxes :cost_burden, @categories, :id, :name do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+
+        = f.label :status, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-shopping-cart
+          %span 販売状況
+        .check-boxes
+          = f.collection_check_boxes :status_id, @categories, :id, :name do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+
+        = button_tag type: 'submit', class: "sidebar-search-btn" do
+          %i.fa.fa-search
