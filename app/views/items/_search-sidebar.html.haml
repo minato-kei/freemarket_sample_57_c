@@ -21,9 +21,6 @@
           すべて
           %i.fas.fa-chevron-down
 
-        -# =select_tag :category_id, options_for_select(@categories.map{|i| [i.name, i.id, id: "category_#{i.id}"]}), { prompt: 'すべて', class: 'search-root' }
-        -# = render partial: "category_box", collection: @categories, as: :category
-
         .parent
           rrr
           =select_tag :category_id, options_for_select(@categories.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root' , id: "search-category-root"}
@@ -32,7 +29,7 @@
             = select_tag :category_id, options_for_select(c.children.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root search-category-child hide', id: "category_#{c.id}" }
             - c.children.each do |cc|
               .check-boxes.hide{id: "category_#{cc.id}"}
-                = f.collection_check_boxes :grandchild, cc.children.limit(3), :id, :name do |b|
+                = f.collection_check_boxes :grandchild, cc.children, :id, :name do |b|
                   .check-boxes__content
                     = b.check_box(class:"search-checkbox")
                     = b.label(class:"search-checkbox__label"){b.text}
