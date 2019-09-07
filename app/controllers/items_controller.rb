@@ -20,4 +20,34 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
+
+  def purchase_confirmation
+    Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
+    @item = Item.find(params[:id])
+    @category = @item.category
+    @user = User.find(1)
+    @shipping = @user.shippings.first
+    @shipping_pref = Prefecture.find_by(id: @shipping.pref)
+    @credit = @user.credits.first
+    @customer = Payjp::Customer.retrieve(@credit.token)
+  end
+
+  def purchase
+    Payjp.api_key = Rails.application.credentials.dig(:payment_secret_key)
+    @item = Item.find(params[:id])
+    @category = @item.category
+    @user = User.find(1) 
+    @credit = @user.credits.first
+    if Payjp::Charge.create(:amount => @item.price,:customer => @credit.token,:currency => 'jpy')
+      @user.balance -= @item.price
+      @user.update(balance: @user.balance)
+      redirect_to purchase_complete_item_path
+    else
+      redirect_to purchase_confirmation_item_path
+    end
+
+  end
+
+  def purchase_complete
+  end
 end

@@ -79,6 +79,9 @@
               font-size: 14px;
               line-height: 48px;
               cursor: pointer;
+              box-sizing: border-box;
+              display: inline-block;
+              text-decoration: none;
             }
           }
         }

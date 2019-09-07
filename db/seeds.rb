@@ -351,3 +351,6 @@ shipping = Shipping.create(zipcode: 1234567,
                     category_id: 318,
                     shipping_id: 1)
 end
+
+credit = Credit.create(token: "cus_1aaec93e42b0cae8307f4a8e71af",
+                       user_id: user.id)
