@@ -1,0 +1,149 @@
+= form_with model: @item, id: "new_item" do |f|
+  .register_header
+    .register_header_logo
+      = image_tag 'mercari_logo.png'
+
+  .sell-main
+    .sell-main__box
+      .sell-content
+        %h2.sell-content__header
+          商品の情報を入力  
+
+        .sell-content__form
+          .sell-upload-box
+            %h3.sell-upload-box__head
+              出品画像
+              %span 必須
+            %p 最大10枚までアップロードできます
+            .sell-upload-box__drop
+              .sell-upload-box__drop_wrap
+                .drop-box-input
+                  = f.file_field :image, multiple: true,class: "image_field",accept: "image/*"
+                  %p 
+                    ドラックアンドドロップ
+                    %br
+                      またはクリックしてファイルをアップロード
+          .sell-item
+            .sell-item__name
+              商品名
+              %span 必須
+              .sell-item__name__input
+                = f.text_area :name, placeholder: "商品名（必須 40文字まで)", value: "サンプル",class: "input-default"
+            .sell-item__discription
+              商品の説明
+              %span 必須
+              .sell-item__discription__text
+                = f.text_area :text, class:"textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5",value: "サンプル"
+
+          .sell-content
+            %h3.sell-content__head
+              商品の詳細
+            .sell-content__select-box
+              .select-pulldown
+                カテゴリー
+                %span 必須
+
+                .select-wrap
+                  %i.fas.fa-chevron-down
+                  = f.collection_select(:big_category_id, @big_categories, :id, :name ,class:"big_category_select", value: @item_category.parent.parent.id)
+                  - @big_categories.each do |big_category|
+                    = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "middle--------"} ,class:"middle_category_select middle-#{big_category.id}", value: @item_category.parent.id)
+                    - big_category.children.each do |middle_category|
+                      = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "small--------"} ,class:"small_category_select small-#{middle_category.id}", value: @item_category.id)
+                  = f.hidden_field :category_id
+                  = f.select :size, class:"select-default", prompt: "--------" do
+                    - [['150cm以下', 1], ['150~160cm', 2],['目立った傷や汚れなし', 3],['やや傷や汚れあり', 4],['傷や汚れあり', 5],['全体的に状態が悪い', 1328]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
+            .sell-content__select-add-box
+              .select-pulldown
+                商品の状態
+                %span 必須
+
+                .select-wrap
+                  %i.fas.fa-chevron-down
+                  = f.select :condition, class:"select-default" do
+                    - [['新品、未使用', 1], ['未使用に近い', 2],['目立った傷や汚れなし', 3],['やや傷や汚れあり', 4],['傷や汚れあり', 5],['全体的に状態が悪い', 1328]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
+          .sell-content
+            %h3.sell-content__head
+              配送について
+            .sell-content__select-box
+              .select-pulldown
+                配送料の負担
+                %span 必須
+
+                .select-wrap
+                  %i.fas.fa-chevron-down
+                  = f.select :cost_burden, class:"select-default" do
+                    - [['送料込み(出品者負担)',1], ['着払い(購入者負担)', 2]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
+
+
+            .sell-content__select-add-box
+              .select-pulldown
+                発送元の地域
+                %span 必須
+
+                .select-wrap
+                  %i.fas.fa-chevron-down
+                  = f.collection_select :shipping_from, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id"
+
+
+            .sell-content__select-add-box
+              .select-pulldown
+                発送までの日数
+                %span 必須
+
+                .select-wrap
+                  %i.fas.fa-chevron-down
+                  = f.select :shipping_day, class:"select-default" do
+                    - [['1~2日で発送',1], ['2~3日で発送', 2], ['4~7日で発送', 3]].each do |c|
+                      = content_tag(:option, c.first, value: c.last)
+          .sell-content
+            %h3.sell-content__head
+              販売価格(300~9,999,999)
+            .sell-content__select-box
+              %li.select-decide
+                .select-decide__price
+                  価格
+                  %span 必須
+                .select-decide__input
+                  ¥
+                  = f.text_field :price, type: "number", placeholder: "例）300", value: "3000", name: "price",oninput: "vop2.value = Number(price.value) - Number(price.value) / 10, vop1.value = Number(price.value) / 10;"
+              .fee-box
+                .fee-box__left
+                  販売手数料(10%)
+                .fee-box__right
+                  %output{name: "vop1"} -
+
+              .profit-box
+                .profit-box__left
+                  販売利益
+                .profit-box__right
+                  %output{name: "vop2"} -
+          .sell-btn-box
+            .sell-btn-box__note
+              禁止されている出品、行為を必ずご確認ください。
+              %br
+              またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり処罰される可能性があります。
+              %br
+              また、出品をもちまして加盟店規約に相違したことになります。
+            .sell-btn-box__push
+              %button.btn-default{type: "submit"} 出品する
+            .sell-btn-box__back
+              = link_to root_path do
+                .btn-default
+                  もどる
+
+
+
+  %nav.footer
+    %ul
+      %li
+        = link_to "プライバシーポリシー", "#"
+      %li
+        = link_to "メルカリ利用規約", "#"
+      %li
+        = link_to "特定商取引に関する表記", "#"
+    = image_tag 'mercari_logo2.png'
+    %p ©︎2019 Mercari

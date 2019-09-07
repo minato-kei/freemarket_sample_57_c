@@ -365,7 +365,7 @@ category = Category.create(name: "カテゴリー一覧")
     category_id: 318,
     shipping_id: shipping.id)
   (i+1).times do |p|
-    picture = Picture.create(image: open("#{Rails.root}/public/mercari_logo.png"),
+    picture = Picture.create(image: open("#{Rails.root}/app/assets/images/mercari_logo.png"),
                   item_id: item.id
                   )
   end

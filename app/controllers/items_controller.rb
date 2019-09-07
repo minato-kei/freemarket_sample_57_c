@@ -16,6 +16,16 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @big_categories = Category.where(ancestry: nil)
   end
+
+  def edit
+    @user = User.find(10)
+    #ユーザー仮置き
+    #@user = current_user
+    @item = @user.items.find(params[:id])
+    @pictures = @item.pictures
+    @big_categories = Category.where(ancestry: nil)
+    @item_category = @item.category
+  end
   
   def new
     @big_categories = Category.where(ancestry: nil).where.not(name: "カテゴリ一覧" )
