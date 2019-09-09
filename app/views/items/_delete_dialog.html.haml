@@ -1,0 +1,10 @@
+.dialog
+.dialog_content
+  %h1 確認
+  %h2 削除すると二度と復活できません。
+  %h2 削除する代わりに停止することもできます。
+  　　　
+  %h2 本当に削除しますか？
+  .dialog_content_btn
+    = link_to "キャンセル", "#", class:"dialog_content_btn_cancel"
+    = link_to "削除する", "/items/#{@item.id}", class:"dialog_content_btn_delete", method: "DELETE"

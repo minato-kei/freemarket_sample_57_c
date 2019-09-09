@@ -18,8 +18,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @user = User.find(10)
-    @item = @user.items.find_by(id: params[:id])
+    @item = Item.find_by(id: params[:id])
+    @user = @item.user
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
     @item_category = @item.category
@@ -90,14 +90,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  def delete
-    @item = @user.items.find_by(id: params[:id])
-    if @item.user.id == current_user.id
-      if @item.destroy
-        redirect_to root_path
-      else
-        redirect_to root_path
-      end
+  def destroy
+    @item = Item.find(params[:id])
+    @user = @item.user
+    if @item.destroy
+      redirect_to profile_user_path(@user)
     else
       redirect_to root_path
     end
