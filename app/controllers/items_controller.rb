@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :still_selling?, only: [:purchase_confirmation, :purchase]
+  before_action :set_item, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
 
   def index
     @items = Item.all.last(10)
@@ -13,12 +14,10 @@ class ItemsController < ApplicationController
 
   def show
     @items = Item.all.last(10)
-    @item = Item.find(params[:id])
     @big_categories = Category.where(ancestry: nil)
   end
 
   def edit
-    @item = Item.find_by(id: params[:id])
     @user = @item.user
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
@@ -63,7 +62,6 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    
     if @item.update(item_params)
       if params[:item][:image] != nil
         params[:item][:image]&.take(10-@item.pictures.length).each do |image|
@@ -91,7 +89,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @user = @item.user
     #current_user機能が未実装のため、if @item.user == current_user.idをあとで追加
     if @item.destroy
@@ -102,7 +99,6 @@ class ItemsController < ApplicationController
   end
 
   def purchase_confirmation
-    @item = Item.find(params[:id])
     @category = @item.category
     @user = User.find(10)
     create_token(@user)
@@ -112,7 +108,6 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    @item = Item.find(params[:id])
     @category = @item.category
     #購入ユーザーを仮で作成
     @user = User.find(10)
@@ -150,6 +145,10 @@ class ItemsController < ApplicationController
     current_user = User.find(10)
     shipping = Shipping.find_by(user_id: current_user.id)
     params.require(:item).permit(:name,:text, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

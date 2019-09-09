@@ -287,7 +287,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    a{
+    &_btn{
       width : 90%;
       height: 50px;
       background-color: red;
@@ -298,7 +298,7 @@
       margin-bottom: 5px;
       line-height: 50px;
     }
-    .item-edit_stop, .item-edit_delete{
+    &_stop, &_delete{
       background-color: lightgray;
     }
   }

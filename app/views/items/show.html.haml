@@ -124,10 +124,10 @@
           %i.fas.fa-lock
           %span あんしん•あんぜんへの取り組み
   .item-edit
-    = link_to "商品の編集", "#"
+    = link_to "商品の編集", edit_item_path(@item), class:"item-edit_btn"
     or
-    = link_to "出品を一旦停止する", "#", class:"item-edit_stop"
-    = link_to "この商品を削除する", "#", class:"item-edit_delete"
+    = link_to "出品を一旦停止する", "#", class:"item-edit_btn item-edit_stop"
+    = link_to "この商品を削除する", "#", class:"item-edit_btn item-edit_delete"
   .item-message
     .item-message__box
       .item-message__box__chat
