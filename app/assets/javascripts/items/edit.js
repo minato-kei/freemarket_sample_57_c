@@ -2,7 +2,6 @@ $(function(){
   $(document).on('turbolinks:load', function() {
   if (document.URL.match("/.+/edit")){
       var params_id = document.URL.split("/")[4];
-      console.log(params_id);
       var delete_number = [];
       var uploaded_file_box = $(".drop-box-input_upload").length;
       var p = 0 + uploaded_file_box;
@@ -41,7 +40,6 @@ $(function(){
       $(document).on('change','#item_image', handleFileSelect);
       $(".edit-upload-box__drop").on('click', '.drop-box-input_upload_delete_btn' ,function(e){        
         var this_index = $(this).attr("class").split(" ")[0];
-        console.log(this_index);
         delete_number.push(this_index);
         $(`div.${this_index}`).css("display", "none");
       });
