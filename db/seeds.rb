@@ -317,7 +317,7 @@ category = Category.create(name: "カテゴリー一覧")
 
 10.times do |i|
   user = User.create(nickname: "チカキン" + i.to_s,
-                    email: Faker::Internet.email,
+                    email: "example#{i}@example.com",
                     password: "00000000", 
                     password_confirmation: "00000000",
                     first_name_kanji: "元親"+ i.to_s, 
