@@ -68,7 +68,6 @@ $(function(){
 
     $("#item_big_category_id").on("change", function(){
       big_category = $(this).val();
-      console.log(big_category);
       $(".middle_category_select").css("display", "none");
       $(".small_category_select").css("display", "none");
       $(`.middle-${big_category}`).css("display", "block");
