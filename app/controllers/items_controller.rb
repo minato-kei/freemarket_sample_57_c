@@ -137,8 +137,14 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.all.last(10)
+    @categories = Category.where(ancestry: nil).limit(3)
     @keyword = params[:keyword]
+    #複合条件はwhere句を足してください。
+    @items = Item.where('name LIKE(?)', "%#{@keyword}%")
+    if @items.blank?
+      @items = Item.limit(5)
+      @count=0
+  end
   end
   
   private
