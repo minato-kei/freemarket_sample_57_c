@@ -93,6 +93,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @user = @item.user
+    #current_user機能が未実装のため、if @item.user == current_user.idをあとで追加
     if @item.destroy
       redirect_to profile_user_path(@user)
     else
