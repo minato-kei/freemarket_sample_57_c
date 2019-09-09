@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: proc{Rails.env.production?}
   before_action :render_header
+  before_action :current_user
+
 
   def render_header
     @big_categories = Category.where(ancestry: nil)
@@ -13,4 +15,6 @@ class ApplicationController < ActionController::Base
       username == "57c" && password == "1"
     end
   end
+
+
 end
