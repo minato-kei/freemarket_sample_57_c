@@ -6,4 +6,5 @@ class Item < ApplicationRecord
   validates :name, :price,:condition,:shipping_from, :shipping_day, :status, presence: true
   # has_many :orders, dependent: :destroy
   # has_many :likes, dependent: :destroy
+  
 end
