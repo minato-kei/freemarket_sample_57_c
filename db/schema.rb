@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_032639) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.integer "birthday"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.integer "balance", default: 0, null: false
     t.string "sex"
     t.datetime "remember_created_at"
