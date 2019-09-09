@@ -38,19 +38,27 @@
                 = link_to "アディダス", "#",class: "left-box__brand-dropdown-list-btn"
                 = link_to "ブランド一覧", "#",class: "left-box__brand-dropdown-list-btn"        
       .right-box
-        .liked-items
-          = link_to "#" do
-            %i.far.fa-heart
-            いいね！一覧
-        .notification-list
-          = link_to "#" do
-            %i.far.fa-bell
-            お知らせ
-        .todo-list
-          = link_to "#" do
-            %i.fa.fa-check
-            やることリスト
-        .mypage-box
-          = link_to "#" do
-            %i.far.fa-file-image
-            マイページ
+        - if user_signed_in?
+          .liked-items
+            = link_to "#" do
+              %i.far.fa-heart
+              いいね！一覧
+          .notification-list
+            = link_to "#" do
+              %i.far.fa-bell
+              お知らせ
+          .todo-list
+            = link_to "#" do
+              %i.fa.fa-check
+              やることリスト
+          .mypage-box
+            = link_to "#" do
+              %i.far.fa-file-image
+              マイページ
+        - else
+          .sing-up-btn
+            = link_to "新規登録", "users/sign_up_sns", class: 'post'
+          .sing-in-btn
+            = link_to "ログイン", new_user_session_path, class: 'post'
+
+          

@@ -1,0 +1,39 @@
+.container
+  = render partial: 'items/header'
+
+  = render partial: 'devise/registrations/bread-crumbs'
+
+  .main-box
+    
+    = render partial: 'devise/registrations/side-bar'
+
+    .items-main
+      %h1 出品した商品
+      .items-main__tab
+        %ul.items-main-tab
+          %li.action
+            = link_to "出品中", "#"
+          %li.todo
+            = link_to "取引中", "#"
+          %li.todo
+            = link_to "売却済", "#"
+        - if @items.length == 0
+          .items-main-content_none
+            お知らせの商品がありません
+        - else
+          .items-main-content
+            - @items.each do |item|
+              = link_to item_path(item), class:"items-main-content-item" do
+                .items-main-content-item-information
+                  = image_tag item.pictures.first.image.url
+                  .items-main-content-item-information-text
+                    = item.name
+                    .items-main-content-item-information-text_status
+                      %span.likes 32
+                      %span.comments 28
+                      %span.status
+                        = item.status
+                %i.fas.fa-chevron-right
+  = render partial: 'items/bottom'
+
+  = render partial: 'items/sell-btn'
