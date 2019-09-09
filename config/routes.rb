@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
  
   resources :users, only: [:create, :show] do
+    member do
+      get :items
+    end
     collection do
       get  :sign_up_sns
       get  :sign_up_user_info
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
       post :sign_up_shipping
       post :sign_up_credit
       get  :sign_up_complete
+      
     end
   end
 
@@ -30,7 +34,7 @@ Rails.application.routes.draw do
 
   resources :pictures, only: [:new, :create]
 
-  resources :items, only: [:index, :show, :new, :create, :edit, :update] do
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     member do
       get  :purchase_confirmation
       post :purchase

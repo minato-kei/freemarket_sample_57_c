@@ -1,6 +1,6 @@
+= render partial: 'delete_dialog'
 .detail-container
   = render partial: 'header'
-
   .item-big-box
     .item-big-box__name
       %h1 ビラボン サーフパンツ 水着 海パン
@@ -86,15 +86,16 @@
         (税込)
       %span.item-big-box__price__shipping-fee
         送料込み
-    .item-big-box__baloon
-      %div.item-big-box__baloon__message
-        売上金 ¥700 と P508を
-        %br
-        お持ちです
+    - if @item.user.id == current_user&.id
+      .item-big-box__baloon
+        %div.item-big-box__baloon__message
+          売上金 ¥700 と P508を
+          %br
+          お持ちです
 
         %div.item-big-box__baloon__message::after
-
-    =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
+    - if @item.user.id == current_user&.id
+      =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
       
     .item-big-box__app-buy
       = link_to "#" do
@@ -122,7 +123,11 @@
         = link_to "https://www.mercari.com/jp/safe/description/" do
           %i.fas.fa-lock
           %span あんしん•あんぜんへの取り組み
-
+  .item-edit
+    = link_to "商品の編集", edit_item_path(@item), class:"item-edit_btn"
+    or
+    = link_to "出品を一旦停止する", "#", class:"item-edit_btn item-edit_stop"
+    = link_to "この商品を削除する", "#", class:"item-edit_btn item-edit_delete"
   .item-message
     .item-message__box
       .item-message__box__chat

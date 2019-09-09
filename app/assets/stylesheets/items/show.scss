@@ -275,7 +275,33 @@
       }
     }
   }
-
+  .item-edit{
+    width: 700px;
+    height: 250px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #fff;
+    margin: 8px auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &_btn{
+      width : 90%;
+      height: 50px;
+      background-color: red;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: 50px;
+    }
+    &_stop, &_delete{
+      background-color: lightgray;
+    }
+  }
   .item-message {
     width: 700px;
     background-color: #fff;
