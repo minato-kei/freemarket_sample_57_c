@@ -4,7 +4,8 @@ $(function(){
       var params_id = document.URL.split("/")[4];
       console.log(params_id);
       var delete_number = [];
-      var p = 0;
+      var uploaded_file_box = $(".drop-box-input_upload").length;
+      var p = 0 + uploaded_file_box;
       function handleFileSelect(event){
         var files = document.getElementById("item_image").files;
         for (var i = 0; i<files.length; i++){
@@ -15,8 +16,8 @@ $(function(){
               var $html = `<div class="drop-box-input_upload ${p}">
                             <img class="photo image_${p} ${p}" src="${e.target.result}">
                             <div class="drop-box-input_upload_edit">
-                              <span class="drop-box-input_upload_edit_btn drop-box-input_upload_btn image_edit_${p} ${p}">編集</span>
-                              <span class="drop-box-input_upload_delete_btn drop-box-input_upload_btn image_delete_${p} ${p}">削除</span>
+                              <span class="${p} drop-box-input_upload_edit_btn drop-box-input_upload_btn image_edit_${p}">編集</span>
+                              <span class="${p} drop-box-input_upload_delete_btn drop-box-input_upload_btn image_delete_${p}">削除</span>
                             </div>
                           </div>`
               $(".drop-box-input").append($html);
@@ -28,7 +29,6 @@ $(function(){
       }
       $(".drop-box-input").on("dragover", function(e){
         e.preventDefault();
-        
       });
   
       $(".image_field").on("drop change", function(e){
@@ -39,10 +39,8 @@ $(function(){
       });
       
       $(document).on('change','#item_image', handleFileSelect);
-      $(".edit-upload-box__drop").on('click', '.drop-box-input_upload_delete_btn' ,function(e){
-        var uploaded_file_box = $(this).attr("class");
-        
-        var this_index = $(this).attr("class").split(" ")[1];
+      $(".edit-upload-box__drop").on('click', '.drop-box-input_upload_delete_btn' ,function(e){        
+        var this_index = $(this).attr("class").split(" ")[0];
         console.log(this_index);
         delete_number.push(this_index);
         $(`div.${this_index}`).css("display", "none");

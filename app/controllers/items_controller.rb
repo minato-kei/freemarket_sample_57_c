@@ -19,13 +19,10 @@ class ItemsController < ApplicationController
 
   def edit
     @user = User.find(10)
-    #ユーザー仮置き
-    #@user = current_user
     @item = @user.items.find_by(id: params[:id])
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
     @item_category = @item.category
-    
   end
   
   def new
@@ -66,15 +63,24 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    unless params[:delete].blank?
-      d = params[:delete].split(",").map{|i| i.to_i}
-      d.sort!{|a,b| b<=>a}
-      d.each do |i|
-        @item.pictures[i].destroy
-      end
-    end
-    binding.pry
+    
     if @item.update(item_params)
+      if params[:item][:image] != nil
+        params[:item][:image]&.take(10-@item.pictures.length).each do |image|
+          @picture = Picture.new(image: image, item_id: @item.id)
+          unless @picture.save
+            render action: :new
+          end
+        end
+      end
+      unless params[:delete].blank?
+        d = params[:delete].split(",").map{|i| i.to_i}
+        d.sort!{|a,b| b<=>a}
+        d.each do |i|
+          @item.pictures[i].destroy
+        end
+      end
+  
       respond_to do |format|
         format.html
       end
@@ -145,7 +151,7 @@ class ItemsController < ApplicationController
   def item_params
     current_user = User.find(10)
     shipping = Shipping.find_by(user_id: current_user.id)
-    params.require(:item).permit(:name, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
+    params.require(:item).permit(:name,:text, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end
 
 end
