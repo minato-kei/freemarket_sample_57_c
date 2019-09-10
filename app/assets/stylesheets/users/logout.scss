@@ -2,29 +2,23 @@
   background-color: rgb(245, 245, 245);
 }
 
-.bread {
+.bread-crumbs {
   position: relative;
   border-top: 1px solid #eee;
   background-color: #fff;
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
-  .bread-crumbs {
-    width: 1020px;
-    padding: 16px 0;
-    margin: 0 auto;
-    display: flex;
-    font-size: 14px;
-    &__current {
-      font-weight: bold;
-    }
-    a {
-      text-decoration: none;
-      color: #333;
-    }
-    i {
-      font-size: 9px;
-      color: #888;
-      margin: 0 8px;
-    }
+  padding: 16px 0 16px 200px;
+  font-size: 14px;  
+  width: 100%;
+  font-weight: bold;
+  a {
+    text-decoration: none;
+    font-weight: lighter;
+    color: #333;
+  }
+  a:hover {
+    text-decoration: underline;
+    opacity: 0.6;
   }
 }
 
