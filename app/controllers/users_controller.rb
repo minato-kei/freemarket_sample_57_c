@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:profile, :logout]
+
 
   def show
     @nickname = current_user.nickname
   end  
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def sign_up_user_info
@@ -54,16 +54,9 @@ class UsersController < ApplicationController
   def sing_up_complete
   end
 
-  # def sign_up_credit_create
-  #   binding.pry
-  #   if Credit.create(credit_params).valid?
-  #     redirect_to root_path
-  #   else
-  #     render "sign_up_credit"
-  #   end  
-  # end
+  #userのitem一覧を表示
   def items
-    @user = User.find(params[:id])
+    @user = current_user
     @items = @user.items
   end
   private
@@ -80,7 +73,4 @@ class UsersController < ApplicationController
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
 end

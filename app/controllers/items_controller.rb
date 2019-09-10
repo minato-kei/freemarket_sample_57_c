@@ -1,9 +1,15 @@
 class ItemsController < ApplicationController
   before_action :still_selling?, only: [:purchase_confirmation, :purchase]
   before_action :set_item, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
+  before_action :user_signed_in?, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update, :purchase_confirmation, :purchase, :purchase_complete]
 
   def index
-    @items = Item.all.last(10)
+    if user_signed_in?
+      @items = Item.where.not(user_id: current_user.id).last(10)
+    else
+      @items = Item.all.last(10)
+    end
     @picture = Picture.first
     @big_categories = Category.where(ancestry: nil)
     @ladies_items = Category.where(name: "レディース")[0].items.last(4)
@@ -13,12 +19,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.all.last(10)
+    @item = Item.find(params[:id])
+    if user_signed_in?
+      @items = Item.where.not(user_id: current_user.id).last(10)
+    else
+      @items = Item.all.last(10)
+    end
     @big_categories = Category.where(ancestry: nil)
   end
 
   def edit
-    @user = @item.user
+    @user = current_user
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
     @item_category = @item.category
@@ -89,10 +100,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @user = @item.user
-    #current_user機能が未実装のため、if @item.user == current_user.idをあとで追加
-    if @item.destroy
-      redirect_to profile_user_path(@user)
+    if @item.user.id == current_user.id
+      @item.destroy
+      redirect_to profile_user_path(current_user)
     else
       redirect_to root_path
     end
@@ -100,7 +110,7 @@ class ItemsController < ApplicationController
 
   def purchase_confirmation
     @category = @item.category
-    @user = User.find(10)
+    @user = current_user
     create_token(@user)
     @shipping = @user.shippings.first
     @shipping_pref = Prefecture.find_by(id: @shipping.pref)
@@ -110,7 +120,7 @@ class ItemsController < ApplicationController
   def purchase
     @category = @item.category
     #購入ユーザーを仮で作成
-    @user = User.find(10)
+    @user = current_user
     create_token(@user)
     if Payjp::Charge.create(amount: @item.price,customer: @credit.token,currency: 'jpy')
       @user.balance -= @item.price
@@ -142,7 +152,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    current_user = User.find(10)
     shipping = Shipping.find_by(user_id: current_user.id)
     params.require(:item).permit(:name,:text, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end
