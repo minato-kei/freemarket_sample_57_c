@@ -13,9 +13,11 @@
         %p 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
         %h3.latest-item  新着商品
       - else
-        .search_count= "#{@items.count}件表示"
+        .search_count
+          = page_entries_info @items, entry_name: 'item'
       %ul.search-list
         = render partial: 'search-item-box', collection: @items, as: :item
+      = paginate(@items, window: 2)
 
   = render partial: 'items/bottom'
 

@@ -140,11 +140,11 @@ class ItemsController < ApplicationController
     @categories = Category.where(ancestry: nil).limit(3)
     @keyword = params[:keyword]
     #複合条件はwhere句を足してください。
-    @items = Item.where('name LIKE(?)', "%#{@keyword}%")
+    @items = Item.where('name LIKE(?)', "%#{@keyword}%").page(params[:page]).per(4)
     if @items.blank?
-      @items = Item.limit(5)
+      @items = Item.page(params[:page]).per(1)
       @count=0
-  end
+    end
   end
   
   private
