@@ -15,7 +15,7 @@
       .main-chapter
         .main-chapter__bar
           .logout-btn
-            = link_to "ログアウト", sign_out_users_path, method: :delete, class: 'button'
+            = link_to "ログアウト", sign_out_users_path, method: :post, class: 'button'
 
   = render partial: 'items/bottom'
 
