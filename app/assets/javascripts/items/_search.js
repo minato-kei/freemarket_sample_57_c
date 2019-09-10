@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+  // category
   $('#search-category-root').on('change', function(e){
     var id = $('#search-category-root option:selected').val();
     if (id.length==0){
@@ -20,4 +21,11 @@ $(document).on('turbolinks:load', function() {
   $('#search__reset').on('click', function(e){
     $('#category__child').children().addClass("hide")
   });
+  // price
+  $("#price_id").on('change', function(e){
+    var price = $('#price_id  option:selected').text().split('~')
+    $('#min').val(price[0])
+    $('#max').val(price[1])
+
+  })
 });

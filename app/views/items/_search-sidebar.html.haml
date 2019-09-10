@@ -48,7 +48,7 @@
           %span 価格
         %i.fas.fa-chevron-down.search-arrow
 
-        = f.collection_select( :price_id, @categories, :id, :name,{prompt: "選択してください"}, {class: "search-root"})
+        = f.collection_select( :price_id, @prices, :id, :name, {prompt: "選択してください"}, {class: "search-root"})
 
         = f.number_field :min, placeholder: "¥ Min", class: "price-child"
         %span ~
@@ -58,7 +58,7 @@
           %i.fas.fa-star
           %span 商品状態
         .check-boxes
-          = f.collection_check_boxes :condition_ids, @categories, :id, :name, include_hidden: false  do |b|
+          = f.collection_check_boxes :condition_ids, @conditions, :id, :name, include_hidden: false  do |b|
             .check-boxes__content
               = b.check_box(class:"search-checkbox")
               = b.label(class:"search-checkbox__label"){b.text}
