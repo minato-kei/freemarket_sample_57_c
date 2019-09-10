@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post :sign_up_shipping
       post :sign_up_credit
       get  :sign_up_complete
+      post :sign_out
     end
   end
 

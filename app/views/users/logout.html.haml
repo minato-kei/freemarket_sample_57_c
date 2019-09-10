@@ -15,14 +15,7 @@
       .main-chapter
         .main-chapter__bar
           .logout-btn
-            %button.logout-btn{type: "submit"} ログアウト
-            
-            -# 下のコメントアウトは機能実装の際に外す
-            -# = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn'
-
-
-
-
+            = link_to "ログアウト", sign_out_users_path, method: :delete, class: 'button'
 
   = render partial: 'items/bottom'
 

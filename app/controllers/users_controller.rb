@@ -54,6 +54,20 @@ class UsersController < ApplicationController
   def sing_up_complete
   end
 
+  # def sign_up_credit_create
+  #   binding.pry
+  #   if Credit.create(credit_params).valid?
+  #     redirect_to root_path
+  #   else
+  #     render "sign_up_credit"
+  #   end  
+  # end
+
+  def sign_out
+    reset_session
+  end
+
+
   #userのitem一覧を表示
   def items
     @user = current_user
