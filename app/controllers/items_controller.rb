@@ -13,7 +13,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.all.last(10)
+    @item = Item.find(params[:id])
+    @items = Item.where.not(user_id: current_user.id).last(10)
     @big_categories = Category.where(ancestry: nil)
   end
 
