@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:profile, :logout]
 
   def show
+    @nickname = current_user.nickname
   end  
 
   def edit
@@ -61,7 +62,10 @@ class UsersController < ApplicationController
   #     render "sign_up_credit"
   #   end  
   # end
-
+  def items
+    @user = User.find(params[:id])
+    @items = @user.items
+  end
   private
   def user_information_params
     birthday = Date.new(params.require(:user)[:"birthday(1i)"].to_i, params.require(:user)[:"birthday(2i)"].to_i, params.require(:user)[:"birthday(3i)"].to_i)
