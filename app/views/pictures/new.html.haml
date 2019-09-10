@@ -1,7 +1,0 @@
-= form_for(@picture) do |f|
-  .drop_field
-  = f.file_field :image, multiple: true,class: "image_field",accept: "image/*"
-  .file_box
-  = f.submit "submit", id: "button"
-- @pictures.each do |picture|
-  = image_tag "#{picture.image}"
