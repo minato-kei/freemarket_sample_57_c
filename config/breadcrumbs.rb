@@ -26,3 +26,32 @@ crumb :logout do
   parent :show
 end
 
+# 出品した商品-出品中
+crumb :sellings_selling do
+  link "出品した商品-出品中", _path
+  parent :show
+end
+
+# 出品した商品-取引中
+crumb :sellings_progress do
+  link "出品した商品-取引中", _path
+  parent :show
+end
+
+# 出品した商品-売却済
+crumb :sellings_completed do
+  link "出品した商品-売却済", _path
+  parent :show
+end
+
+# 購入した商品-取引中
+crumb :purchase do
+  link "購入した商品-取引中", _path
+  parent :show
+end
+
+# 購入した商品-過去の取引
+crumb :purchase_complete do
+  link "購入した商品-過去の取引", _path
+  parent :show
+end
