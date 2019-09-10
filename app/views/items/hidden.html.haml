@@ -4,9 +4,6 @@ user_path
 %p= link_to "new_user_session", new_user_session_path
 -# %p= link_to "users_sign_up_payment_confirmation", users_sign_up_payment_confirmation_path
 
-%p= link_to "users_logout", destroy_user_session_path
--# %p= link_to "", "_path"
-
 %p= link_to "sign_up_sns_users", sign_up_sns_users_path
 %p= link_to "sign_up_user_info_path", sign_up_user_info_users_path
 %p= link_to "sign_up_phone_users_path", sign_up_phone_users_path
@@ -15,14 +12,18 @@ user_path
 %p= link_to "sign_up_credit_users_path", sign_up_credit_users_path
 -# %p= link_to "", "_path"
 
-
 picture
 %p= link_to "new_picture", new_picture_path
 
 users
+%p= link_to "users#show", user_path(id: 1)
+%p= link_to "users#edit", edit_user_path(id:1)
+%p= link_to "users#profile", profile_user_path(id:1)
+%p= link_to "users#logout", logout_user_path(id:1)
 %p= link_to "users#show", user_path(id: 5)
 %p= link_to "users#edit", edit_user_path(id: 5)
 %p= link_to "users#profile", profile_user_path(id: 5)
+
 item
 %p= link_to "items#index", items_path
 %p= link_to "items#show", item_path(id: 1)

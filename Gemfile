@@ -30,6 +30,7 @@ gem 'payjp'
 gem 'ancestry'
 gem 'jquery-rails'
 gem 'active_hash'
+gem 'gretel'
 
 
 group :development, :test do
