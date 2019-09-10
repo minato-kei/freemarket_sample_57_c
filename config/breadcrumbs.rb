@@ -26,6 +26,7 @@ crumb :logout do
   parent :show
 end
 
+# これより以下は取引関連のパスがまだ未定
 # 出品した商品-出品中
 crumb :sellings_selling do
   link "出品した商品-出品中", _path
@@ -45,13 +46,13 @@ crumb :sellings_completed do
 end
 
 # 購入した商品-取引中
-crumb :purchase do
+crumb :buying do
   link "購入した商品-取引中", _path
   parent :show
 end
 
 # 購入した商品-過去の取引
-crumb :purchase_complete do
+crumb :bought do
   link "購入した商品-過去の取引", _path
   parent :show
 end
