@@ -49,7 +49,7 @@
         %i.fas.fa-chevron-down.search-arrow
 
         = f.collection_select( :price_id, @categories, :id, :name,{prompt: "選択してください"}, {class: "search-root"})
-        
+
         = f.number_field :min, placeholder: "¥ Min", class: "price-child"
         %span ~
         = f.number_field :max, placeholder: "¥ Max", class: "price-child"        

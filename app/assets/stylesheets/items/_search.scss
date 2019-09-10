@@ -1,5 +1,5 @@
 .search-main{
-  width: 700px;
+  width: calc(100% - 320px);
   color: #333;
   .search-result{
     font-size: 22px;
@@ -27,7 +27,43 @@
     margin-bottom: 16px;
     font-weight: 700;
   }
-
+  .pagination{
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+    display:flex;
+    &__left{
+      position: absolute;
+      left: 0;
+    }
+    &__center{
+      max-width: 250px;
+      margin: 0 auto;
+    }
+    &__right{
+      position: absolute;
+      right: 0;
+    }
+  }
+  .page{
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #fff;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    a{
+      color: #515151;
+      text-decoration: none;
+    }
+    &.current{
+      color: white;
+      background-color: #ea352d;
+    }
+  }
 }
 
 .search-list *{
