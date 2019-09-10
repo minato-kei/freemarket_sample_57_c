@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:profile]
+  before_action :set_user, only: [:profile, :logout]
 
   def show
   end  
 
   def edit
-    @user = User.find(params[:id])
-  end
-
-  def logout
     @user = User.find(params[:id])
   end
 
