@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   # end
 
   def sign_out
-    reset_sesstion
+    reset_session
   end
 
 
