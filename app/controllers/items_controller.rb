@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @user = @item.user
+    @user = current_user
     @pictures = @item.pictures
     @big_categories = Category.where(ancestry: nil)
     @item_category = @item.category
@@ -100,7 +100,7 @@ class ItemsController < ApplicationController
 
   def purchase_confirmation
     @category = @item.category
-    @user = User.find(10)
+    @user = current_user
     create_token(@user)
     @shipping = @user.shippings.first
     @shipping_pref = Prefecture.find_by(id: @shipping.pref)
@@ -110,7 +110,7 @@ class ItemsController < ApplicationController
   def purchase
     @category = @item.category
     #購入ユーザーを仮で作成
-    @user = User.find(10)
+    @user = current_user
     create_token(@user)
     if Payjp::Charge.create(amount: @item.price,customer: @credit.token,currency: 'jpy')
       @user.balance -= @item.price
@@ -142,7 +142,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    current_user = User.find(10)
     shipping = Shipping.find_by(user_id: current_user.id)
     params.require(:item).permit(:name,:text, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end

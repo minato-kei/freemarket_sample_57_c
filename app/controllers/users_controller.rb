@@ -54,16 +54,8 @@ class UsersController < ApplicationController
   def sing_up_complete
   end
 
-  # def sign_up_credit_create
-  #   binding.pry
-  #   if Credit.create(credit_params).valid?
-  #     redirect_to root_path
-  #   else
-  #     render "sign_up_credit"
-  #   end  
-  # end
   def items
-    @user = User.find(params[:id])
+    @user = current_user
     @items = @user.items
   end
   private
