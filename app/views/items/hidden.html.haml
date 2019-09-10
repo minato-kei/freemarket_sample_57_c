@@ -6,10 +6,27 @@ user_path
 
 %p= link_to "sign_up_sns_users", sign_up_sns_users_path
 %p= link_to "sign_up_user_info_path", sign_up_user_info_users_path
-%p= link_to "sign_up_phone_users_path", sign_up_phone_users_path
-%p= link_to "sign_up_sms_users_path", sign_up_sms_users_path
-%p= link_to "sign_up_shipping_users_path", sign_up_shipping_users_path
-%p= link_to "sign_up_credit_users_path", sign_up_credit_users_path
+%p= link_to "※sign_up_phone_users_path", sign_up_phone_users_path
+%p= link_to "※sign_up_sms_users_path", sign_up_sms_users_path
+%p= link_to "※sign_up_shipping_users_path", sign_up_shipping_users_path
+%p= link_to "※sign_up_credit_users_path", sign_up_credit_users_path
+-# %p= link_to "", _path
+
+items
+%p= link_to "search_items_path", search_items_path
+
+picture
+%p= link_to "new_picture", new_picture_path
+
+users
+%p= link_to "users#show", user_path(id: 5)
+%p= link_to "users#edit", edit_user_path(id: 5)
+%p= link_to "users#profile", profile_user_path(id: 5)
+item
+%p= link_to "items#index", items_path
+%p= link_to "items#show", item_path(id: 1)
+%p= link_to "items#new", new_item_path
+%p= link_to "items#edit", edit_item_path(id: 10)
 
 - if user_signed_in?
   users

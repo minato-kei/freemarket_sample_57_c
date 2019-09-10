@@ -1,0 +1,5 @@
+%li.search-item-box
+  %img.search-item-box__image{:alt => item.name, "data-src" => item.name, :src => '/mercari_logo.png'}
+  .search-item-box__body
+    %h3= item.name
+    %h2= "¥" + item.price.to_s(:delimited)

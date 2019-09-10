@@ -1,0 +1,24 @@
+.container
+  = render partial: 'items/header'
+
+  = render partial: 'devise/registrations/bread-crumbs'
+
+  .main-box
+    = render partial: 'items/search-sidebar'
+    .search-main
+      %h2.search-result 
+        = @keyword
+        %span の検索結果
+      - if @count == 0
+        %p 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
+        %h3.latest-item  新着商品
+      - else
+        .search_count
+          = page_entries_info @items, entry_name: 'item'
+      %ul.search-list
+        = render partial: 'search-item-box', collection: @items, as: :item
+      = paginate(@items, window: 2)
+
+  = render partial: 'items/bottom'
+
+  = render partial: 'items/sell-btn'

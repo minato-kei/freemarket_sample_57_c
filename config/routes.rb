@@ -41,6 +41,9 @@ Rails.application.routes.draw do
       post :purchase
       get  :purchase_complete
     end
+    collection do
+      get :search
+    end
   end
   
   resources :purchases, only: [:new]

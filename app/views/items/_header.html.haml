@@ -4,12 +4,12 @@
       .header__inner__top__mark
         = link_to root_path do
           %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
-      .header__inner__top__form
-        .header__inner__top__form__input
-          %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-        
-        .header__inner__top__form__icon
+      = form_with(url: search_items_path, method: :get, class: "header__inner__top__form", local: true) do |f|
+        = f.submit
+        = f.search_field :keyword, placeholder: "何かお探しですか？", class: "header__inner__top__form__input"
+        = button_tag type: 'submit', class: "header__inner__top__form__icon" do
           %i.fa.fa-search
+
     .header__inner__nav
       .left-box
         .left-box__category
