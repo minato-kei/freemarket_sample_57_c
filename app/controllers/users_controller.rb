@@ -62,6 +62,12 @@ class UsersController < ApplicationController
   #     render "sign_up_credit"
   #   end  
   # end
+
+  def sign_out
+    reset_sesstion
+  end
+
+
   def items
     @user = User.find(params[:id])
     @items = @user.items

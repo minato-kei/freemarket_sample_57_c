@@ -9,7 +9,6 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
   padding: 16px 0 16px 200px;
   font-size: 14px;  
-  width: 100%;
   font-weight: bold;
   a {
     text-decoration: none;
@@ -24,7 +23,7 @@
 
 .main-box {
   margin: 40px auto 0;
-  width: 1020px;
+  width: 70%;
   padding: 0 0 40px;
   box-sizing: border-box;
   display: flex;
@@ -59,24 +58,25 @@
   }
 
   .main-view {
-    width: 700px;
+    width: calc(100%-320px);
     .main-chapter {
       background-color: #fff;
       display: block;
       &__bar {
-        padding: 64px;
         .logout-btn {
           text-align: center;
-          width: 320px;
           margin: 0 auto;
-          button {
-            height: 50px;
+          padding: 64px;
+          a {
+            padding: 18px 120px;
+            font-size: 14px;
+            line-height: 5px;
             background-color: #ea352d;
             color: #fff;
             border: 1px solid #ea352d;
             cursor: pointer;
+            text-decoration: none;
           }
-          
         }
       }
     }
