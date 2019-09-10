@@ -20,14 +20,15 @@ picture
 %p= link_to "new_picture", new_picture_path
 
 users
-%p= link_to "users#show", user_path(id: 5)
-%p= link_to "users#edit", edit_user_path(id: 5)
-%p= link_to "users#profile", profile_user_path(id: 5)
+%p= link_to "users#show", user_path(id: current_user.id)
+%p= link_to "users#edit", edit_user_path(id: current_user.id)
+%p= link_to "users#profile", profile_user_path(id: current_user.id)
+%p= link_to "users#destroy　マージするときに削除　それまで仮置き", destroy_user_session_path, method: "DELETE"
 item
 %p= link_to "items#index", items_path
-%p= link_to "items#show", item_path(id: 1)
+%p= link_to "items#show", item_path(id: current_user.items.first.id)
 %p= link_to "items#new", new_item_path
-%p= link_to "items#edit", edit_item_path(id: 10)
+%p= link_to "items#edit", edit_item_path(id: current_user.items.first.id)
 
 -# purchases
 -# %p= link_to "items#purchase_confirmation", purchase_confirmation_item_path(id: 5)

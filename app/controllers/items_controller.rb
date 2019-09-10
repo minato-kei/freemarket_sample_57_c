@@ -89,10 +89,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @user = @item.user
-    #current_user機能が未実装のため、if @item.user == current_user.idをあとで追加
-    if @item.destroy
-      redirect_to profile_user_path(@user)
+    if @item.user.id == current_user.id
+      @item.destroy
+      redirect_to profile_user_path(current_user)
     else
       redirect_to root_path
     end
