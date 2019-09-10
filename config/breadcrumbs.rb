@@ -20,3 +20,9 @@ crumb :edit do
   parent :show
 end
 
+# ログアウト
+# crumb :logout do
+#   link "ログアウト", logout_user_path
+#   parent :show
+# end
+
