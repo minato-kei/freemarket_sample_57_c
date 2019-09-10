@@ -1,9 +1,15 @@
 class ItemsController < ApplicationController
   before_action :still_selling?, only: [:purchase_confirmation, :purchase]
   before_action :set_item, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
+  before_action :user_signed_in?, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update, :purchase_confirmation, :purchase, :purchase_complete]
 
   def index
-    @items = Item.all.last(10)
+    if user_signed_in?
+      @items = Item.where.not(user_id: current_user.id).last(10)
+    else
+      @items = Item.all.last(10)
+    end
     @picture = Picture.first
     @big_categories = Category.where(ancestry: nil)
     @ladies_items = Category.where(name: "レディース")[0].items.last(4)
@@ -14,7 +20,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.where.not(user_id: current_user.id).last(10)
+    if user_signed_in?
+      @items = Item.where.not(user_id: current_user.id).last(10)
+    else
+      @items = Item.all.last(10)
+    end
     @big_categories = Category.where(ancestry: nil)
   end
 

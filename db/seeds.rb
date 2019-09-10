@@ -316,7 +316,7 @@ child = category.children.create(name: "その他")
 category = Category.create(name: "カテゴリー一覧")
 
 10.times do |i|
-  user = User.create(nickname: "チカキン" + i.to_s,
+  user = User.create(nickname: ("ア".."ン").to_a.sample(1).join + "カキン" + i.to_s,
                     email: "example#{i}@example.com",
                     password: "00000000", 
                     password_confirmation: "00000000",

@@ -93,7 +93,7 @@
         (税込)
       %span.item-big-box__price__shipping-fee
         送料込み
-    - if @item.user.id != current_user&.id
+    - if user_signed_in? && @item.user.id != current_user&.id
       .item-big-box__baloon
         %div.item-big-box__baloon__message
           売上金¥
@@ -103,7 +103,7 @@
           お持ちです
 
         %div.item-big-box__baloon__message::after
-    - if @item.user.id != current_user&.id
+    - if user_signed_in? && @item.user.id != current_user&.id
       =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
       
     .item-big-box__app-buy
@@ -125,7 +125,7 @@
         = link_to "https://www.mercari.com/jp/safe/description/" do
           %i.fas.fa-lock
           %span あんしん•あんぜんへの取り組み
-  - if @item.user.id == current_user.id
+  - if user_signed_in? && @item.user.id == current_user.id
     .item-edit
       = link_to "商品の編集", edit_item_path(@item), class:"item-edit_btn"
       or

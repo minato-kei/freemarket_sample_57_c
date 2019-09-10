@@ -1,6 +1,5 @@
 $(document).on(`turbolinks:load`, function() {
   if (document.URL.match("/users/sign_up_credit")){
-    console.log("pay!");
     Payjp.setPublicKey('pk_test_bf6034aeeb6c0f02de3ad211');
     var form = $('.register_user_register4_contents_form');
     var number = form.find('input[name="number"]');
