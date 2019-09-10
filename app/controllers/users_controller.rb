@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def logout
+    @user = User.find(params[:id])
+  end
+
   def sign_up_user_info
     reset_session
     @user = User.new  

@@ -1,11 +1,15 @@
 .container
   = render partial: 'items/header'
 
-  = render partial: 'bread-crumbs'
+  -# config/breadcrumbs.rbに定義したmypageを呼び出し
+  - breadcrumb :logout
+  -# 下記を記述した箇所にパンくずリストが表示される。
+  = render partial: 'devise/registrations/bread-crumbs'
+
 
   .main-box
     
-    = render partial: 'side-bar'
+    = render partial: 'devise/registrations/side-bar'
 
     .main-view
       .main-chapter

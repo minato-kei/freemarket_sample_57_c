@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit] do
     member do
       get  :profile
+      get  :logout
     end
   end
 
