@@ -50,9 +50,9 @@
 
         = f.collection_select( :price_id, @prices, :id, :name, {prompt: "選択してください"}, {class: "search-root"})
 
-        = f.number_field :min_price, placeholder: "¥ Min", class: "price-child"
+        = f.number_field :min_price, placeholder: "¥ Min", class: "price-child", value: params[:min_price]
         %span ~
-        = f.number_field :max_price, placeholder: "¥ Max", class: "price-child"        
+        = f.number_field :max_price, placeholder: "¥ Max", class: "price-child", value: params[:max_price]
         
         = f.label :condition, class: "search-nav__dropdown__form__list" do 
           %i.fas.fa-star

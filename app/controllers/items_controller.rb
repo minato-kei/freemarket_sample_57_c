@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
       @items = Item.all.last(10)
     end
     @picture = Picture.first
-    @big_categories = Category.where(ancestry: nil)
     @ladies_items = Category.where(name: "レディース")[0].items.last(4)
     @mens_items = Category.where(name: "メンズ")[0].items.last(4)
     @babies_items = Category.where(name: "ベビー・キッズ")[0].items.last(4)
@@ -137,12 +136,15 @@ class ItemsController < ApplicationController
   end
 
   def search
+    @prices = Price.all
+    @conditions = Condition.all
     @categories = Category.where(ancestry: nil).limit(3)
-    @keyword = params[:keyword]
+    @keyword = params[:keyword].to_s.split(/[[:blank:]]+/)
+    query = (["name LIKE ?"] * @keyword.size).join(" AND ")
     #複合条件はwhere句を足してください。
-    @items = Item.where('name LIKE(?)', "%#{@keyword}%").page(params[:page]).per(4)
+    @items = Item.where(query, *@keyword.map{|w| "%#{w}%"}).where('price > ? AND price < ?', params[:min_price], params[:max_price]).where(search_params).page(params[:page]).per(4)
     if @items.blank?
-      @items = Item.page(params[:page]).per(1)
+      @items = Item.page(params[:page]).per(2)
       @count=0
     end
   end
@@ -170,4 +172,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search_params
+    params.permit(:category_id, :brand_id, :size_id, :condition_id, :cost_burden, :status_id).reject{|k,v| v.blank?}
+  end
 end

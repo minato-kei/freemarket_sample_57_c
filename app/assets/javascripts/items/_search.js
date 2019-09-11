@@ -24,8 +24,7 @@ $(document).on('turbolinks:load', function() {
   // price
   $("#price_id").on('change', function(e){
     var price = $('#price_id  option:selected').text().split('~')
-    $('#min').val(price[0])
-    $('#max').val(price[1])
-
+    $('#min_price').val(price[0])
+    $('#max_price').val(price[1])
   })
 });
