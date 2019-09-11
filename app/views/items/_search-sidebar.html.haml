@@ -35,7 +35,7 @@
         = f.label :brand, class: "search-nav__dropdown__form__list" do
           %i.fas.fa-tag
           %span ブランド名から探す
-        = f.search_field :brand, placeholder: "例）シャネル", class: "search-nav__dropdown__form__search"
+        = f.search_field :brand_id, placeholder: "例）シャネル", class: "search-nav__dropdown__form__search"
 
         = f.label :size, class: "search-nav__dropdown__form__list" do 
           %i.fab.fa-jenkins
@@ -50,15 +50,15 @@
 
         = f.collection_select( :price_id, @prices, :id, :name, {prompt: "選択してください"}, {class: "search-root"})
 
-        = f.number_field :min, placeholder: "¥ Min", class: "price-child"
+        = f.number_field :min_price, placeholder: "¥ Min", class: "price-child"
         %span ~
-        = f.number_field :max, placeholder: "¥ Max", class: "price-child"        
+        = f.number_field :max_price, placeholder: "¥ Max", class: "price-child"        
         
         = f.label :condition, class: "search-nav__dropdown__form__list" do 
           %i.fas.fa-star
           %span 商品状態
         .check-boxes
-          = f.collection_check_boxes :condition_ids, @conditions, :id, :name, include_hidden: false  do |b|
+          = f.collection_check_boxes :condition_id, @conditions, :id, :name, include_hidden: false  do |b|
             .check-boxes__content
               = b.check_box(class:"search-checkbox")
               = b.label(class:"search-checkbox__label"){b.text}
