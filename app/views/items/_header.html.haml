@@ -16,14 +16,14 @@
             %i.fa.fa-list-ul カテゴリーから探す
           .left-box__category-dropdown
             %ul.left-box__category-dropdown-big-category.display_none
-              - @big_categories.each do |big_category|
-                = link_to big_category.name, "#",class: "left-box__category-dropdown-big-category-btn dropdown-btn"
+              - @categories.select{|n| n.ancestry == nil}.each do |big_category|
+                = link_to big_category.name, search_items_path(category_id: big_category.id), class: "left-box__category-dropdown-big-category-btn dropdown-btn"
                 %ul.left-box__category-dropdown-middle-category
-                  - big_category.children.each do |middle_category|
-                    = link_to middle_category.name, "#",class: "left-box__category-dropdown-middle-category-btn dropdown-btn"
+                  - @categories.select{|n| n.ancestry == big_category.id.to_s}.each do |middle_category|
+                    = link_to middle_category.name, search_items_path(category_id: middle_category.id),class: "left-box__category-dropdown-middle-category-btn dropdown-btn"
                     %ul.left-box__category-dropdown-small-category.display_none#small_category
-                      - middle_category.children.each do |small_category|
-                        = link_to small_category.name, "#",class: "left-box__category-dropdown-small-category-btn dropdown-btn"
+                      - @categories.select{|n| n.ancestry == big_category.id.to_s + "/"+middle_category.id.to_s}.each do |small_category|
+                        = link_to small_category.name, search_items_path(category_id: small_category.id), class: "left-box__category-dropdown-small-category-btn dropdown-btn"
         .left-box__brand
           = link_to "#" do
             %i.fa.fa-tag
