@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 
   def render_header
-    @big_categories = Category.where(ancestry: nil)
+    @categories = Category.all
   end
 
   private
