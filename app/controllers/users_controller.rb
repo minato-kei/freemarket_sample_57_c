@@ -63,11 +63,6 @@ class UsersController < ApplicationController
   #   end  
   # end
 
-  def sign_out
-    reset_session
-  end
-
-
   #userのitem一覧を表示
   def items
     @user = current_user
