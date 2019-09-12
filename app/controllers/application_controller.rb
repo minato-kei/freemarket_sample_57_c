@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   before_action :basic_auth, if: proc{Rails.env.production?}
   before_action :render_header
   before_action :current_user
