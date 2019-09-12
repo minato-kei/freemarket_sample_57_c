@@ -138,7 +138,7 @@ class ItemsController < ApplicationController
   def search
     @prices = Price.all
     @conditions = Condition.all
-    @categories = Category.where(ancestry: nil).limit(3)
+    # @categories = Category.where(ancestry: nil).limit(3)
     @keyword = params[:keyword].to_s.split(/[[:blank:]]+/)
     query = (["name LIKE ?"] * @keyword.size).join(" AND ")
     #複合条件はwhere句を足してください。
