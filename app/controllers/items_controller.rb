@@ -133,15 +133,17 @@ class ItemsController < ApplicationController
   def search
     @prices = Price.all
     @conditions = Condition.all
-    # @categories = Category.where(ancestry: nil).limit(3)
     @keyword = params[:keyword].to_s.split(/[[:blank:]]+/)
-    query = (["name LIKE ?"] * @keyword.size).join(" AND ")
-    #複合条件はwhere句を足してください。
-    @items = Item.where(query, *@keyword.map{|w| "%#{w}%"}).where('price > ? AND price < ?', params[:min_price], params[:max_price]).where(search_params).page(params[:page]).per(4)
+    @items = Item.price( params[:min_price], params[:max_price]).search(@keyword).where(search_params).page(params[:page]).per(4)
     if @items.blank?
       @items = Item.page(params[:page]).per(2)
       @count=0
     end
+  end
+
+  def category
+    @category = Category.find(params[:category_id])
+    @items = Item.all.limit(10)
   end
   
   private

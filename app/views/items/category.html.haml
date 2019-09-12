@@ -1,0 +1,13 @@
+.container
+  = render partial: 'header'
+  = render partial: 'devise/registrations/bread-crumbs'
+
+  .category-main-box
+    %h2= "#{@category.name}の商品一覧"
+    %ul.search-list
+      = render partial: 'search-item-box', collection: @items, as: :item
+    -# = paginate(@items, window: 2)
+
+  
+  = render partial: 'bottom'
+  = render partial: 'sell-btn'

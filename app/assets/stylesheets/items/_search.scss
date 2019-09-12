@@ -101,9 +101,6 @@
     }
   }
 }
-.search-list >:nth-child(4n){
-    margin-right: 0;
-}
 .side-bar{
   .search-nav{
     margin: auto;
@@ -235,4 +232,17 @@ select {
   border-left-color: transparent;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.category-main-box {
+  margin: 40px auto 0;
+  width: 70%;
+  padding: 0 0 40px;
+  box-sizing: border-box;
+  h2{
+    font-size: 24px;
+    color: #333;
+    margin: 24px 0 8px;
+    font-weight: 600;
+  }
 }
