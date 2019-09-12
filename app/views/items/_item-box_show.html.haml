@@ -5,7 +5,8 @@
         - if item.status != "出品中"
           .item-box-show__sold
             sold
-        %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => item.name, :src => item.pictures.first.image.url}
+        - if item&.pictures != nil
+          %img.lazyloaded.is-higher-width{:alt => item.name, "data-src" => item.name, :src => item.pictures.first.image.url}
         %h2.item-box-show_item_name
           = item.name
         %h2.item-box-show_item_price

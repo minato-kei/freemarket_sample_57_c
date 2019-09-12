@@ -10,11 +10,6 @@ class ItemsController < ApplicationController
     else
       @items = Item.all.last(10)
     end
-    @picture = Picture.first
-    @ladies_items = Category.where(name: "レディース")[0].items.last(4)
-    @mens_items = Category.where(name: "メンズ")[0].items.last(4)
-    @babies_items = Category.where(name: "ベビー・キッズ")[0].items.last(4)
-    @makeup_items = Category.where(name: "コスメ・香水・美容")[0].items.last(4) 
   end
 
   def show
