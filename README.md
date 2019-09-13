@@ -1,4 +1,55 @@
-# README
+##App Name
+Mercari copy site
+
+## Overview
+This app is copy of the mercari(https://www.mercari.com/jp/)  website to improve our coding skill.
+
+## Requirement
+ruby 2.5.1
+rails 5.2.3
+
+## Usage
+```
+$ git pull https://github.com/minato-kei/freemarket_sample_57_c.git
+$ cd freemarket_sample_57_c
+```
+
+## Author
+[minato-kei](https://github.com/minato-kei)
+[naru-taka](https://github.com/naru-taka)
+[kalugo](https://github.com/kalugo)
+[fumitrial8](https://github.com/fumitrial8)
+
+## Description
+### Create new user
+User can sign up by facebook authentication, Google authentication and email registration.
+<img src="/sign_up.png" alt="sign_up" title="sign_up">
+
+After user's information registrated, user must fill out SMS authentication, address form and credit card form.
+<img src="/google_authentication.png" alt="google_authentication" title="google_authentication">
+<img src="/sign_up1.png" alt="sign_up1" title="sign_up1">
+<img src="/SMS_confirmation.png" alt="SMS_confirmation" title="SMS_confirmation">
+<img src="/sign_up2.png" alt="sign_up2" title="sign_up2">
+<img src="/card.png" alt="card" title="card">
+
+### Create new items
+After you are signed in, you can create item. In the new#item view, you must fill out follows content - name, explanation, pictures(max: 10), category, size, shipping_date, price.
+
+### Edit items
+You can edit your items through your account page.
+
+### Destroy items
+You can destroy your items through your account page.
+
+### Purchase items
+If you have enough money, you can buy other user's items.
+After you are signed in, your account balance is 0 !!!
+So if you want to purchase test, you have to log in below account.
+email: example1@example.com
+password: 00000000
+
+### Search items
+You can search items by entering search box or category.
 
 ## categoriesテーブル
 
@@ -9,58 +60,60 @@
 
 ### Association
 - has_many   :items
-- has_many   :brands ,through :brands_categories
 
-## brans_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|category_id|integer|null: false, foreign_key: true|
-|brand_id|integer|null: false, foreign_key: true|
-
+## usersテーブル
+|Column               |Type     |Options                              |
+|---------------------|---------|-------------------------------------|
+|nickname             |string   |index: true,null:false               |
+|email                |string   |null:false, null: false                    |
+|password             |string   |null:false                           |
+|password_confirmation|string   |null:false                           |
+|last_name_kanji      |string   |null:false                           |
+|first_name_kanji     |string   |null:false                           |
+|last_name_kana       |string   |null:false                           |
+|first_name_kana      |string   |null:false                           |
+|birthday             |integer  |null:false                           |
+|phone_number         |integer  |null:false                           |
+|balance              |integer  |null:false, default: 0               |
+|sex                  |string   |                                     |
 ### Association
-- belongs_to :category
-- belongs_to :brand
+- has_many :shippings, dependent: destroy
+- has_many :orders
+- has_many :items, dependent: destroy
+- has_many :credits, dependent: destroy
 
-## brandsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|brands_categories_id|integer|null: false, foreign_key: true|
-
+## itemsテーブル
+|Column               |Type     |Options                              |
+|---------------------|---------|-------------------------------------|
+|name                 |string   |index: true,null:false               |
+|price                |integer  |null:false                           |
+|user_id              |integer  |null:false,foreign_key: true         |
+|category_id          |integer  |null:false,foreign_key: true         |
+|size_id                 |integer   |                                     |
+|condition_id            |integer   |null:false                           |
+|cost_burden_id         |integer  |null:false                           |
+|shipping_from        |integer   |null:false,                          |
+|shipping_day_id         |integer   |null:false                           |
+|shipping_id          |integer  |null:false,foreign_key: true         |
+|rating               |integer  |                                     |
+|status_id               |id   |null:false, default: 1         |
 ### Association
-- has_many :brands_categories
-- has_many :categories through: :brands_categories
 
+- belongs_to  :shipping
+- belongs_to  :user
+- belongs_to  :category
+- has_many    :pictures, dependent: destroy
+- has_many    :orders, dependent: destroy
 
 ## creditsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|number|integer|null: false|
-|year|integer|null: false|
-|date|integer|null: false|
-|code|integer|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|token|string||
+|user_id|integer||
 
 ### Association
 - belongs_to :user
-
-## commentsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|comment|text|null: false|
-|status|integer|null: false, foreign_key: true|
-|offer|integer|         |
-|acception|boolean|              |
-|item_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :item
 
 ## shippingsテーブル
 
@@ -83,105 +136,24 @@ default： trueがdefault出品元。
 - belongs_to :user
 - belongs_to :item
 
-
-## followsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|following_user_id|integer|null: false, foreign_key: true|
-|followed_user_id|integer|null: false, foreign_key: true|
-|block|boolean|null: false, default: false|
-
-
-### Association
-- belongs_to :user
-
-## likesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|item_id|integer|null: false, foreign_key: true|
-
-
-### Association
-- belongs_to :user
-- belongs_to :item
-
-## searchesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|text|string|null: false|
-|status|boolean|null: false|
-|user_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :user
-
-## itemsテーブル
-|Column               |Type     |Options                              |
-|---------------------|---------|-------------------------------------|
-|name                 |string   |index: true,null:false               |商品名
-|price                |integer  |null:false                           |価格
-|user_id              |integer  |null:false,foreign_key: true         |ユーザーid
-|category_id          |integer  |null:false,foreign_key: true         |
-|size                 |string   |                                     |サイズ→必須だけど、服以外では必要ないカラム
-|condition            |string   |null:false                           |
-|cost_burden          |integer  |null:false                           |送料負担はデフォで出品者負担を選択
-|shipping_from        |string   |null:false,                          |
-|shipping_day         |string   |null:false                           |発送するまでの日数
-|shipping_id          |integer  |null:false,foreign_key: true         |発送元カラムのid
-|rating               |integer  |                                     |出品者評価
-|status               |string   |null:false, default: "出品中"         |販売状況
-### Association
-- has_many    :pictures, dependent: destroy
-- belongs_to  :shipping
-- belongs_to  :user
-- belongs_to  :category
-- has_many    :orders, dependent: destroy
-- has_many    :likes, dependent: destroy
-
 ## picturesテーブル
 |Column               |Type     |Options                              |
 |---------------------|---------|-------------------------------------|
 |item_id              |integer  |foreign_key: true                    |
-|image_url            |string   |null:false                           |
+|image            |string   |null:false                           |
 ### Association
 - belongs_to :item
-## usersテーブル
-|Column               |Type     |Options                              |
-|---------------------|---------|-------------------------------------|
-|nickname             |string   |index: true,null:false               |
-|email                |string   |null:false                           |
-|password             |string   |null:false                           |
-|password_confirmation|string   |null:false                           |
-|last_name_kanji      |string   |null:false                           |全角　名漢字
-|first_name_kanji     |string   |null:false                           |全角　姓漢字
-|last_name_kana       |string   |null:false                           |全角　名カナ
-|first_name_kana      |string   |null:false                           |全角　姓カナ
-|birthday             |integer  |null:false                           |生年月日
-|phone_number         |integer  |null:false                           |
-|balance              |integer  |null:false, default: 0               |ポイント残高、デフォは0
-|sex                  |string   |                                     |性別は後から選択
-### Association
-- has_many :shippings, dependent: destroy
-- has_many :orders
-- has_many :items, dependent: destroy
-- has_many :credits, dependent: destroy
-- has_many :likes, dependent: destroy
-- has_many :searches, dependent: destroy
-- has_many :follows, dependent: destroy
+
 
 ## ordersテーブル
 |Column               |Type     |Options                              |
 |---------------------|---------|-------------------------------------|
 |item_id              |integer  |foreign_key: true                    |
-|purchase_user_id     |integer  |null:false,foreign_key: true         |購入者のユーザーid
-|deal_at              |datetime |                                     |取引完了日時
-|cancel               |string   |                                     |キャンセル事由
-|item_status          |string   |null:false, default: for_sale        |デフォは販売中に設定、itemのstatusカラムに関連
-購入日時はcreated_atがその役割を果たすので削除
+|purchase_user_id     |integer  |null:false,foreign_key: true         |
+|deal_at              |datetime |                                     |
+|cancel               |string   |                                     |
+|item_status          |string   |null:false, default: for_sale        |
+
 ### Association
 - belongs_to :item
 - belongs_to :user
