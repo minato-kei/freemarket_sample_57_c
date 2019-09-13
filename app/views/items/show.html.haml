@@ -104,7 +104,10 @@
 
         %div.item-big-box__baloon__message::after
     - if user_signed_in? && @item.user.id != current_user&.id
-      =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
+      - if @item.price > current_user.balance
+        =link_to "売上金が不足しています",root_path, class:"item-big-box__cant-buy-btn"
+      - else
+        =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
       
     .item-big-box__app-buy
       = link_to "#" do
