@@ -6,7 +6,7 @@
   .sign_in_methods
     %h1
       アカウントをお持ちでない方はこちら
-      = link_to "新規会員登録", "#",class: "btn btn_sign_up"
+      = link_to "新規会員登録", sign_up_sns_users_path,class: "btn btn_sign_up"
     %ul
       - if devise_mapping.omniauthable?
         - resource_class.omniauth_providers.each do |provider|
