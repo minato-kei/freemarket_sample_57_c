@@ -23,14 +23,14 @@ $ cd freemarket_sample_57_c
 ## Description
 ### Create new user
 User can sign up by facebook authentication, Google authentication and email registration.
-<img src="/sign_up.png" alt="sign_up" title="sign_up">
+<img src="sign_up.png" alt="sign_up" title="sign_up">
 
 After user's information registrated, user must fill out SMS authentication, address form and credit card form.
-<img src="/google_authentication.png" alt="google_authentication" title="google_authentication">
-<img src="/sign_up1.png" alt="sign_up1" title="sign_up1">
-<img src="/SMS_confirmation.png" alt="SMS_confirmation" title="SMS_confirmation">
-<img src="/sign_up2.png" alt="sign_up2" title="sign_up2">
-<img src="/card.png" alt="card" title="card">
+<img src="google_authentication.png" alt="google_authentication" title="google_authentication">
+<img src="sign_up1.png" alt="sign_up1" title="sign_up1">
+<img src="SMS_confirmation.png" alt="SMS_confirmation" title="SMS_confirmation">
+<img src="sign_up2.png" alt="sign_up2" title="sign_up2">
+<img src="card.png" alt="card" title="card">
 
 ### Create new items
 After you are signed in, you can create item. In the new#item view, you must fill out follows content - name, explanation, pictures(max: 10), category, size, shipping_date, price.
