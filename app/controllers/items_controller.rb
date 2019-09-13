@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :still_selling?, only: [:purchase_confirmation, :purchase]
   before_action :set_item, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
-  before_action :user_signed_in?, only: [:edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
+  before_action :user_signed_in?, only: [:new, :edit, :destroy, :show, :update,:purchase_confirmation, :purchase]
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update, :purchase_confirmation, :purchase, :purchase_complete]
 
   def index
@@ -42,7 +42,6 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    binding.pry
     if @item.save
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}

@@ -1,4 +1,9 @@
 .sell-btn
-  = link_to "/items/new" do
-    %div 出品 
-    %i.fas.fa-camera
+  - if user_signed_in?
+    = link_to "/items/new" do
+      %div 出品 
+      %i.fas.fa-camera  
+  - else
+    = link_to "/users/sign_in" do
+      %div 出品 
+      %i.fas.fa-camera
