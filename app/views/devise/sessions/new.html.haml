@@ -11,7 +11,7 @@
       - if devise_mapping.omniauthable?
         - resource_class.omniauth_providers.each do |provider|
           %li{class: "btn btn_#{OmniAuth::Utils.camelize(provider).downcase}"}
-            = link_to "#{OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider)
+            = link_to "#{OmniAuth::Utils.camelize(provider)}でログイン", omniauth_authorize_path(resource_name, provider), method: :post
     = form_for(@user, url: user_session_path) do |f|
       .field
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス"
