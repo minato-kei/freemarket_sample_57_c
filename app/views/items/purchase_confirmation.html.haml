@@ -26,7 +26,7 @@
               .buy-price-table__right
                 ¥
                 = @item.price.to_s(:delimited)
-            - if @user.balance >= @item.price && @item.status == "出品中"
+            - if @user.balance >= @item.price && @item.status_id == 1
               = link_to "購入する", purchase_item_path(@item), method: "POST" ,class:"btn-default"
             - elsif @user.balance < @item.price
               = link_to "残高不足のため購入できません", root_path, method: "GET" ,class:"btn-default",style: "background-color: lightgray"

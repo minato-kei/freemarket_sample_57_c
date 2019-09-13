@@ -118,8 +118,8 @@ class ItemsController < ApplicationController
     if Payjp::Charge.create(amount: @item.price,customer: @credit.token,currency: 'jpy')
       @user.balance -= @item.price
       @user.update(balance: @user.balance)
-      @item.update(status: "取引中")
-      @order = Order.create(item_id: @item.id, purchase_user_id: @user.id, item_status: @item.status)
+      @item.update(status_id: 2)
+      @order = Order.create(item_id: @item.id, purchase_user_id: @user.id, item_status: @item.status_id)
       redirect_to purchase_complete_item_path
     else
       redirect_to purchase_confirmation_item_path
@@ -153,7 +153,7 @@ class ItemsController < ApplicationController
 
   def still_selling?
     @item = Item.find(params[:id])
-    if @item.status != "出品中"
+    if @item.status_id != 1
       redirect_to root_path
     end
   end
