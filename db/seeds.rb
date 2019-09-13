@@ -329,7 +329,7 @@ category = Category.create(name: "カテゴリー一覧")
                     balance: 1000*(i+1) , 
                     sex: "male")
   shipping = Shipping.create(zipcode: 1234567,
-    pref: rand(48),
+    pref: rand(1..48),
     city: "ランダム市",
     address: "ランダム区乱数",
     building: "フィボナッチビルディング1123",
@@ -353,16 +353,16 @@ category = Category.create(name: "カテゴリー一覧")
     5回位着用
     
     #セシルマクビー",
-    price: 2400,
-    size: "L",
-    condition: "とてもきれい",
-    cost_burden: "送料込み（出品者負担）",
-    shipping_from: "東京都",
-    shipping_day: "4~7日で発送",
+    cost_burden_id: 1,
+    price: 100,
+    size_id: 4,
+    condition_id: 2,
+    shipping_from: 2,
+    shipping_day_id: 2,
     rating: 1,
-    status: "出品中",
+    status_id: 2,
     user_id: user.id,
-    category_id: 318,
+    category_id: rand(1..1000),
     shipping_id: shipping.id)
   (i+1).times do |p|
     picture = Picture.create(image: open("#{Rails.root}/app/assets/images/mercari_logo.png"),

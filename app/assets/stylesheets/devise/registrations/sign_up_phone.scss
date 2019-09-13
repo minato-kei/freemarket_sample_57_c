@@ -1,0 +1,179 @@
+// ここからpまでが新規登録画面3
+.register3_header{
+  background-color: rgb(233, 233, 233);
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  &_logo{
+    box-sizing: border-box;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    img{
+      height: 100%;
+    }
+  }
+  &_status_bar{
+    position: relative;
+    width: 40%;
+    text-align: center;
+    display: flex;
+    span{
+      box-sizing: border-box;
+      width: 20%;
+      font-size: 0.5rem;
+      color: gray;
+      position: relative;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    span:after{
+      position: absolute;
+      box-sizing: border-box;
+      text-align: center;
+      content: "●";
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+    }
+    .register3_header_status_bar_information:after{
+      color: red;
+    }
+    hr{
+      position: absolute;
+      box-sizing: border-box;
+      border: 1px gray solid;
+      top: 19px;
+      width : 80%;
+      left: 10%;
+    }
+    .red_line{
+      border: 1.2px red solid;
+      width : 20%
+    }
+  }
+}
+.register_user_register3{
+height: 120%;
+width: 100%;
+background-color: rgb(233, 233, 233);
+display: flex;
+justify-content: center;
+align-items: center;
+
+&_contents{
+  background-color: white;
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 80px;
+  h1{
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    font-size: 18px;
+  }
+  hr{
+    border: solid 0.5px lightgray;
+    width: 100%;
+  }
+  &_form, &_recall, &_resend{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    .field{
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 30px;
+      input{
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        border: solid 1px lightgray;
+      }
+    }
+    h2{
+      font-size: 14px;
+      color: black;
+      font-weight: normal;
+    }
+    span{
+      font-size: 14px;
+      font-weight: normal;
+      a{
+        color:#0099e8;
+      }
+    }
+    .btn{
+      width: 100%;
+      // inputタグに引っ張られてsubmitボタンの高さが変わる。根本的な解決にはなってない。
+      height: 60px !important;
+      border-radius: 3px;
+      background-color:#ea352d;
+      font-size: 16px;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 60px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+  h2{
+    font-size: 18px;
+    color: black;
+    margin-bottom: 0;
+  }
+  p{
+    font-size: 14px;
+    color: gray;
+    margin-top: 0;
+  }
+  a{
+    color:#0099e8;  
+  }
+}
+}
+.footer{
+color: black;
+justify-content: center;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+flex-direction: column;
+background-color: rgb(233, 233, 233);
+ul{
+  box-sizing: border-box;
+  width:100%;
+  height: 100%;
+  background-color: rgb(233, 233, 233);
+  display: flex;
+  justify-content: center;
+  li{
+    margin-left: 20px;
+    list-style: none;
+    a{
+      text-decoration: none;
+      color: gray;
+    }
+  }
+}
+img{
+  filter: grayscale(100);
+  opacity: 0.3;
+  width: 15vw;
+  margin: 0 auto;
+}
+p{
+  text-align: center;
+  color: black;
+}
+}

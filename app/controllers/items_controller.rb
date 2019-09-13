@@ -42,6 +42,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}
@@ -160,7 +161,7 @@ class ItemsController < ApplicationController
 
   def item_params
     shipping = Shipping.find_by(user_id: current_user.id)
-    params.require(:item).permit(:name,:text, :size,:condition, :cost_burden, :shipping_from, :shipping_day, :rating, :status, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
+    params.require(:item).permit(:name,:text, :size_id,:condition_id, :cost_burden_id, :shipping_from, :shipping_day_id, :rating, :status_id, :category_id).merge(price: params[:price],user_id: current_user.id, shipping_id: shipping.id)
   end
 
   def set_item

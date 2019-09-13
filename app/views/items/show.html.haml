@@ -62,15 +62,15 @@
           %tr 
             %th 商品のサイズ
             %td 
-              = @item.size
+              = @item.size.name
           %tr 
             %th 商品の状態
             %td
-              = @item.condition
+              = @item.condition.name
           %tr 
             %th 配送料の負担
             %td
-              = @item.cost_burden
+              = @item.cost_burden.name
           %tr 
             %th 配送の方法
             %td 
@@ -79,12 +79,11 @@
           %tr 
             %th 配送元地域
             %td 
-              %a 東京都
-              -# = link_to @item.prefecture_name, "#"
+              = Prefecture.data[@item.shipping_from.to_i][:name]
           %tr 
             %th 発送日の目安
             %td 
-              = @item.shipping_day
+              = @item.shipping_day.name
     .item-big-box__price
       %span.item-big-box__price__bold
         ¥

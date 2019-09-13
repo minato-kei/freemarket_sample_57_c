@@ -71,11 +71,13 @@ $(function(){
       $(".middle_category_select").css("display", "none");
       $(".small_category_select").css("display", "none");
       $(`.middle-${big_category}`).css("display", "block");
+      $(`#item_category_id`).val(big_category);
     });
     $(".middle_category_select").on("change", function(){
       middle_category = $(this).val();
       $(".small_category_select").css("display", "none");
       $(`.small-${middle_category}`).css("display", "block");
+      $(`#item_category_id`).val(middle_category);
     });
     $(".small_category_select").on("change", function(){
       small_category = $(this).val();

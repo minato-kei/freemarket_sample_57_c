@@ -1,20 +1,20 @@
--# ここからpまでが新規登録画面4　住所画面
-.register_header
-  .register_header_logo
+-# ここからpまでが新規登録画面6　住所画面
+.register6_header
+  .register6_header_logo
     = image_tag 'mercari_logo.png'
     -# 写真は本番のときに改めて差し替える
-  .register_header_status_bar
-    %span{class: "register_header_status_bar_information"} 会員情報
-    %span{class: "register_header_status_bar_phone"} 電話番号認証
-    %span{class: "register_header_status_bar_adress"} お届け先住所入力
-    %span{style: "color: red;",class: "register_header_status_bar_payment"} 支払い方法
-    %span{class: "register_header_status_bar_accomplish"} 完了
+  .register6_header_status_bar
+    %span{class: "register6_header_status_bar_information"} 会員情報
+    %span{class: "register6_header_status_bar_phone"} 電話番号認証
+    %span{class: "register6_header_status_bar_adress"} お届け先住所入力
+    %span{style: "color: red;",class: "register6_header_status_bar_payment"} 支払い方法
+    %span{class: "register6_header_status_bar_accomplish"} 完了
     %hr
     %hr.red_line4
-.register_user_register4
-  .register_user_register4_contents
+.register_user_register6
+  .register_user_register6_contents
     %h1 支払先
-    = form_with(method: "POST", url:"/credits", class: "register_user_register4_contents_form") do |f|
+    = form_with(method: "POST", url:"/credits", class: "register_user_register6_contents_form") do |f|
       .field
         = f.label :"カード番号　"
         = f.text_field :number, placeholder: "半角数字のみ", class: "credit_card_number_form", maxlength: "16"
@@ -31,7 +31,7 @@
         = f.text_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", class: "credit_card_cvc_form", maxlength: "3"
         = link_to "カード裏面の番号とは？", "#"
       %button{type:"submit", class:"btn"} 送信
-      = link_to "500円募金",pay_credits_path, method: 'POST', class: 'btn'
+      -# = link_to "500円募金",pay_credits_path, method: 'POST', class: 'btn'
       %br
 
 %nav.footer

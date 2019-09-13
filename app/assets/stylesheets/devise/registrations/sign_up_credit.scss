@@ -1,5 +1,5 @@
-// ここからpまでが新規登録画面3
-.register_header{
+// ここからpまでが新規登録画面6　住所画面
+.register6_header{
   background-color: rgb(233, 233, 233);
   width: 100%;
   height: 100px;
@@ -37,7 +37,7 @@
       transform: translateX(-50%);
       top: 20px;
     }
-    .register_header_status_bar_information:after{
+    &_information:after, &_phone:after, &_adress:after{
       color: red;
     }
     hr{
@@ -48,13 +48,14 @@
       width : 80%;
       left: 10%;
     }
-    .red_line{
+    .red_line4{
       border: 1.2px red solid;
-      width : 20%
+      width : 60%;
+      z-index: 2;
     }
   }
 }
-.register_user_register3{
+.register_user_register6{
 height: 120%;
 width: 100%;
 background-color: rgb(233, 233, 233);
@@ -79,28 +80,66 @@ align-items: center;
     height: 60px;
     font-size: 18px;
   }
-  hr{
-    border: solid 0.5px lightgray;
-    width: 100%;
-  }
-  &_form, &_recall, &_resend{
+  
+  &_form{
     display: flex;
     flex-direction: column;
     width: 50%;
+    
     .field{
       display: flex;
       flex-direction: column;
-      padding-bottom: 30px;
+      margin-bottom: 20px;
+      p:after{
+        content: "\f1f0\f24c\f1f1\f1f3\f24b\f1f2";
+        font-family: "Font Awesome 5 brands";
+        font-size: 30px;
+        color: black;
+      }
       input{
         width: 100%;
         height: 50px;
         border-radius: 5px;
         border: solid 1px lightgray;
+        margin-bottom: 5px;
+      }
+      label:after{
+        content: "必須";
+        background-color:#ea352d;
+        color: white;
+        padding: 2px;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      .form-nini:after{
+        content: "任意";
+        background-color:lightgray;
+      }
+      &_expire_form{
+        
+        select{
+          width: 40%;
+          height: 60px;
+          color: black;
+          background-color: white;
+          font-size: 20px;
+        }
+        
+      }
+      &_security_code{
+        a{
+          text-align: right;
+        }
+        a:before{
+          content: "\f059";
+          font-weight: 900;
+          font-family: "Font Awesome 5 Free";        
+        }
       }
     }
-    h2{
+    h3{
       font-size: 14px;
-      color: black;
+      color: gray;
       font-weight: normal;
     }
     span{
@@ -112,8 +151,7 @@ align-items: center;
     }
     .btn{
       width: 100%;
-      // inputタグに引っ張られてsubmitボタンの高さが変わる。根本的な解決にはなってない。
-      height: 60px !important;
+      height: 60px;
       border-radius: 3px;
       background-color:#ea352d;
       font-size: 16px;
@@ -122,22 +160,7 @@ align-items: center;
       text-align: center;
       vertical-align: middle;
       line-height: 60px;
-      margin-top: 30px;
-      margin-bottom: 30px;
     }
-  }
-  h2{
-    font-size: 18px;
-    color: black;
-    margin-bottom: 0;
-  }
-  p{
-    font-size: 14px;
-    color: gray;
-    margin-top: 0;
-  }
-  a{
-    color:#0099e8;  
   }
 }
 }
