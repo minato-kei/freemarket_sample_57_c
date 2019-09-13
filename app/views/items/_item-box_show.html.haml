@@ -2,7 +2,7 @@
   %li.list_item
     = link_to item_path(item) do
       .item-box-show
-        - if item.status != "出品中"
+        - if item.status_id != 1
           .item-box-show__sold
             sold
         - if item&.pictures != nil

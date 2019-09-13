@@ -2,7 +2,7 @@
   %li.list_item
     = link_to item_path(item) do
       .item-box
-        - if item.status != "出品中"
+        - if item.status_id != 1
           .item-box__sold
             sold
         .item-box__price

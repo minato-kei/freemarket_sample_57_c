@@ -353,14 +353,14 @@ category = Category.create(name: "カテゴリー一覧")
     5回位着用
     
     #セシルマクビー",
-    cost_burden_id: 1,
+    cost_burden_id: rand(1..2),
     price: 100,
-    size_id: 4,
-    condition_id: 2,
-    shipping_from: 2,
-    shipping_day_id: 2,
+    size_id: rand(1..30),
+    condition_id: rand(1..6),
+    shipping_from: rand(1..47),
+    shipping_day_id: rand(1..3),
     rating: 1,
-    status_id: 2,
+    status_id: rand(1..2),
     user_id: user.id,
     category_id: rand(1..1000),
     shipping_id: shipping.id)
