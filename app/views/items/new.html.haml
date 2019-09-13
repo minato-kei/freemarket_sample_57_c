@@ -1,8 +1,7 @@
-
-= form_for @item do |f|
+= form_with model: @item, id: "new_item" do |f|
   .register_header
     .register_header_logo
-      = image_tag '/mercari_logo.png'
+      = image_tag 'mercari_logo.png'
 
   .sell-main
     .sell-main__box
@@ -17,27 +16,24 @@
               %span 必須
             %p 最大10枚までアップロードできます
             .sell-upload-box__drop
-              %label
+              .sell-upload-box__drop_wrap
                 .drop-box-input
-                  ドラックアンドドロップ
-                  %br
-                  またはクリックしてファイルをアップロード
-                %input.image{multiple: "", name: "image1", display: "none",type: "file"}/
-
-                
-              
-
+                  = f.file_field :image, multiple: true,class: "image_field",accept: "image/*"
+                  %p 
+                    ドラックアンドドロップ
+                    %br
+                      またはクリックしてファイルをアップロード
           .sell-item
             .sell-item__name
               商品名
               %span 必須
               .sell-item__name__input
-                %input.input-default{placeholder: "商品名（必須 40文字まで)", value: ""}/
+                = f.text_area :name, placeholder: "商品名（必須 40文字まで)", value: "サンプル",class: "input-default"
             .sell-item__discription
               商品の説明
               %span 必須
               .sell-item__discription__text
-                %textarea.textarea-default{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5"}
+                = f.text_area :text, class:"textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: "5",value: "サンプル"
 
           .sell-content
             %h3.sell-content__head
@@ -49,23 +45,13 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} レディース
-                    %option{value: "2"} メンズ
-                    %option{value: "259"} ベビー・キッズ
-                    %option{value: "387"} インテリア・住まい・小物
-                    %option{value: "517"} 本・音楽・ゲーム
-                    %option{value: "576"} おもちゃ・ホビー・グッズ
-                    %option{value: "683"} コスメ・香水・美容
-                    %option{value: "781"} 家電・スマホ・カメラ
-                    %option{value: "867"} スポーツ・レジャー
-                    %option{value: "976"} ハンドメイド
-                    %option{value: "1026"} チケット
-                    %option{value: "1085"} 自動車・オートバイ
-                    %option{value: "138"} その他
-
+                  = f.collection_select(:big_category_id, @big_categories, :id, :name, {prompt: "カテゴリを選択してください"} ,class:"big_category_select")
+                  - @big_categories.each do |big_category|
+                    = f.collection_select(:middle_category_id, big_category.children, :id, :name, {prompt: "カテゴリを選択してください"} ,class:"middle_category_select middle-#{big_category.id}")
+                    - big_category.children.each do |middle_category|
+                      = f.collection_select(:small_category_id, middle_category.children, :id, :name, {prompt: "カテゴリを選択してください"} ,class:"small_category_select small-#{middle_category.id}")
+                  = f.hidden_field :category_id
+                  = f.collection_select :size_id, Size.all, :id, :name, {prompt: '---'}, class: "size_id select-default"
             .sell-content__select-add-box
               .select-pulldown
                 商品の状態
@@ -73,16 +59,8 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 新品、未使用
-                    %option{value: "2"} 未使用に近い
-                    %option{value: "3"} 目立った傷や汚れなし
-                    %option{value: "4"} やや傷や汚れあり
-                    %option{value: "5"} 傷や汚れあり
-                    %option{value: "1328"} 全体的に状態が悪い
-
+                  = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: '---'}, class: "condition_id select-default"
+                 
           .sell-content
             %h3.sell-content__head
               配送について
@@ -93,11 +71,7 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 送料込み(出品者負担)
-                    %option{value: "2"} 着払い(購入者負担)
+                  = f.collection_select :cost_burden_id, CostBurden.all, :id, :name, {prompt: '---'}, class: "cost_burden_id select-default"
 
 
             .sell-content__select-add-box
@@ -107,7 +81,7 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-                  = f.collection_select :id, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id"
+                  = f.collection_select :shipping_from, Prefecture.all, :id, :name, {prompt: '---'}, class: "prefecture_id select-default"
 
 
             .sell-content__select-add-box
@@ -117,40 +91,30 @@
 
                 .select-wrap
                   %i.fas.fa-chevron-down
-
-                  %select.select-default
-                    %option{value: ""} ---
-                    %option{value: "1"} 1~2日で発送
-                    %option{value: "2"} 2~3日で発送
-                    %option{value: "3"} 4~7日で発送
-
+                  = f.collection_select :shipping_day_id, ShippingDay.all, :id, :name, {prompt: '---'}, class: "shipping_day_id select-default"
+                  
           .sell-content
             %h3.sell-content__head
               販売価格(300~9,999,999)
             .sell-content__select-box
-              %form{oninput: "vop2.value = Number(a.value) - Number(a.value) / 10, vop1.value = Number(a.value) / 10;"}
-                %li.select-decide
-                  .select-decide__price
-                    価格
-                    %span 必須
-                  
-                  .select-decide__input
-                    ¥
-                    %input.input-default{name: "a", type: "number", placeholder: "例）300", value: ""}/
+              %li.select-decide
+                .select-decide__price
+                  価格
+                  %span 必須
+                .select-decide__input
+                  ¥
+                  = f.text_field :price, type: "number", placeholder: "例）300", value: "", name: "price",oninput: "vop2.value = Number(price.value) - Number(price.value) / 10, vop1.value = Number(price.value) / 10;"
+              .fee-box
+                .fee-box__left
+                  販売手数料(10%)
+                .fee-box__right
+                  %output{name: "vop1"} -
 
-                .fee-box
-                  .fee-box__left
-                    販売手数料(10%)
-                  .fee-box__right
-                    %output{name: "vop1"} -
-
-                .profit-box
-                  .profit-box__left
-                    販売利益
-                  .profit-box__right
-                    %output{name: "vop2"} -
-
-
+              .profit-box
+                .profit-box__left
+                  販売利益
+                .profit-box__right
+                  %output{name: "vop2"} -
           .sell-btn-box
             .sell-btn-box__note
               禁止されている出品、行為を必ずご確認ください。
@@ -161,7 +125,7 @@
             .sell-btn-box__push
               %button.btn-default{type: "submit"} 出品する
             .sell-btn-box__back
-              = link_to "#" do
+              = link_to root_path do
                 .btn-default
                   もどる
 
@@ -175,5 +139,5 @@
         = link_to "メルカリ利用規約", "#"
       %li
         = link_to "特定商取引に関する表記", "#"
-    = image_tag '/mercari_logo2.png'
+    = image_tag 'mercari_logo2.png'
     %p ©︎2019 Mercari

@@ -311,43 +311,65 @@ child.children.create([{name: "筆記具"},{name: "ノート/メモ帳"},{name: 
 child = category.children.create(name: "事務/店舗用品")
 child.children.create([{name: "オフィス用品一般"},{name: "オフィス家具"},{name: "店舗用品"},{name: "OA機器"},{name: "ラッピング/包装"},{name: "その他"}])
 child = category.children.create(name: "その他")
+child.children.create(name: "その他")
 
 
 category = Category.create(name: "カテゴリー一覧")
 
-user = User.create(nickname: "チカキン",
-                   email: "gabriel.pacocha@hartmann.io",
-                   password: "00000000", 
-                   password_confirmation: "00000000",
-                   first_name_kanji: "元親", 
-                   last_name_kanji: "長宗我部", 
-                   first_name_kana: "モトチカ", 
-                   last_name_kana: "チョウソカベ", 
-                   birthday: Date.today, 
-                   phone_number: "09012345678", 
-                   balance: 0, 
-                   sex: "male")
-
-
-shipping = Shipping.create(zipcode: 1234567,
-                           pref: 1,
-                           city: "高知県",
-                           address: "港区",
-                           building: "フィボナッチビルディング1123",
-                           phone: 1,
-                           default: 1,
-                           user_id: 1)
 10.times do |i|
+  user = User.create(nickname: ("ア".."ン").to_a.sample(1).join + "カキン" + i.to_s,
+                    email: "example#{i}@example.com",
+                    password: "00000000", 
+                    password_confirmation: "00000000",
+                    first_name_kanji: "元親"+ i.to_s, 
+                    last_name_kanji: "長宗我部"+ i.to_s, 
+                    first_name_kana: "モトチカ"+ i.to_s, 
+                    last_name_kana: "チョウソカベ"+ i.to_s, 
+                    birthday: Date.today, 
+                    phone_number: 1, 
+                    balance: 1000*(i+1) , 
+                    sex: "male")
+  shipping = Shipping.create(zipcode: 1234567,
+    pref: rand(1..48),
+    city: "ランダム市",
+    address: "ランダム区乱数",
+    building: "フィボナッチビルディング1123",
+    phone: "09012345678",
+    default: 1,
+    user_id: user.id)
+  credit = Credit.create(token: "cus_1aaec93e42b0cae8307f4a8e71af",
+    user_id: user.id)
   item = Item.create(name: "ビラボン サーフパンツ 水着 海パン#{i}",
-                    price: 2400,
-                    size: "L",
-                    condition: "とてもきれい",
-                    cost_burden: "送料込み（出品者負担）",
-                    shipping_from: "東京都",
-                    shipping_day: "4~7日で発送",
-                    rating: 1,
-                    status: "出品中",
-                    user_id: 1,
-                    category_id: 318,
-                    shipping_id: 1)
+    text: "セシルマクビー☆パール＆ジュエル付き 秋　ワンピース♪ベージュ系
+  　 
+    セシルマクビーの　秋　ベージュ系ワンピース♪ 　 
+    胸元パール＆ジュエルが可愛さのポイント☆ 　 
+    袖シフォン×ゴールドラメMixニット切替なのでオシャレに着こなせますよ(*^^) 
+    　 
+    【　サイズ　】 　 
+    Ｍ☆ 　 
+     【　実寸　】 　 
+    丈80cm位 　 
+    【　状態　】 　 
+    5回位着用
+    
+    #セシルマクビー",
+    cost_burden_id: rand(1..2),
+    price: 100,
+    size_id: rand(1..30),
+    condition_id: rand(1..6),
+    shipping_from: rand(1..47),
+    shipping_day_id: rand(1..3),
+    rating: 1,
+    status_id: rand(1..2),
+    user_id: user.id,
+    category_id: rand(18..31),
+    shipping_id: shipping.id)
+  (i+1).times do |p|
+    picture = Picture.create(image: open("#{Rails.root}/app/assets/images/mercari_logo.png"),
+                  item_id: item.id
+                  )
+  end
 end
+
+

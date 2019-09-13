@@ -1,0 +1,22 @@
+.container
+  = render partial: 'items/header'
+
+  -# config/breadcrumbs.rbに定義したmypageを呼び出し
+  - breadcrumb :logout
+  -# 下記を記述した箇所にパンくずリストが表示される。
+  = render partial: 'devise/registrations/bread-crumbs'
+
+
+  .main-box
+    
+    = render partial: 'devise/registrations/side-bar'
+
+    .main-view
+      .main-chapter
+        .main-chapter__bar
+          .logout-btn
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'button'
+
+  = render partial: 'items/bottom'
+
+  = render partial: 'items/sell-btn'

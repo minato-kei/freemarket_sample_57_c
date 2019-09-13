@@ -2,14 +2,13 @@
   .header__inner
     .header__inner__top
       .header__inner__top__mark
-        = link_to "#" do
+        = link_to root_path do
           %img{:alt => "mercari", :height => "36", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?3611986733", :width => "134"}/
-      .header__inner__top__form
-        .header__inner__top__form__input
-          %input.input-default{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-        
-        .header__inner__top__form__icon
+      = form_with(url: search_items_path, method: :get, class: "header__inner__top__form", local: true) do |f|
+        = f.search_field :keyword, placeholder: "何かお探しですか？", class: "header__inner__top__form__input"
+        = button_tag type: 'submit', class: "header__inner__top__form__icon" do
           %i.fa.fa-search
+
     .header__inner__nav
       .left-box
         .left-box__category
@@ -17,14 +16,14 @@
             %i.fa.fa-list-ul カテゴリーから探す
           .left-box__category-dropdown
             %ul.left-box__category-dropdown-big-category.display_none
-              - @big_categories.each do |big_category|
-                = link_to big_category.name, "#",class: "left-box__category-dropdown-big-category-btn dropdown-btn"
+              - @categories.select{|n| n.ancestry == nil}.each do |big_category|
+                = link_to big_category.name, search_items_path(category_id: big_category.id), class: "left-box__category-dropdown-big-category-btn dropdown-btn"
                 %ul.left-box__category-dropdown-middle-category
-                  - big_category.children.each do |middle_category|
-                    = link_to middle_category.name, "#",class: "left-box__category-dropdown-middle-category-btn dropdown-btn"
+                  - @categories.select{|n| n.ancestry == big_category.id.to_s}.each do |middle_category|
+                    = link_to middle_category.name, search_items_path(category_id: middle_category.id),class: "left-box__category-dropdown-middle-category-btn dropdown-btn"
                     %ul.left-box__category-dropdown-small-category.display_none#small_category
-                      - middle_category.children.each do |small_category|
-                        = link_to small_category.name, "#",class: "left-box__category-dropdown-small-category-btn dropdown-btn"
+                      - @categories.select{|n| n.ancestry == big_category.id.to_s + "/"+middle_category.id.to_s}.each do |small_category|
+                        = link_to small_category.name, search_items_path(category_id: small_category.id), class: "left-box__category-dropdown-small-category-btn dropdown-btn"
         .left-box__brand
           = link_to "#" do
             %i.fa.fa-tag
@@ -38,19 +37,25 @@
                 = link_to "アディダス", "#",class: "left-box__brand-dropdown-list-btn"
                 = link_to "ブランド一覧", "#",class: "left-box__brand-dropdown-list-btn"        
       .right-box
-        .liked-items
-          = link_to "#" do
-            %i.far.fa-heart
-            いいね！一覧
-        .notification-list
-          = link_to "#" do
-            %i.far.fa-bell
-            お知らせ
-        .todo-list
-          = link_to "#" do
-            %i.fa.fa-check
-            やることリスト
-        .mypage-box
-          = link_to "#" do
-            %i.far.fa-file-image
-            マイページ
+        - if user_signed_in?
+          .liked-items
+            = link_to "#" do
+              %i.far.fa-heart
+              いいね！一覧
+          .notification-list
+            = link_to "#" do
+              %i.far.fa-bell
+              お知らせ
+          .todo-list
+            = link_to "/users/#{current_user.id}" do
+              %i.fa.fa-check
+              やることリスト
+          .mypage-box
+            = link_to "/users/#{current_user.id}" do
+              %i.far.fa-file-image
+              マイページ
+        - else
+          .sing-up-btn
+            = link_to "新規登録", "/users/sign_up_sns", class: 'post'
+          .sing-in-btn
+            = link_to "ログイン", new_user_session_path, class: 'post'

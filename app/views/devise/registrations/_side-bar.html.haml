@@ -2,7 +2,7 @@
   .mypage-nav
     %ul.my-page-nav__list
       %li
-        = link_to "#" do
+        = link_to "/users/#{current_user.id}" do
           マイページ
           %i.fas.fa-chevron-right
       %li
@@ -19,15 +19,15 @@
           いいね！一覧
           %i.fas.fa-chevron-right
       %li
-        = link_to "#" do
+        = link_to new_item_path do
           出品する
           %i.fas.fa-chevron-right
       %li
-        = link_to "#" do
+        = link_to items_user_path do
           出品した商品-出品中
           %i.fas.fa-chevron-right
       %li
-        = link_to "#" do
+        = link_to items_user_path do
           出品した商品-取引中
           %i.fas.fa-chevron-right
       %li
@@ -99,6 +99,6 @@
           電話番号の確認
           %i.fas.fa-chevron-right
       %li
-        = link_to "#" do
+        = link_to logout_user_path(current_user) do
           ログアウト
           %i.fas.fa-chevron-right

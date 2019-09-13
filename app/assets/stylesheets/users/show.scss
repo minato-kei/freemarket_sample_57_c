@@ -1,5 +1,5 @@
 .mypage-main {
-  width: 700px;
+  width: calc(100% - 320px);
   display: block;
   &__icon {
     height: 200px;

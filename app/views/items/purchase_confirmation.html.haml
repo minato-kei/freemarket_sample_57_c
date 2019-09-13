@@ -1,0 +1,91 @@
+.register_header
+  .register_header_logo
+    = image_tag 'mercari_logo.png'
+.buy-main
+  .buy-main__box
+    .buy-content
+      %h2.buy-content__header
+        購入内容の確認
+      .buy-content__item
+        .buy-content__item__inner
+          .buy-item-main
+            .buy-item-image
+              = image_tag @item.pictures.first.image.url, height: "64px" , width: "64px"
+            .buy-item-name
+              = @item.name
+          %form.buy-form
+            %p.buy-price
+              ¥
+              = @item.price.to_s(:delimited)
+              %span送料込み
+            .buy-have-point
+              ポイントはありません
+            .buy-price-table
+              .buy-price-table__left
+                支払金額
+              .buy-price-table__right
+                ¥
+                = @item.price.to_s(:delimited)
+            - if @user.balance >= @item.price && @item.status_id == 1
+              = link_to "購入する", purchase_item_path(@item), method: "POST" ,class:"btn-default"
+            - elsif @user.balance < @item.price
+              = link_to "残高不足のため購入できません", root_path, method: "GET" ,class:"btn-default",style: "background-color: lightgray"
+            - else 
+              = link_to "取引が終了したアイテムです", root_path, method: "GET" ,class:"btn-default",style: "background-color: lightgray"
+      .buy-content__user-info
+        .buy-content__user-info__inner
+          %h3 配送先
+          .user-info-text
+            〒
+            = @shipping.zipcode.to_s.insert(3, " - ")
+            %br
+            = @shipping_pref.name + @shipping.city + @shipping.address + @shipping.building
+            %br
+            = @user.last_name_kanji + " " + @user.first_name_kanji
+
+          .user-info-fix
+            = link_to "#" do
+              変更する
+              %span 
+              %i.fas.fa-chevron-right
+      .buy-content__user-info
+        .buy-content__user-info__inner
+          %h3 支払方法
+
+          .user-info-text
+            ************
+            = @customer.cards.retrieve(@customer.cards.first.id).last4
+            %br
+            = @customer.cards.retrieve(@customer.cards.first.id).exp_month
+            \/
+            = @customer.cards.retrieve(@customer.cards.first.id).exp_year-2000
+            %br
+            - if @customer.cards.retrieve(@customer.cards.first.id).brand == "Visa"
+              = image_tag "/visacard.png", width: "34px", style: "background-color: blue"
+            - elsif @customer.cards.retrieve(@customer.cards.first.id).brand == "MasterCard"
+              = image_tag "/mastercard.png", width: "34px"
+            - elsif @customer.cards.retrieve(@customer.cards.first.id).brand == "Diners Club"
+              = image_tag "/diners_clubcard.png", width: "34px"
+            - elsif @customer.cards.retrieve(@customer.cards.first.id).brand == "American Express"
+              = image_tag "/american_expresscard.png", width: "34px"
+            - elsif @customer.cards.retrieve(@customer.cards.first.id).brand == "JCB"
+              = image_tag "/jcbcard.png", width: "34px"
+            - else @customer.cards.retrieve(@customer.cards.first.id).brand == "Discover"
+              = image_tag "/discover.png", width: "34px"
+          .user-info-fix
+            = link_to "#" do
+              変更する
+              %span
+              %i.fas.fa-chevron-right
+
+
+%nav.footer
+  %ul
+    %li
+      = link_to "プライバシーポリシー", "#"
+    %li
+      = link_to "メルカリ利用規約", "#"
+    %li
+      = link_to "特定商取引に関する表記", "#"
+  = image_tag 'mercari_logo2.png'
+  %p ©︎2019 Mercari

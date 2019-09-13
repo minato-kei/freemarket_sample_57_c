@@ -1,19 +1,27 @@
+= render partial: 'delete_dialog'
 .detail-container
   = render partial: 'header'
-
   .item-big-box
     .item-big-box__name
-      %h1 ビラボン サーフパンツ 水着 海パン
+      %h1
+        = @item.name
     .item-big-box__wording
-      %p 「ビラボン サーフパンツ 水着 海パン」は、＃＃回の取引実績をもつ
-      %a name
-      さんから出品されました。カテゴリー
-      %a category
-      の商品で、東京都から発送されます。
+      %p 
+        「
+        = @item.name
+        」は、＃＃回の取引実績をもつ
+      %a
+        = @item.user.nickname
+        さんから出品されました。カテゴリー
+      %a 
+        = @item.category.name
+        の商品で、
+        = @item.shipping_from
+        から発送されます。
     .item-big-box__main
       .item-big-box__main__photo
         .item-big-box__main__photo__big
-          %img.owl-lazy{:alt => "Billabong サーフパンツ 水着 海パン", "data-src" => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :src => "https://static.mercdn.net/item/detail/orig/photos/m12310835724_1.jpg?1552536295", :style => "opacity: 1;"}/
+          %img.owl-lazy{:alt => @item.pictures.first.image.url, "data-src" => @item.pictures.first.image.url, :src => @item.pictures.first.image.url, :style => "opacity: 1;"}/
         
         .item-big-box__main__photo__dot
       
@@ -22,7 +30,7 @@
           %tr 
             %th 出品者 
             %td 
-              %a 手塚治虫
+              = link_to @item.user.nickname, user_path(@item.user)
               %div 
                 %i.icon-good
                   %i.fas.fa-grin 
@@ -40,30 +48,30 @@
             %th カテゴリー
             %td 
               .td-category
-                %a 大カテゴリー
+                = link_to "#{@item.category.root.name}", "#"
               .td-category
-                %a >中カテゴリー
+                = link_to "＞#{@item.category.parent.name}", "#"
               .td-category
-                %a >小カテゴリー
+                = link_to "＞#{@item.category.name}", "#"
           %tr 
             %th ブランド
-            %td 
-              %a ブランド名  
-              -# = link_to @brand.name if @item.brand_id 
+            %td
+              -if @item
+                = link_to "＞#{@item.category.name}", "#"
+              
           %tr 
             %th 商品のサイズ
             %td 
-              %a サイズ
+              - if @item&.size_id != nil
+                = @item&.size.name
           %tr 
             %th 商品の状態
             %td
-              %a とてもきれい
-              -# = @item.condition
+              = @item.condition.name
           %tr 
             %th 配送料の負担
             %td
-              %a 送料込み（出品者負担）
-              -# = @item.shipping_fee
+              = @item.cost_burden.name
           %tr 
             %th 配送の方法
             %td 
@@ -72,43 +80,38 @@
           %tr 
             %th 配送元地域
             %td 
-              %a 東京都
-              -# = link_to @item.prefecture_name, "#"
+              = Prefecture.data[@item.shipping_from.to_i][:name]
           %tr 
             %th 発送日の目安
             %td 
-              %a 4-7日で発送
-              -# = @item.shipping_date
+              = @item.shipping_day.name
     .item-big-box__price
       %span.item-big-box__price__bold
-        ¥ 2,400
+        ¥
+        = @item.price.to_s(:delimited)
       %span.item-big-box__price__tax
         (税込)
       %span.item-big-box__price__shipping-fee
         送料込み
-    .item-big-box__baloon
-      %div.item-big-box__baloon__message
-        売上金 ¥700 と P508を
-        %br
-        お持ちです
+    - if user_signed_in? && @item.user.id != current_user&.id
+      .item-big-box__baloon
+        %div.item-big-box__baloon__message
+          売上金¥
+          = current_user.balance.to_s(:delimited)
+          を
+          %br
+          お持ちです
 
         %div.item-big-box__baloon__message::after
-
-    %a.item-big-box__buy-btn
-      購入画面に進む
+    - if user_signed_in? && @item.user.id != current_user&.id
+      =link_to "購入画面に進む",purchase_confirmation_item_path, class:"item-big-box__buy-btn"
+      
     .item-big-box__app-buy
       = link_to "#" do
         アプリで購入
     .item-big-box__description
       %p
-      サイズ 32
-      %br
-      マジックテープの内側ら辺に黒ずみがあります。画像5枚目
-      %br
-      素人検品の為見落としがあったらごめんなさい。
-      %br
-      自宅保存、中古品である事をご理解頂ける方のみお願い致します
-      -# = simple_format(@item.description)
+        = @item.text
     .item-big-box__button
       .item-big-box__button__left
         .item-big-box__button__left__like
@@ -122,7 +125,12 @@
         = link_to "https://www.mercari.com/jp/safe/description/" do
           %i.fas.fa-lock
           %span あんしん•あんぜんへの取り組み
-
+  - if user_signed_in? && @item.user.id == current_user.id
+    .item-edit
+      = link_to "商品の編集", edit_item_path(@item), class:"item-edit_btn"
+      or
+      = link_to "出品を一旦停止する", "#", class:"item-edit_btn item-edit_stop"
+      = link_to "この商品を削除する", "#", class:"item-edit_btn item-edit_delete"
   .item-message
     .item-message__box
       .item-message__box__chat

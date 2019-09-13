@@ -30,7 +30,7 @@ gem 'payjp'
 gem 'ancestry'
 gem 'jquery-rails'
 gem 'active_hash'
-
+gem 'gretel'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,7 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
   gem 'unicorn', '5.4.1'
-gem 'fog-aws'
+  gem 'fog-aws'
 end
 group :development, :test do
   gem 'capistrano'
@@ -76,3 +76,4 @@ end
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'kaminari'

@@ -1,0 +1,86 @@
+.side-bar
+  .search-nav
+    %ul.search-nav__list
+      %li
+        = link_to "#" do
+          並び替え
+          %i.fas.fa-chevron-down
+    .search-nav__dropdown
+      .search-nav__dropdown__title 詳細検索
+      = form_with(url: search_items_path, method: :get, class: "search-nav__dropdown__form", local: true) do |f|
+
+        = f.label :keyword, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-plus
+          %span キーワードを追加する
+        = f.search_field :keyword, placeholder: "例）値下げ", class: "search-nav__dropdown__form__search", value: @keyword
+
+        = f.label :category, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-list-ul
+          %span カテゴリーを選択する
+
+        #category__parent
+          %i.fas.fa-chevron-down.search-arrow
+          =select_tag :category_id, options_for_select(@categories.select{|n| n.ancestry == nil}.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root' , id: "search-category-root"}
+        #category__child
+          - @categories.select{|n| n.ancestry == nil}.each do |big_category|
+            = select_tag :category_id, options_for_select(@categories.select{|n| n.ancestry == big_category.id.to_s}.map{|i| [i.name, i.id]}), { prompt: 'すべて', class: 'search-root search-category-child hide', id: "category_#{big_category.id}" }
+            - @categories.select{|n| n.ancestry == big_category.id.to_s}.each do |middle_category|
+              .check-boxes.hide{id: "category_#{middle_category.id}"}
+                = f.collection_check_boxes :grandchild_ids, @categories.select{|n| n.ancestry == big_category.id.to_s + "/"+middle_category.id.to_s}, :id, :name, include_hidden: false do |b|
+                  .check-boxes__content
+                    = b.check_box(class:"search-checkbox")
+                    = b.label(class:"search-checkbox__label"){b.text}
+
+
+        = f.label :brand, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-tag
+          %span ブランド名から探す
+        = f.search_field :brand_id, placeholder: "例）シャネル", class: "search-nav__dropdown__form__search"
+
+        = f.label :size, class: "search-nav__dropdown__form__list" do 
+          %i.fab.fa-jenkins
+          %span サイズを指定する
+        = f.collection_select( :size_id, @prices, :id, :name,{prompt: "すべて"}, {class: "search-root"})
+        %i.fas.fa-chevron-down.search-arrow
+
+        = f.label :price, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-coins
+          %span 価格
+        %i.fas.fa-chevron-down.search-arrow
+
+        = f.collection_select( :price_id, @prices, :id, :name, {prompt: "選択してください"}, {class: "search-root"})
+
+        = f.number_field :min_price, placeholder: "¥ Min", class: "price-child", value: params[:min_price]
+        %span ~
+        = f.number_field :max_price, placeholder: "¥ Max", class: "price-child", value: params[:max_price]
+        
+        = f.label :condition, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-star
+          %span 商品状態
+        .check-boxes
+          = f.collection_check_boxes :condition_id, @conditions, :id, :name, include_hidden: false  do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+
+        = f.label :cost_burden, class: "search-nav__dropdown__form__list" do
+          %i.fas.fa-truck.fa-flip-horizontal
+          %span 配送料の負担
+        .check-boxes
+          = f.collection_check_boxes :cost_burden, @prices, :id, :name, include_hidden: false  do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+
+        = f.label :status, class: "search-nav__dropdown__form__list" do 
+          %i.fas.fa-shopping-cart
+          %span 販売状況
+        .check-boxes
+          = f.collection_check_boxes :status_id, @prices, :id, :name, include_hidden: false  do |b|
+            .check-boxes__content
+              = b.check_box(class:"search-checkbox")
+              = b.label(class:"search-checkbox__label"){b.text}
+        
+        .sidebar__search-btns
+          = f.submit type: :reset, value: "クリア", class: "sidebar__search-btn", id: "search__reset"
+          = f.submit value: "完了", class: "sidebar__search-btn sidebar__search-btn--red"

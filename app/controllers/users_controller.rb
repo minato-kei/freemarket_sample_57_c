@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:profile]
+
 
   def show
+    @nickname = current_user.nickname
   end  
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def sign_up_user_info
@@ -53,30 +54,20 @@ class UsersController < ApplicationController
   def sing_up_complete
   end
 
-  # def sign_up_credit_create
-  #   binding.pry
-  #   if Credit.create(credit_params).valid?
-  #     redirect_to root_path
-  #   else
-  #     render "sign_up_credit"
-  #   end  
-  # end
-
+  def items
+    @user = current_user
+    @items = @user.items
+  end
+  
   private
+
   def user_information_params
     birthday = Date.new(params.require(:user)[:"birthday(1i)"].to_i, params.require(:user)[:"birthday(2i)"].to_i, params.require(:user)[:"birthday(3i)"].to_i)
-    
     params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :phone_number).to_h.merge(birthday: birthday)
   end
 
   def shipping_params
-    #テーブル不足分
-    # params.require(:shipping).permit(:first_name_kanji, :last_name_kanji, :first_name_kana, :last_name_kana, :zipcode, :pref, :city, :adress, :building, :phone)
-    # params.require(:shipping).permit(:zipcode)[:zipcode].delete!("-")
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
 end

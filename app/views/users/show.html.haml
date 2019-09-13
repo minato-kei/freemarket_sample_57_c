@@ -1,6 +1,9 @@
 .container
   = render partial: 'items/header'
 
+  -# config/breadcrumbs.rbに定義したmypageを呼び出し
+  - breadcrumb :show
+  -# 下記を記述した箇所にパンくずリストが表示される。
   = render partial: 'devise/registrations/bread-crumbs'
 
   .main-box
@@ -17,7 +20,7 @@
               -# = image_tag current_user.icon_image.to_s, width: "60px", height: "60px", class: "user_icon"
 
             .user-bunner__name
-              長宗我部 元親
+              = current_user.nickname
         .user-number
           .user-number__rating
             評価

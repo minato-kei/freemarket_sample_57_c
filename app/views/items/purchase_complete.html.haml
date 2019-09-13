@@ -1,0 +1,23 @@
+-# ここからpまでが新規登録画面5　住所画面
+.register_header
+  .register_header_logo
+    = image_tag 'mercari_logo.png'
+    -# 写真は本番のときに改めて差し替える
+.register_user_register5
+  .register_user_register5_contents
+    %h1 購入完了
+    = link_to "トップページに戻る", root_path, class: "btn"
+    %br
+-#       = link_to "本人情報の登録について＞", "#", style: "text-align: right;"
+
+%nav.footer
+  %ul
+    %li
+      = link_to "プライバシーポリシー", "#"
+    %li
+      = link_to "メルカリ利用規約", "#"
+    %li
+      = link_to "特定商取引に関する表記", "#"
+  = image_tag 'mercari_logo2.png'
+  -# 写真は本番のときに改めて差し替える
+  %p ©︎2019 Mercari

@@ -6,8 +6,9 @@ class User < ApplicationRecord
   
   has_many :shippings, dependent: :destroy
   has_many :items, dependent: :destroy
+
   # has_many :orders
-  # has_many :credits, dependent: :destroy
+  has_many :credits, dependent: :destroy
   # has_many :likes, dependent: :destroy
   # has_many :searches, dependent: :destroy
   # has_many :follows, dependent: :destroy

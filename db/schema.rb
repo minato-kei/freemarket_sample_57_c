@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_031519) do
+ActiveRecord::Schema.define(version: 2019_09_12_105821) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "prefecture_id"
@@ -38,18 +38,19 @@ ActiveRecord::Schema.define(version: 2019_09_06_031519) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
-    t.string "size"
-    t.string "condition", null: false
-    t.integer "cost_burden"
+    t.integer "size_id"
+    t.integer "condition_id", null: false
+    t.integer "cost_burden_id"
     t.string "shipping_from", null: false
-    t.string "shipping_day", null: false
+    t.integer "shipping_day_id", null: false
     t.integer "rating"
-    t.string "status", default: "出品中", null: false
+    t.integer "status_id", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.bigint "shipping_id", null: false
+    t.text "text"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["name"], name: "index_items_on_name"
     t.index ["shipping_id"], name: "index_items_on_shipping_id"
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_031519) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.integer "birthday"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.integer "balance", default: 0, null: false
     t.string "sex"
     t.datetime "remember_created_at"
