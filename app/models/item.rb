@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :shipping, optional: true 
   belongs_to :user
   belongs_to :category
-  validates :name, :price,:condition,:shipping_from, :shipping_day, :status, presence: true
+  validates :name, :price,:condition_id, :category_id,:shipping_from, :shipping_day_id, :status_id, presence: true
   belongs_to_active_hash :size
   belongs_to_active_hash :condition
   belongs_to_active_hash :cost_burden

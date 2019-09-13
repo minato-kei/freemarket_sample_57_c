@@ -311,6 +311,7 @@ child.children.create([{name: "筆記具"},{name: "ノート/メモ帳"},{name: 
 child = category.children.create(name: "事務/店舗用品")
 child.children.create([{name: "オフィス用品一般"},{name: "オフィス家具"},{name: "店舗用品"},{name: "OA機器"},{name: "ラッピング/包装"},{name: "その他"}])
 child = category.children.create(name: "その他")
+child.children.create(name: "その他")
 
 
 category = Category.create(name: "カテゴリー一覧")
@@ -362,7 +363,7 @@ category = Category.create(name: "カテゴリー一覧")
     rating: 1,
     status_id: rand(1..2),
     user_id: user.id,
-    category_id: rand(1..1000),
+    category_id: rand(18..31),
     shipping_id: shipping.id)
   (i+1).times do |p|
     picture = Picture.create(image: open("#{Rails.root}/app/assets/images/mercari_logo.png"),

@@ -62,7 +62,7 @@
           %tr 
             %th 商品のサイズ
             %td 
-              - if @item&.size != nil
+              - if @item&.size_id != nil
                 = @item&.size.name
           %tr 
             %th 商品の状態
