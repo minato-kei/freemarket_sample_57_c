@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :pictures, dependent: :destroy
-  belongs_to :shipping, optional: true 
-  belongs_to :user, optional: true
-  belongs_to :category, optional: true
+  belongs_to :shipping
+  belongs_to :user
+  belongs_to :category 
   validates :name, :price,:condition_id, :category_id,:shipping_from, :shipping_day_id, :status_id, presence: true
   
   belongs_to_active_hash :size

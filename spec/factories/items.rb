@@ -14,9 +14,9 @@ FactoryBot.define do
     updated_at              {Date.today}
 
 
-    user_id                    {FactoryBot.build :user}
-    shipping_id                {FactoryBot.build :shipping}
-    category_id                {FactoryBot.build :category}
+    user                   
+    shipping               
+    category                
     text                    {1111}
   end
 end
