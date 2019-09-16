@@ -1,6 +1,9 @@
 require 'rails_helper'
 describe Item do
   describe "#create" do
+    before do
+      category = FactoryBot.create(:category)
+    end
 
     it "全ての情報が揃っていれば登録可能" do
       item = build(:item)

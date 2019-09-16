@@ -3,7 +3,7 @@ FactoryBot.define do
     id                      {300}
     name                    {"豊臣秀吉からもらった饅頭"}
     price                   {15000}
-    size_id                    {""}
+    size_id                    {1}
     condition_id               {"新品同様"}
     cost_burden_id             {1}
     shipping_from           {"高知県"}
