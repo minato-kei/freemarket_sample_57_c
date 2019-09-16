@@ -1,7 +1,10 @@
 require 'rails_helper'
 describe Item do
   describe "#create" do
-  
+    before do
+      category = FactoryBot.create(:category)
+    end
+
     it "全ての情報が揃っていれば登録可能" do
       item = build(:item)
       item.valid?
@@ -14,34 +17,50 @@ describe Item do
       expect(item.errors[:name]).to include("can't be blank")
     end
 
-    it "priceがなければ無効" do
+        it "priceがなければ無効" do
       item = build(:item, price: "")
       item.valid?
       expect(item.errors[:price]).to include("can't be blank")
     end
 
-    it "sizeがなくても有効" do
-      item = build(:item, size: "")
-      item.valid?
+    it "size_idがなくても有効" do
+      item = build(:item, size_id: nil)
       expect(item).to be_valid
     end
 
     it "conditionがなければ無効" do
-      item = build(:item, condition: "")
+      item = build(:item, condition_id: "")
       item.valid?
-      expect(item.errors[:condition]).to include("can't be blank")
+      expect(item.errors[:condition_id]).to include("can't be blank")
     end
 
-    # it "cost_burdenがなければ無効" do
-    #   item = build(:item, cost_burden: "")
-    #   item.valid?
-    #   expect(item.errors[:cost_burden]).to include("can't be blank")
-    # end
+    it "cost_burdenがなくても有効" do
+      item = build(:item, cost_burden_id: "")
+      expect(item).to be_valid
+    end
+
+    it "shipping_fromがなければ無効" do
+      item = build(:item, shipping_from: "")
+      item.valid?
+      expect(item.errors[:shipping_from]).to include("can't be blank")
+    end
+
+    it "shipping_day_idがなければ無効" do
+      item = build(:item, shipping_day_id: "")
+      item.valid?
+      expect(item.errors[:shipping_day_id]).to include("can't be blank")
+    end
+
+    it "ratingがなくても有効" do
+      item = build(:item, rating: "")
+      expect(item).to be_valid
+    end
+
 
     it "statusがなければ無効" do
-      item = build(:item, status: "")
+      item = build(:item, status_id: "")
       item.valid?
-      expect(item.errors[:status]).to include("can't be blank")
+      expect(item.errors[:status_id]).to include("can't be blank")
     end
 
     it "user_idがなければ無効" do
@@ -54,10 +73,10 @@ describe Item do
       expect(item.valid?).to be false
     end
 
-    # it "shipping_idがなければ無効" do
-    #   item = build(:item, shipping: nil)
-    #   expect(item.valid?).to be false
-    # end
+    it "shipping_idがなければ無効" do
+      item = build(:item, shipping: nil)
+      expect(item.valid?).to be false
+    end
     
   end
 end
