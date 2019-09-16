@@ -7,11 +7,11 @@
 #       expect(user).to be_valid
 #     end
 
-#     it "nicknameがなければ無効" do
-#       user = build(:user, nickname: "")
-#       user.valid?
-#       expect(user.errors[:nickname]).to include("can't be blank")
-#     end
+    # it "nicknameがなければ無効" do
+    #   user = build(:user, nickname: "")
+    #   user.valid?
+    #   expect(user.errors[:nickname]).to include("can't be blank")
+    # end
 
 #     it "emailがなければ無効" do
 #       user = build(:user, email: "")
