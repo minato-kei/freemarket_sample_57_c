@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :order do
-    item_id                    {FactoryBot.build :item}
+    id                      {678}
+    item_id                 {1}
     purchase_user_id        {1}
     deal_at                 {"2019-08-30 09:07:58"}
     cancel                  {"購入者によるキャンセル"}

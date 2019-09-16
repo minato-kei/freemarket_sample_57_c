@@ -226,6 +226,16 @@
       font-size: 24px;
       line-height: 60px;
     }
+    &__cant-buy-btn {
+      display: block;
+      margin-top: 16px;
+      background-color: lightgrey;
+      color: #fff;
+      text-align: center;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 60px;
+    }
     &__app-buy {
       display: inline-block;
       margin-top: 16px;

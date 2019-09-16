@@ -13,11 +13,11 @@ describe Credit do
       expect(credit.errors[:token]).to include("can't be blank")
     end
 
-    # it "user_idが無ければ無効" do
-    #   credit = build(:credit, user_id: "")
-    #   credit.valid?
-    #   expect(credit.errors[:user_id]).to include("can't be blank")
-    # end
+    it "user_idが無ければ無効" do
+      credit = build(:credit, user_id: "")
+      credit.valid?
+      expect(credit.errors[:user_id]).to include("can't be blank")
+    end
 
   end
 end
