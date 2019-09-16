@@ -60,18 +60,6 @@ describe Item do
       expect(item.errors[:status_id]).to include("can't be blank")
     end
 
-    # it "created_atがなければ無効" do
-    #   item = build(:item, created_at: "")
-    #   item.valid?
-    #   expect(item.errors[:created_at]).to include("can't be blank")
-    # end
-
-    # it "updated_atがなければ無効" do
-    #   item = build(:item, updated_at: "")
-    #   item.valid?
-    #   expect(item.errors[:updated_at]).to be false
-    # end
-
     it "user_idがなければ無効" do
       item = build(:item, user: nil)      
       expect(item.valid?).to be false
