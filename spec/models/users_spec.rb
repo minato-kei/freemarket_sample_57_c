@@ -1,6 +1,10 @@
 require 'rails_helper'
 describe User do
   describe "#create" do
+    before do
+      user = FactoryBot.create(:user)
+    end
+
     it "全ての情報が揃っていれば登録可能" do
       user = build(:user)
       user.valid?
@@ -23,7 +27,7 @@ describe User do
       user.valid?
       expect(user.errors[:password]).to include("can't be blank")
     end
-    it "passwordが短すぎると無効←このバリデーションあったかな？" do
+    it "passwordが短すぎると無効" do
       user = build(:user, password: "0000000", password_confirmation: "00000000")
       user.valid?
       expect(user.errors[:password]).to include("can't be blank")
