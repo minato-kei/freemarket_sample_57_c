@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   belongs_to :shipping
   belongs_to :user
   belongs_to :category 
+  has_many :orders
   validates :name, :price,:condition_id, :category_id,:shipping_from, :shipping_day_id, :status_id, presence: true
   
   belongs_to_active_hash :size
