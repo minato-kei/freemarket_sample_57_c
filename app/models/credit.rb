@@ -1,4 +1,4 @@
 class Credit < ApplicationRecord
-  validates :token, presence: true
+  validates :token, :user_id,presence: true
   belongs_to :user
 end
