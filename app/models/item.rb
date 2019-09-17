@@ -17,11 +17,11 @@ class Item < ApplicationRecord
   # has_many :likes, dependent: :destroy
   
   scope :price, -> (min, max) { 
-    if min=="" && max==""
+    if min.blank? && max.blank?
       all
-    elsif  min==""
+    elsif  min.blank?
       where('price < ?', max.to_i) 
-    elsif max==""
+    elsif max.blank?
       where('price > ?', min.to_i) 
     else
       where('price between ? and ?', min.to_i, max.to_i)
