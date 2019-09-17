@@ -7,7 +7,6 @@ FactoryBot.define do
     password_confirmation   {"0000000000"}
     reset_password_token    {}
     reset_password_sent_at  {}
-
     last_name_kanji         {"長宗我部"}
     first_name_kanji        {"元親"}
     last_name_kana          {"チョウソカベ"}
