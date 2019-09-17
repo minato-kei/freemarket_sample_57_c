@@ -17,10 +17,10 @@
     = form_with(model: @user, url: sign_up_phone_users_path, class: "register_user_register2_contents_form", local: true) do |f|
       .field
         = f.label :"ニックネーム"
-        = f.text_field :nickname, placeholder: "nickname", value: "キカキン"
+        = f.text_field :nickname, placeholder: "nickname", value: (Faker::Movies::StarWars.character)
       .field
         = f.label :"メールアドレス"
-        = f.text_field :email, placeholder: "email", value: "example@example.com"
+        = f.text_field :email, placeholder: "email", value: (Faker::Internet.email)
       .field
         = f.label :"パスワード"
         = f.password_field :password, placeholder: "7文字以上", value: "11111111"
@@ -32,8 +32,8 @@
       .field.field_name_kanji
         = f.label :"お名前（全角）"
         .field.field_name_kanji_form
-          = f.text_field :first_name_kanji, placeholder: "例)長宗我部", value: "長宗我部"
-          = f.text_field :last_name_kanji, placeholder: "例)元親", value: "元親"
+          = f.text_field :first_name_kanji, placeholder: "例)長宗我部", value: (Faker::Name.last_name )
+          = f.text_field :last_name_kanji, placeholder: "例)元親", value: (Faker::Name.first_name )
       .field
         = f.label :"お名前カナ（全角）"
         .field.field_name_kana_form
