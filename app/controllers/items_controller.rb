@@ -133,6 +133,8 @@ class ItemsController < ApplicationController
   def search
     @prices = Price.all
     @conditions = Condition.all
+    @cost_burden = CostBurden.all
+    @status = Status.all
     @keyword = params[:keyword].to_s.split(/[[:blank:]]+/)
     @items = Item.price( params[:min_price], params[:max_price]).search(@keyword).where(search_params).page(params[:page]).per(4)
     if @items.blank?
