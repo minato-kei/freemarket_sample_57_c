@@ -42,6 +42,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    
     if @item.save
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}

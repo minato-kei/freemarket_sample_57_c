@@ -17,18 +17,18 @@
     = form_with(method: "POST", url:"/credits", class: "register_user_register6_contents_form") do |f|
       .field
         = f.label :"カード番号　"
-        = f.text_field :number, placeholder: "半角数字のみ", class: "credit_card_number_form", maxlength: "16"
+        = f.text_field :number, placeholder: "半角数字のみ", class: "credit_card_number_form", maxlength: "16",value:"4242424242424242"
         %p
       .field
         = f.label :"有効期限　"
         .field_expire_form
-          = f.date_select :exp_year, class: "credit_card_exp_year_form", discard_month: true, discard_day: true, start_year: 2000, end_year: Time.current.year + 20, default: { year: Time.current.year}, maxlength: "4"
+          = f.date_select :exp_year, class: "credit_card_exp_year_form", discard_month: true, discard_day: true, start_year: 2000, end_year: Time.current.year + 20, default: { year: Time.current.year}, maxlength: "4",value:"2020"
           %span 年
-          = f.date_select :exp_month, class: "credit_card_exp_month_form", discard_year: true, discard_day: true, use_month_numbers: true, default: {month: 1}, maxlength: "2"
+          = f.date_select :exp_month, class: "credit_card_exp_month_form", discard_year: true, discard_day: true, use_month_numbers: true, default: {month: 1}, maxlength: "2",value:"12"
           %span 月
       .field.field_security_code
         = f.label :"セキュリティコード　"
-        = f.text_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", class: "credit_card_cvc_form", maxlength: "3"
+        = f.text_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", class: "credit_card_cvc_form", maxlength: "3",value:"123"
         = link_to "カード裏面の番号とは？", "#"
       %button{type:"submit", class:"btn"} 送信
       -# = link_to "500円募金",pay_credits_path, method: 'POST', class: 'btn'
