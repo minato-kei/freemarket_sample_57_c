@@ -92,7 +92,7 @@ describe UsersController do
                                                  building: 'フィボナッチビルディング1123',
                                                  phone: "09012345678"}},
                             session: {id: user.id}
-                            
+      
       expect(response).to render_template :sign_up_credit
     end
   end

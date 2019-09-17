@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :shipping do
-    id                 {900}
+    
     zipcode            {7810262}
     pref               {1}
     city               {"高知市"}

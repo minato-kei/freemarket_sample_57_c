@@ -2,7 +2,6 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 feature 'items', type: feature do
-  # let(:user) { create(:user) }
   background "ユーザーを２人作成し、出品側でログイン" do
     create_list(:user, 2)
     @user_seller = User.first
