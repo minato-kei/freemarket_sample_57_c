@@ -67,7 +67,7 @@
           %i.fas.fa-truck.fa-flip-horizontal
           %span 配送料の負担
         .check-boxes
-          = f.collection_check_boxes :cost_burden, @prices, :id, :name, include_hidden: false  do |b|
+          = f.collection_check_boxes :cost_burden, @cost_burden, :id, :name, include_hidden: false  do |b|
             .check-boxes__content
               = b.check_box(class:"search-checkbox")
               = b.label(class:"search-checkbox__label"){b.text}
@@ -76,7 +76,7 @@
           %i.fas.fa-shopping-cart
           %span 販売状況
         .check-boxes
-          = f.collection_check_boxes :status_id, @prices, :id, :name, include_hidden: false  do |b|
+          = f.collection_check_boxes :status_id, @status, :id, :name, include_hidden: false  do |b|
             .check-boxes__content
               = b.check_box(class:"search-checkbox")
               = b.label(class:"search-checkbox__label"){b.text}

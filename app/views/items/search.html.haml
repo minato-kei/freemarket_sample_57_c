@@ -7,7 +7,7 @@
     = render partial: 'items/search-sidebar'
     .search-main
       %h2.search-result 
-        = @keyword
+        = @keyword.join(",")
         %span の検索結果
       - if @count == 0
         %p 該当する商品が見つかりません。検索条件を変えて、再度お試しください。

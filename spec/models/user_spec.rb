@@ -5,6 +5,7 @@ describe User do
       user = FactoryBot.create(:user)
     end
 
+
     it "全ての情報が揃っていれば登録可能" do
       user = build(:user)
       user.valid?

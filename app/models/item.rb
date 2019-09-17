@@ -1,10 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :pictures, dependent: :destroy
-  belongs_to :shipping, optional: true 
+  belongs_to :shipping
   belongs_to :user
-  belongs_to :category
+  belongs_to :category 
+  has_many :orders
   validates :name, :price,:condition_id, :category_id,:shipping_from, :shipping_day_id, :status_id, presence: true
+  
   belongs_to_active_hash :size
   belongs_to_active_hash :condition
   belongs_to_active_hash :cost_burden
@@ -14,4 +16,15 @@ class Item < ApplicationRecord
   # has_many :orders, dependent: :destroy
   # has_many :likes, dependent: :destroy
   
+  scope :price, -> (min, max) { 
+    if min=="" && max==""
+      all
+    elsif  min==""
+      where('price < ?', max.to_i) 
+    elsif max==""
+      where('price > ?', min.to_i) 
+    else
+      where('price between ? and ?', min.to_i, max.to_i)
+    end}
+  scope :search, -> (keyword){ where((["name LIKE ?"] * keyword.size).join(" AND "), *keyword.map{|w| "%#{w}%"}) }
 end
