@@ -4,9 +4,12 @@
 
   .category-main-box
     %h2= "#{@category.name}の商品一覧"
+    - if @items.empty?
+      %p 該当する商品が見つかりません。検索条件を変えて、再度お試しください。
     %ul.search-list
       = render partial: 'search-item-box', collection: @items, as: :item
-    -# = paginate(@items, window: 2)
+    = paginate(@items, window: 2)
+      
 
   
   = render partial: 'bottom'

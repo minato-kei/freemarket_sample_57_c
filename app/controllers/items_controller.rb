@@ -143,7 +143,7 @@ class ItemsController < ApplicationController
 
   def category
     @category = Category.find(params[:category_id])
-    @items = Item.all.limit(10)
+    @items = Item.where(category_id: @category.subtree_ids).page(params[:page]).per(2)
   end
   
   private
