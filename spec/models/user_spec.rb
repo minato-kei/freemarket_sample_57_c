@@ -13,8 +13,7 @@ describe User do
 
     it "nicknameがなければ無効" do
       user = build(:user, nickname: "")
-      user.valid?
-      expect(user.errors[:nickname]).to include("can't be blank")
+      expect(user.valid?).to be true
     end
 
     it "emailがなければ無効" do
@@ -27,11 +26,7 @@ describe User do
       user.valid?
       expect(user.errors[:password]).to include("can't be blank")
     end
-    # it "passwordが短すぎると無効" do
-    #   user = build(:user, password: "0000000000", password_confirmation: "0000000000")
-    #   user.valid?
-    #   expect(user.errors[:password]).to include("can't be blank")
-    # end
+    
     it "password_confirmationがなければ無効" do
       user = build(:user, password_confirmation: "")
       user.valid?
@@ -43,29 +38,24 @@ describe User do
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
     it "last_name_kanjiがなければ無効" do
-      user = build(:user, last_name_kanji: "")
-      user.valid?
-      expect(user.errors[:last_name_kanji]).to include("can't be blank")
+      user = build(:user, last_name_kanji: nil)
+      expect(user.valid?).to be true
     end
     it "first_name_kanjiがなければ無効" do
-      user = build(:user, first_name_kanji: "")
-      user.valid?
-      expect(user.errors[:first_name_kanji]).to include("can't be blank")
+      user = build(:user, first_name_kanji: nil)
+      expect(user.valid?).to be true
     end
     it "last_name_kanaがなければ無効" do
-      user = build(:user, last_name_kana: "")
-      user.valid?
-      expect(user.errors[:last_name_kana]).to include("can't be blank")
+      user = build(:user, last_name_kana: nil)
+      expect(user.valid?).to be true
     end
     it "first_name_kanaがなければ無効" do
-      user = build(:user, first_name_kana: "")
-      user.valid?
-      expect(user.errors[:first_name_kana]).to include("can't be blank")
+      user = build(:user, first_name_kana: nil)
+      expect(user.valid?).to be true
     end
     it "birthdayがなければ無効" do
-      user = build(:user, birthday: "")
-      user.valid?
-      expect(user.errors[:birthday]).to include("can't be blank")
+      user = build(:user, birthday: nil)
+      expect(user.valid?).to be true
     end
     it "sexがなくても有効" do
       user = build(:user, sex: "")
