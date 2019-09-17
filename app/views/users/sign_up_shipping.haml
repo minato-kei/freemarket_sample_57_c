@@ -29,7 +29,7 @@
         = f.text_field :zipcode, placeholder: "例)123-4567", value:"123-0855"
       .field
         = f.label :"都道府県"
-        = f.text_field :pref, placeholder: "例)東京都", value:"宮城県"
+        = f.collection_select :pref, Prefecture.all, :id, :name, {prompt: '---'}
       .field
         = f.label :"市区町村"
         = f.text_field :city, placeholder: "例)港区",value:"杜王町"
