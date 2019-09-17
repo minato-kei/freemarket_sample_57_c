@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def sign_up_credit
-      render "sign_up_shipping" unless Shipping.create(shipping_params).valid?
+      render "sign_up_shipping" unless Shipping.create(shipping_params)
   end
 
   def sing_up_complete
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
 
   def shipping_params
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
+
   end
 
 end
