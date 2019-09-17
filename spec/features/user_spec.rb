@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'users', type: feature do
   let(:user) { create(:user) }
-  scenario 'lonin user' do
+  scenario 'ログインテスト' do
     #ログインしていない状態でトップページに移動
     visit root_path
     expect(page).to have_no_content('マイページ')
@@ -15,7 +15,6 @@ feature 'users', type: feature do
     #ログインしたらトップページに遷移
     expect(current_path).to eq root_path
     expect(page).to have_content('マイページ')
-    
   end
 
 end
