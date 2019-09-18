@@ -16,4 +16,15 @@ class Item < ApplicationRecord
   # has_many :orders, dependent: :destroy
   # has_many :likes, dependent: :destroy
   
+  scope :price, -> (min, max) { 
+    if min.blank? && max.blank?
+      all
+    elsif  min.blank?
+      where('price < ?', max.to_i) 
+    elsif max.blank?
+      where('price > ?', min.to_i) 
+    else
+      where('price between ? and ?', min.to_i, max.to_i)
+    end}
+  scope :search, -> (keyword){ where((["name LIKE ?"] * keyword.size).join(" AND "), *keyword.map{|w| "%#{w}%"}) }
 end

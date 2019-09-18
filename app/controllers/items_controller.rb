@@ -42,6 +42,7 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    
     if @item.save
       unless params[:delete].blank?
         d = params[:delete].split(",").map{|i| i.to_i}
@@ -133,15 +134,19 @@ class ItemsController < ApplicationController
   def search
     @prices = Price.all
     @conditions = Condition.all
-    # @categories = Category.where(ancestry: nil).limit(3)
+    @cost_burden = CostBurden.all
+    @status = Status.all
     @keyword = params[:keyword].to_s.split(/[[:blank:]]+/)
-    query = (["name LIKE ?"] * @keyword.size).join(" AND ")
-    #複合条件はwhere句を足してください。
-    @items = Item.where(query, *@keyword.map{|w| "%#{w}%"}).where('price > ? AND price < ?', params[:min_price], params[:max_price]).where(search_params).page(params[:page]).per(4)
+    @items = Item.price( params[:min_price], params[:max_price]).search(@keyword).where(search_params).page(params[:page]).per(4)
     if @items.blank?
       @items = Item.page(params[:page]).per(2)
       @count=0
     end
+  end
+
+  def category
+    @category = Category.find(params[:category_id])
+    @items = Item.where(category_id: @category.subtree_ids).page(params[:page]).per(2)
   end
   
   private

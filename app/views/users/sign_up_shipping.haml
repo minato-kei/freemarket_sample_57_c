@@ -18,30 +18,30 @@
 
       .field
         = f.label :"お名前（全角）"
-        = f.text_field :first_name_kanji, placeholder: "例)長宗我部"
-        = f.text_field :last_name_kanji, placeholder: "例)元親"
+        = f.text_field :first_name_kanji, placeholder: "例)長宗我部", value: (Faker::Name.last_name)
+        = f.text_field :last_name_kanji, placeholder: "例)元親", value: (Faker::Name.first_name)
       .field
         = f.label :"お名前カナ（全角）"
-        = f.text_field :first_name_kana, placeholder: "例)チョウソカベ"
-        = f.text_field :last_name_kana, placeholder: "例)モトチカ"
+        = f.text_field :first_name_kana, placeholder: "例)チョウソカベ", value: "キラ"
+        = f.text_field :last_name_kana, placeholder: "例)モトチカ", value: "ヨシカゲ"
       .field
         = f.label :"郵便番号"
-        = f.text_field :zipcode, placeholder: "例)123-4567"
+        = f.text_field :zipcode, placeholder: "例)123-4567", value:"123-0855"
       .field
         = f.label :"都道府県"
-        = f.text_field :pref, placeholder: "例)123-4567"
+        = f.collection_select :pref, Prefecture.all, :id, :name, {prompt: '---'}
       .field
         = f.label :"市区町村"
-        = f.text_field :city, placeholder: "例)港区"
+        = f.text_field :city, placeholder: "例)港区",value:"杜王町"
       .field
         = f.label :"番地"
-        = f.text_field :address, placeholder: "例)白金6-9-5"
+        = f.text_field :address, placeholder: "例)白金6-9-5",value:"浄禅寺1-128"
       .field
         = f.label :"建物名",class:"form-nini"
         = f.text_field :building, placeholder: "例)フィボナッチビルディング1123"
       .field
         = f.label :"電話",class:"form-nini"
-        = f.text_field :phone, placeholder: "例)09058132134"
+        = f.text_field :phone, placeholder: "例)09058132134",value:"0034341212"
       = f.submit "次へ進む", class: "btn"
       %br
 -#       = link_to "本人情報の登録について＞", "#", style: "text-align: right;"
