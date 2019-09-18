@@ -49,4 +49,10 @@ describe ItemsController do
       expect(response).to render_template :edit      
     end
   end
+
+  describe 'POST #create' do
+    it 'new item' do
+      expect{post :create, params: {"images" => { "name" => { "1" => image } }, item: @item_params}}.to change(Item, :count).by(1)
+    end
+  end
 end
