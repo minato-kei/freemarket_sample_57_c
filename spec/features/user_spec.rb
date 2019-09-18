@@ -65,7 +65,7 @@ feature 'users', type: feature do
       fill_in 'shipping_first_name_kana', with: "キラ"
       fill_in 'shipping_last_name_kana', with: "ヨシカゲ"
       fill_in 'shipping_zipcode', with: 1234567
-      fill_in 'shipping_pref', with: "宮城県"
+      select '宮城県', from: 'shipping_pref'
       fill_in 'shipping_city', with: "杜王町"
       fill_in 'shipping_address', with: "浄禅寺1-128"
       fill_in 'shipping_building', with: "猫草"
