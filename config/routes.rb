@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :search
+      get :category
     end
   end
   

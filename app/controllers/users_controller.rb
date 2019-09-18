@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
   def sign_up_shipping
     # SMS認証番号を照会
+    
     if session[:r] == params.require(:user).permit(:sign_up_sms)[:sign_up_sms].to_i
       @user = User.new({nickname: session[:nickname], email: session[:email], password: session[:password], password_confirmation: session[:password_confirmation], first_name_kanji: session[:first_name_kanji], last_name_kanji: session[:last_name_kanji], first_name_kana: session[:first_name_kana], last_name_kana: session[:last_name_kana], phone_number: session[:phone_number], birthday: session[:birthday]})
       if @user.save
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def sign_up_credit
-      render "sign_up_shipping" unless Shipping.create(shipping_params).valid?
+      render "sign_up_shipping" unless Shipping.create(shipping_params)
   end
 
   def sing_up_complete
@@ -68,6 +69,7 @@ class UsersController < ApplicationController
 
   def shipping_params
     params.require(:shipping).permit(:zipcode, :pref, :city, :address, :building, :phone).merge(user_id: session[:id])
+
   end
 
 end
