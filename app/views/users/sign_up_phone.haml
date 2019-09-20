@@ -16,7 +16,7 @@
     = form_with(model: @user, url: sign_up_sms_users_path, class: "register_user_register3_contents_form", local: true) do |f|
       .field
         = f.label :"携帯電話の番号"
-        = f.text_field :phone_number, placeholder: "携帯電話の番号を入力", value: "09000001111"
+        = f.text_field :phone_number, placeholder: "携帯電話の番号を入力"
         %p 本人確認のため、携帯電話のSMS（ショートメッセージサービス）を利用して認証を行います。
         = f.submit "SMSを送信する", class: "btn"
         %h2 ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
